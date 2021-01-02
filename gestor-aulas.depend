@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1609613323 source:e:\apps\gestor-aulas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"funcoes_auxiliares.h"
+	"funcoes_menu.h"
+
+1609613323 e:\apps\gestor-aulas\constantes.h
+
+1609613323 e:\apps\gestor-aulas\funcoes_auxiliares.h
+	"constantes.h"
+
+1609613323 e:\apps\gestor-aulas\funcoes_menu.h
+
+1609613323 source:e:\apps\gestor-aulas\funcoes_auxiliares.c
+	"funcoes_auxiliares.h"
+	<stdio.h>
+	<string.h>
+
