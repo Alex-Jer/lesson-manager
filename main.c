@@ -6,7 +6,7 @@
 #include "funcoes_menu.h"
 
 int main() {
-  MenuPrincipal();
+  MenuPrincipal();//teste
   return 0;
 }
 

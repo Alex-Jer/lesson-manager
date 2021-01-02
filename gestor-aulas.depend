@@ -18,3 +18,22 @@
 	<stdio.h>
 	<string.h>
 
+1609613008 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_auxiliares.c
+	"funcoes_auxiliares.h"
+	<stdio.h>
+	<string.h>
+
+1609613008 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_auxiliares.h
+	"constantes.h"
+
+1609613008 c:\users\utilizador\desktop\github\gestor-aulas\constantes.h
+
+1609613008 source:c:\users\utilizador\desktop\github\gestor-aulas\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"funcoes_auxiliares.h"
+	"funcoes_menu.h"
+
+1609613008 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_menu.h
+
