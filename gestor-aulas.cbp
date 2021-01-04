@@ -42,7 +42,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="funcoes_ucs.h" />
-		<Unit filename="gestor-aulas.cbp" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
