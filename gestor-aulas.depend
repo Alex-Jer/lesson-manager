@@ -26,12 +26,12 @@
 1609614464 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_auxiliares.h
 	"constantes.h"
 
-1609614464 c:\users\utilizador\desktop\github\gestor-aulas\constantes.h
+1609794363 c:\users\utilizador\desktop\github\gestor-aulas\constantes.h
 	<stdbool.h>
 	<stdio.h>
 	<stdlib.h>
 
-1609781834 source:c:\users\utilizador\desktop\github\gestor-aulas\main.c
+1609786897 source:c:\users\utilizador\desktop\github\gestor-aulas\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
@@ -42,7 +42,7 @@
 
 1609613008 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_menu.h
 
-1609784954 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.c
+1609794601 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.c
 	"estruturas.h"
 	"funcoes_auxiliares.h"
 

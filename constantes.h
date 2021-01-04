@@ -8,5 +8,6 @@
 #define MAX_STRING 50
 #define MAX_TIPO_AULA 2
 #define MAX_UCS 40
+#define MAX_DURACAO 3
 
 #endif  // CONSTANTES_H_INCLUDED
