@@ -6,6 +6,7 @@
 #include "funcoes_auxiliares.h"
 #include "funcoes_menu.h"
 #include "funcoes_ucs.h"
+
 int main() {
   MenuPrincipal();
   return 0;
@@ -22,7 +23,7 @@ void MenuPrincipal() {
 
   switch (opcao) {
     case 1:
-        MenuUcs();
+      MenuUcs();
       break;
     case 2:
       break;
@@ -57,4 +58,3 @@ void MenuUcs() {
       break;
   }
 }
-

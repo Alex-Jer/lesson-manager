@@ -7,7 +7,7 @@ UnidadeCurricular RegistarUc() {
   UnidadeCurricular novaUc;
   char obrigatoria;
   char diurno;
-  char tipoDes;
+  char tipoDes[2];
 
   novaUc.obrigatoria = true;
   novaUc.diurno = true;
@@ -29,14 +29,17 @@ UnidadeCurricular RegistarUc() {
   }  // Fim Ler Char
 
   novaUc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", 1, 40);  //! Usar uma constante
-   // TODO: Estrutura (?) T, TP, PL
-   printf("Qual o tipo de aula?(T/TP/PL): "); // Ler Char
-  scanf(" %c", &tipoDes);
+  // TODO: Estrutura (?) T, TP, PL
+  printf("Qual o tipo de aula?(T/TP/PL): ");  // Ler Char
+  scanf("%s", tipoDes);
   // TODO: Duração de cada T, TP, PL
   // novaUc.duracao = LerInteiro("Duracao da aula");
 
-//confirmar se escreve tudo
-  printf("Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de aula: %c",novaUc.designacao,obrigatoria,novaUc.semestre,diurno,novaUc.num_tipo_aulas_previstas,tipoDes);
+  // confirmar se escreve tudo
+  printf(
+      "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de aula: "
+      "%s",
+      novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas, tipoDes);
 
   return novaUc;
 }
