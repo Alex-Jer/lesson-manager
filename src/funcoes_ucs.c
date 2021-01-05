@@ -1,7 +1,4 @@
-// #include "funcoes_ucs.h"
-
-#include "estruturas.h"
-#include "funcoes_auxiliares.h"
+#include "funcoes_ucs.h"
 
 UnidadeCurricular RegistarUc() {
   UnidadeCurricular novaUc;

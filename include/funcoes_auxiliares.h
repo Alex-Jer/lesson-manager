@@ -1,6 +1,9 @@
 #ifndef FUNCOES_AUXILIARES_H_INCLUDED
 #define FUNCOES_AUXILIARES_H_INCLUDED
 
+#include <stdio.h>
+#include <string.h>
+
 #include "constantes.h"
 
 int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo);

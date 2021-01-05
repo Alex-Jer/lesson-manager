@@ -1,8 +1,5 @@
 #include "funcoes_auxiliares.h"
 
-#include <stdio.h>
-#include <string.h>
-
 // Acrescentada variavel controlo para repetir insercao se ao for inserido
 // numero int
 int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo) {
