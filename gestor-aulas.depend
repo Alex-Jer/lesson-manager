@@ -1,19 +1,24 @@
 # depslib dependency file v1.0
-1609613323 source:e:\apps\gestor-aulas\main.c
+1609879344 source:e:\apps\gestor-aulas\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
+	"estruturas.h"
 	"funcoes_auxiliares.h"
 	"funcoes_menu.h"
+	"funcoes_ucs.h"
 
-1609613323 e:\apps\gestor-aulas\constantes.h
+1609879344 e:\apps\gestor-aulas\constantes.h
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
 
-1609613323 e:\apps\gestor-aulas\funcoes_auxiliares.h
+1609879344 e:\apps\gestor-aulas\funcoes_auxiliares.h
 	"constantes.h"
 
-1609613323 e:\apps\gestor-aulas\funcoes_menu.h
+1609879344 e:\apps\gestor-aulas\funcoes_menu.h
 
-1609613323 source:e:\apps\gestor-aulas\funcoes_auxiliares.c
+1609879344 source:e:\apps\gestor-aulas\funcoes_auxiliares.c
 	"funcoes_auxiliares.h"
 	<stdio.h>
 	<string.h>
@@ -54,4 +59,13 @@
 	"funcoes_auxiliares.h"
 
 1609614464 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.h
+
+1609879344 source:e:\apps\gestor-aulas\funcoes_ucs.c
+	"estruturas.h"
+	"funcoes_auxiliares.h"
+
+1609879344 e:\apps\gestor-aulas\estruturas.h
+	"constantes.h"
+
+1609879344 e:\apps\gestor-aulas\funcoes_ucs.h
 
