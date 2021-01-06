@@ -1,33 +1,46 @@
 #include "funcoes_ucs.h"
 
-UnidadeCurricular RegistarUc() {
-  UnidadeCurricular novaUc;
+tipoUc LeDadosUc() {
+  tipoUc uc;
+
   char obrigatoria;
   char diurno;
 
-  novaUc.obrigatoria = true;
-  novaUc.diurno = true;
+  uc.obrigatoria = true;
+  uc.diurno = true;
 
-  LerString("Nome: ", novaUc.designacao, MAX_STRING);
+  LerString("Nome: ", uc.designacao, MAX_STRING);
 
   printf("Obrigatoria? (S/N): ");
   scanf(" %c", &obrigatoria);  //? Função LerString não funciona para 1 char?
   if (obrigatoria == 'N') {
-    novaUc.obrigatoria = false;
+    uc.obrigatoria = false;
   }  // Fim da leitura do caracter
 
-  novaUc.semestre = LerInteiro("Semestre", 1, 6);  //! Usar uma constante
+  uc.semestre = LerInteiro("Semestre", 1, 6);  //! Usar uma constante
 
   printf("Diurno ou noturno? (D/N): ");  // Ler Char
   scanf(" %c", &diurno);
   if (diurno == 'N') {
-    novaUc.diurno = false;
+    uc.diurno = false;
   }  // Fim Ler Char
 
   // TODO: Estrutura (?) T, TP, PL
-  novaUc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", 1, 40);  //! Usar uma constante
+  uc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", 1, 40);  //! Usar uma constante
   // TODO: Duração de cada T, TP, PL
-  // novaUc.duracao = LerInteiro("Duracao da aul");
+  // uc.duracao = LerInteiro("Duracao da aul");
 
-  return novaUc;
+  return uc;
+}
+
+tipoUc *RegistarUc(tipoUc vUcs[], int *nUcs) {
+  tipoUc uc, *pUcs;
+
+  pUcs = vUcs;
+
+  // vUcs = realloc(p);
+
+  (*nUcs)++;
+
+  return vUcs;
 }

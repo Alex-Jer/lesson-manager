@@ -2,6 +2,6 @@
 #define FUNCOES_MENU_H_INCLUDED
 
 int MenuPrincipal();
-void MenuUcs(UnidadeCurricular *vetorUcs);
+int MenuUcs();
 
 #endif /* FUNCOES_MENU_H_INCLUDED */

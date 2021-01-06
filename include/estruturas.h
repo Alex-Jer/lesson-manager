@@ -5,11 +5,11 @@
 
 typedef struct {
   int dia, mes, ano;
-} Data;  //! Tipo
+} tipoData;
 
 typedef struct {
   int horas, minutos;
-} Hora;  //! Tipo
+} tipoHora;
 
 typedef struct {
   char designacao[MAX_STRING];
@@ -18,17 +18,17 @@ typedef struct {
   bool diurno;
   int num_tipo_aulas_previstas;
   int duracao;
-} UnidadeCurricular;  //! Tipo
+} tipoUc;
 
 typedef struct {
   int uc_id;
   char tipo_aula[MAX_TIPO_AULA];  // T, TP, PL
   char docente[MAX_STRING];
-  Data data;
-  Hora inicio;
-  Hora fim;
+  tipoData data;
+  tipoHora inicio;
+  tipoHora fim;
   char estado;  // A - Agendada // D - A Decorrer // R - Realizada
   bool gravacao;
-} Aula;  //! Tipo
+} tipoAula;
 
 #endif /* ESTRUTURAS_H_INCLUDED */

@@ -8,24 +8,42 @@
 #include "funcoes_ucs.h"
 
 int main() {
-  int opcao;
-  opcao = MenuPrincipal();
-  UnidadeCurricular *vetorUcs = NULL;  // Vetor dinâmico
+  int opcao, opcaoSubMenu, *nUcs = 0;
+  tipoUc *vUcs = NULL;  // Inicializar vetor dinâmico
 
-  switch (opcao) {
-    case 1:
-      MenuUcs(&vetorUcs);
-      break;
-    case 2:
-      break;
-    case 3:
-      break;
-
-    default:
-      printf("0");
-      break;
-  }
-  free(vetorUcs);
+  //* Consultar slide 7 adenda!!!
+  do {
+    opcao = MenuPrincipal();
+    switch (opcao) {
+      case 1:
+        do {
+          opcaoSubMenu = MenuUcs();
+          switch (opcaoSubMenu) {
+            case 1:  // Registar
+              vUcs = RegistarUc(vUcs, &nUcs);
+              break;
+            case 2:  // Editar
+              /* code */
+              break;
+            case 3:  // Listar
+              /* code */
+              break;
+            default:
+              printf("0");
+              break;
+          }
+        } while (opcaoSubMenu != 0);
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      default:
+        printf("0");
+        break;
+    }
+  } while (opcao != 0);
+  free(vUcs);
 
   return 0;
 }
@@ -37,29 +55,16 @@ int MenuPrincipal() {
   printf("1. Gerir UCs\n");
   printf("2. Gerir Aulas\n");
   printf("3. Estatistica\n");
-  opcao = LerInteiro("Opcao", 1, 3);
+  printf("0. Voltar\n");
+  opcao = LerInteiro("\nOpcao", 0, 3);
 
   return opcao;
 }
 
-void MenuUcs(UnidadeCurricular *vetorUcs) {
-  int opcao;
-  // TODO: Alocar espaço no vetor
+int MenuUcs() {
   printf("\nGESTOR DE UCs\n");
   printf("1. Registar UC\n");
   printf("2. Editar UC\n");
   printf("3. Listar UCs\n");
-  opcao = LerInteiro("Opcao", 1, 3);
-
-  switch (opcao) {
-    case 1:
-      vetorUcs[0] = RegistarUc();
-      break;
-    case 2:
-      break;
-    case 3:
-      break;
-    default:
-      break;
-  }
+  printf("0. Voltar\n");
 }

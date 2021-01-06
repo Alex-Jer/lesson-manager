@@ -4,6 +4,7 @@
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
 
-UnidadeCurricular RegistarUc();
+tipoUc LeDadosUc();
+tipoUc *RegistarUc(tipoUc vUcs[], int *nUcs);
 
 #endif /* FUNCOES_UCS_H_INCLUDED */
