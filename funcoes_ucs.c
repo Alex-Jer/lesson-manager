@@ -32,6 +32,7 @@ UnidadeCurricular RegistarUc() {
   // TODO: Estrutura (?) T, TP, PL
   printf("Qual o tipo de aula?(T/TP/PL): ");  // Ler Char
   scanf(" %s",&tipoDes);
+
 printf("Digite a opção refere há pergunta aterior(1-T/2-TP/3-PL): ");
 scanf("%d",&duracao);
   switch (duracao)
@@ -55,8 +56,8 @@ scanf("%d",&duracao);
   // TODO: Duração de cada T, TP, PL
 
   // Confirmar se escreve tudo
-  printf(
-      "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de aula:%s/n %s",novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas, tipoDes,duracao);
+  //printf(
+   //   "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de aula:%s/n %s",novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas, tipoDes,duracao);
 
   return novaUc;
 }

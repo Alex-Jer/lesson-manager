@@ -17,6 +17,7 @@ typedef struct {
   int semestre;
   bool diurno;
   int num_tipo_aulas_previstas;
+  char tipoDes;
   int duracao;
 } UnidadeCurricular;
 
