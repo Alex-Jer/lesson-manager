@@ -33,6 +33,10 @@
 		</Compiler>
 		<Unit filename="constantes.h" />
 		<Unit filename="estruturas.h" />
+		<Unit filename="ficheiro_Ucs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ficheiro_Ucs.h" />
 		<Unit filename="funcoes_auxiliares.c">
 			<Option compilerVar="CC" />
 		</Unit>

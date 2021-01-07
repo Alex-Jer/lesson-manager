@@ -36,7 +36,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1609983269 source:c:\users\utilizador\desktop\github\gestor-aulas\main.c
+1610053164 source:c:\users\utilizador\desktop\github\gestor-aulas\main.c
 	<stdio.h>
 	<stdlib.h>
 	"ficheiro_Ucs.h"
@@ -45,12 +45,14 @@
 	"funcoes_auxiliares.h"
 	"funcoes_menu.h"
 	"funcoes_ucs.h"
+	"ficheiro_Ucs.h"
 
 1609613008 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_menu.h
 
-1609975661 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.c
+1610052950 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.c
 	"estruturas.h"
 	"funcoes_auxiliares.h"
+	"ficheiro_Ucs.h"
 
 1609975238 c:\users\utilizador\desktop\github\gestor-aulas\estruturas.h
 	"constantes.h"
@@ -72,7 +74,7 @@
 
 1609983121 c:\users\utilizador\desktop\github\gestor-aulas\ficheiro_ucs.h
 
-1609981609 source:c:\users\utilizador\desktop\github\gestor-aulas\ficheiro_ucs.c
+1610051703 source:c:\users\utilizador\desktop\github\gestor-aulas\ficheiro_ucs.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"

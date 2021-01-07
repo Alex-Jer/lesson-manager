@@ -6,6 +6,7 @@
 #include "funcoes_auxiliares.h"
 #include "funcoes_menu.h"
 #include "funcoes_ucs.h"
+#include "ficheiro_Ucs.h"
 int main() {
   MenuPrincipal();
   return 0;
@@ -52,7 +53,7 @@ void MenuUcs() {
     case 2:
       break;
     case 3:
-       leListarUcs();
+     mostrarUcs();
       break;
     default:
       break;

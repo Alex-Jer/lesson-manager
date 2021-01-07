@@ -2,7 +2,7 @@
 
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
-
+#include "ficheiro_Ucs.h"
 UnidadeCurricular RegistarUc() {
   UnidadeCurricular novaUc;
   char obrigatoria;
@@ -60,4 +60,24 @@ scanf("%d",&duracao);
    //   "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de aula:%s/n %s",novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas, tipoDes,duracao);
 
   return novaUc;
+}
+void mostrarUcs(int quantUcs,UnidadeCurricular vUcs[MAX_UCS])
+{
+    int i;
+
+    // caso em que quant == 0
+    if (quantUcs==0)
+    {
+        printf("\nNao ha informacao para mostrar(nao ha Ucs inscritas)\n");
+    }
+    else
+    {
+        for(i=0; i<quantUcs; i++)
+        {
+            printf("Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de aula:%s/n %s");
+                   //,vUcs.designacao, obrigatoria, vUcs.semestre, diurno, vUcs.num_tipo_aulas_previstas, tipoDes,duracao
+
+        }
+
+    }
 }
