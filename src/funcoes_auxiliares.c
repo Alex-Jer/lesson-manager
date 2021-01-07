@@ -9,7 +9,6 @@ int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo) {
     controlo = scanf("%d", &numero);  // scanf devolve quantidade de valores vàlidos obtidos
     LimpaBufferStdin();               // limpa todos os caracteres do buffer stdin
                                       // (nomeadamente o \n)
-
     if (controlo == 0) {
       printf("Devera inserir um numero inteiro \n");
     } else {

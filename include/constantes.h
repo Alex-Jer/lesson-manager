@@ -1,7 +1,6 @@
 #ifndef CONSTANTES_H_INCLUDED
 #define CONSTANTES_H_INCLUDED
 
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 

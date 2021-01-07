@@ -1,28 +1,30 @@
 #include "funcoes_ucs.h"
 
-tipoUc LeDadosUc() {
-  tipoUc uc;
+tipoUC LeDadosUC() {
+  tipoUC uc;
 
   char obrigatoria;
   char diurno;
 
-  uc.obrigatoria = true;
-  uc.diurno = true;
+  uc.obrigatoria = 1;
+  uc.diurno = 1;
 
   LerString("Nome: ", uc.designacao, MAX_STRING);
 
   printf("Obrigatoria? (S/N): ");
-  scanf(" %c", &obrigatoria);  //? Função LerString não funciona para 1 char?
+  scanf("%c", &obrigatoria);  //? Função LerString não funciona para 1 char?
+  LimpaBufferStdin();
   if (obrigatoria == 'N') {
-    uc.obrigatoria = false;
+    uc.obrigatoria = 0;
   }  // Fim da leitura do caracter
 
   uc.semestre = LerInteiro("Semestre", 1, 6);  //! Usar uma constante
 
   printf("Diurno ou noturno? (D/N): ");  // Ler Char
-  scanf(" %c", &diurno);
+  scanf("%c", &diurno);
+  LimpaBufferStdin();
   if (diurno == 'N') {
-    uc.diurno = false;
+    uc.diurno = 0;
   }  // Fim Ler Char
 
   // TODO: Estrutura (?) T, TP, PL
@@ -33,14 +35,16 @@ tipoUc LeDadosUc() {
   return uc;
 }
 
-tipoUc *RegistarUc(tipoUc vUcs[], int *nUcs) {
-  tipoUc uc, *pUcs;
+tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
+  // tipoUC dadosUC, *pUCs;
+  tipoUC dadosUC;
+  // int pos;
 
-  pUcs = vUcs;
+  // pUCs = vUCs;
+  dadosUC = LeDadosUC();
 
-  // vUcs = realloc(p);
+  (*nUCs)++;
+  printf("%s", dadosUC.designacao);
 
-  (*nUcs)++;
-
-  return vUcs;
+  return vUCs;
 }

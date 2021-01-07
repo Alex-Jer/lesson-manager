@@ -4,12 +4,12 @@
 #include "constantes.h"
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
-#include "funcoes_menu.h"
+#include "funcoes_menus.h"
 #include "funcoes_ucs.h"
 
 int main() {
-  int opcao, opcaoSubMenu, *nUcs = 0;
-  tipoUc *vUcs = NULL;  // Inicializar vetor dinâmico
+  int opcao, opcaoSubMenu, *nUCs = 0;
+  tipoUC *vUCs = NULL;  // Inicializar vetor dinâmico
 
   //* Consultar slide 7 adenda!!!
   do {
@@ -17,10 +17,10 @@ int main() {
     switch (opcao) {
       case 1:
         do {
-          opcaoSubMenu = MenuUcs();
+          opcaoSubMenu = MenuUCs();
           switch (opcaoSubMenu) {
             case 1:  // Registar
-              vUcs = RegistarUc(vUcs, &nUcs);
+              vUCs = AcrescentaUC(vUCs, &nUCs);
               break;
             case 2:  // Editar
               /* code */
@@ -43,28 +43,7 @@ int main() {
         break;
     }
   } while (opcao != 0);
-  free(vUcs);
+  free(vUCs);
 
   return 0;
-}
-
-int MenuPrincipal() {
-  int opcao;
-
-  printf("GESTOR DE AULAS ONLINE\n\n");
-  printf("1. Gerir UCs\n");
-  printf("2. Gerir Aulas\n");
-  printf("3. Estatistica\n");
-  printf("0. Voltar\n");
-  opcao = LerInteiro("\nOpcao", 0, 3);
-
-  return opcao;
-}
-
-int MenuUcs() {
-  printf("\nGESTOR DE UCs\n");
-  printf("1. Registar UC\n");
-  printf("2. Editar UC\n");
-  printf("3. Listar UCs\n");
-  printf("0. Voltar\n");
 }

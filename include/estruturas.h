@@ -13,12 +13,12 @@ typedef struct {
 
 typedef struct {
   char designacao[MAX_STRING];
-  bool obrigatoria;
+  int obrigatoria;  // 0 - Não // 1 - Sim
   int semestre;
-  bool diurno;
+  int diurno;  // 0 - Não // 1 - Sim
   int num_tipo_aulas_previstas;
   int duracao;
-} tipoUc;
+} tipoUC;
 
 typedef struct {
   int uc_id;
@@ -27,8 +27,8 @@ typedef struct {
   tipoData data;
   tipoHora inicio;
   tipoHora fim;
-  char estado;  // A - Agendada // D - A Decorrer // R - Realizada
-  bool gravacao;
+  char estado;   // A - Agendada // D - A Decorrer // R - Realizada
+  int gravacao;  // 0 - Não // 1 - Sim
 } tipoAula;
 
 #endif /* ESTRUTURAS_H_INCLUDED */

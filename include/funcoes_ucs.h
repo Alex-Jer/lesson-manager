@@ -4,7 +4,7 @@
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
 
-tipoUc LeDadosUc();
-tipoUc *RegistarUc(tipoUc vUcs[], int *nUcs);
+tipoUC LeDadosUC();
+tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs);
 
 #endif /* FUNCOES_UCS_H_INCLUDED */
