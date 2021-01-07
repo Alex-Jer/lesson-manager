@@ -47,7 +47,7 @@ int leListarUcs(UnidadeCurricular vetor[MAX_UCS])
         for (i=0; i<elem; i++)
         {
             fgets(fichUcs,"%s\n",vetor[i].designacao);
-            fgets(fichUcs,"%s\n",vetor[i].obrigatoria);
+            fscanf(fichUcs,"%s\n",vetor[i].obrigatoria);
             fscanf(fichUcs,"%d\n",vetor[i].semestre);
             fscanf(fichUcs,"%d\n",vetor[i].num_tipo_aulas_previstas);
             fgets(fichUcs,"%s\n",vetor[i].tipoDes);

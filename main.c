@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "ficheiro_Ucs.h"
 #include "constantes.h"
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
 #include "funcoes_menu.h"
 #include "funcoes_ucs.h"
-#include
 int main() {
   MenuPrincipal();
   return 0;
@@ -28,7 +27,6 @@ void MenuPrincipal() {
     case 2:
       break;
     case 3:
-
       break;
 
     default:
@@ -54,6 +52,7 @@ void MenuUcs() {
     case 2:
       break;
     case 3:
+       leListarUcs();
       break;
     default:
       break;
