@@ -55,7 +55,7 @@ void MenuUCs() {
     case 2:
       break;
     case 3:
-      // mostrarUCs();
+     // mostrarUCs(int quantUCs, tipoUC vUCs[MAX_UCS]);
       break;
     default:
       break;

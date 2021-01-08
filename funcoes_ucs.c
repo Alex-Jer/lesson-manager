@@ -9,7 +9,7 @@ tipoUC RegistarUC() {
   char obrigatoria;
   char diurno;
   char tipoDes[2];
-  int duracao = 0;
+  int duracao;
   novaUc.obrigatoria = true;
   novaUc.diurno = true;
 
@@ -29,16 +29,16 @@ tipoUC RegistarUC() {
   LimpaBufferStdin();
   if (diurno == 'N') {
     novaUc.diurno = false;
-  }  // Fim Ler Char
-
+  }
   novaUc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", 1, 40);  //! Usar uma constante
   // TODO: Estrutura (?) T, TP, PL
-  printf("Qual o tipo de aula?(T/TP/PL): ");  // Ler Char
-  scanf("%s", &tipoDes);
+    printf("Qual o tipo de aula?(T/TP/PL): ");  // Ler Char
+    scanf("%s", &tipoDes);
 
-  printf("Digite a opcao refere a pergunta anterior(1-T/2-TP/3-PL): ");
-  scanf("%d", &duracao);
-  switch (duracao) {
+    printf("Qual a duracao ?(1-T/2-TP/3-PL): ");  // Ler Char
+    duracao = LerInteiro("Opcao", 1, 3);
+
+    switch (duracao) {
     case 1: {
       printf("A duracao da aula sera de 0 min ");
     } break;
@@ -52,10 +52,8 @@ tipoUC RegistarUC() {
   // TODO: Duração de cada T, TP, PL
 
   // Confirmar se escreve tudo
-  // printf(
-  //   "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de
-  //   aula:%s/n %s",novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas,
-  //   tipoDes,duracao);
+
+    printf( "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de aula:%s\nduracao:%d ",novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas,tipoDes,duracao);
 
   return novaUc;
 }

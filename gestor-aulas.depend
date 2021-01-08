@@ -37,32 +37,31 @@
 	<stdio.h>
 	<stdlib.h>
 
-1610053164 source:c:\users\utilizador\desktop\github\gestor-aulas\main.c
+1610127020 source:c:\users\utilizador\desktop\github\gestor-aulas\main.c
 	<stdio.h>
 	<stdlib.h>
-	"funcoes_ficheiros.h"
 	"constantes.h"
 	"estruturas.h"
 	"funcoes_auxiliares.h"
+	"funcoes_ficheiros.h"
 	"funcoes_menu.h"
 	"funcoes_ucs.h"
-	"funcoes_ficheiros.h"
 
-1609613008 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_menu.h
+1610124130 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_menu.h
 
-1610052950 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.c
+1610143413 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.c
 	"estruturas.h"
 	"funcoes_auxiliares.h"
 	"funcoes_ficheiros.h"
 
-1609975238 c:\users\utilizador\desktop\github\gestor-aulas\estruturas.h
+1610124130 c:\users\utilizador\desktop\github\gestor-aulas\estruturas.h
 	"constantes.h"
 
 1609781204 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_aula.c
 	"estruturas.h"
 	"funcoes_auxiliares.h"
 
-1609982965 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.h
+1610124130 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ucs.h
 
 1610123323 source:e:\apps\gestor-aulas\funcoes_ucs.c
 	"estruturas.h"
@@ -74,9 +73,11 @@
 
 1610123338 e:\apps\gestor-aulas\funcoes_ucs.h
 
-1609983121 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ficheiros.h
+1610124130 c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ficheiros.h
+	"estruturas.h"
 
-1610051703 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ficheiros.c
+1610126952 source:c:\users\utilizador\desktop\github\gestor-aulas\funcoes_ficheiros.c
+	"funcoes_ficheiros.h"
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
