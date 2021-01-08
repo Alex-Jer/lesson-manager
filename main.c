@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ficheiro_Ucs.h"
+
 #include "constantes.h"
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
+#include "funcoes_ficheiros.h"
 #include "funcoes_menu.h"
 #include "funcoes_ucs.h"
-#include "ficheiro_Ucs.h"
+
+
 int main() {
   MenuPrincipal();
   return 0;
@@ -23,7 +25,7 @@ void MenuPrincipal() {
 
   switch (opcao) {
     case 1:
-      MenuUcs();
+      MenuUCs();
       break;
     case 2:
       break;
@@ -36,9 +38,9 @@ void MenuPrincipal() {
   }
 }
 
-void MenuUcs() {
+void MenuUCs() {
   int opcao;
-  UnidadeCurricular ucs[MAX_UCS];
+  tipoUC ucs[MAX_UCS];
 
   printf("\nGESTOR DE UCs\n");
   printf("1. Registar UC\n");
@@ -48,12 +50,12 @@ void MenuUcs() {
 
   switch (opcao) {
     case 1:
-      ucs[0] = RegistarUc();
+      ucs[0] = RegistarUC();
       break;
     case 2:
       break;
     case 3:
-     mostrarUcs();
+      // mostrarUCs();
       break;
     default:
       break;

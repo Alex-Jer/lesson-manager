@@ -2,6 +2,6 @@
 #define FUNCOES_MENU_H_INCLUDED
 
 void MenuPrincipal();
-void MenuUcs();
+void MenuUCs();
 
 #endif /* FUNCOES_MENU_H_INCLUDED */

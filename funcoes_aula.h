@@ -4,6 +4,6 @@
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
 
-// UnidadeCurricular RegistarAula();
+// tipoUC RegistarAula();
 
 #endif
