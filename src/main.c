@@ -12,7 +12,6 @@ int main() {
   int opcao, opcaoSubMenu, *nUCs = 0;
   tipoUC *vUCs = NULL;  // Inicializar vetor dinâmico
 
-  //* Consultar slide 7 adenda!!!
   do {
     opcao = MenuPrincipal();
     switch (opcao) {
@@ -26,8 +25,8 @@ int main() {
             case 2:  // Editar
               /* code */
               break;
-            case 3:  // Listar
-              /* code */
+            case 3:                 // Listar
+              ListaUC(vUCs, nUCs);  //? Com ou sem &?
               break;
             case 4:  // Gravar em ficheiro
               EscreveFicheiroBinario(vUCs, nUCs);
@@ -35,18 +34,12 @@ int main() {
             case 5:  // Ler ficheiro
               vUCs = LeFicheiroBinario(vUCs, &nUCs);
               break;
-            default:
-              printf("0");
-              break;
           }
         } while (opcaoSubMenu != 0);
         break;
       case 2:
         break;
       case 3:
-        break;
-      default:
-        printf("0");
         break;
     }
   } while (opcao != 0);

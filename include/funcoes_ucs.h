@@ -7,5 +7,6 @@
 int ProcuraUC(tipoUC vUCs[], int n, char procuraNome[]);
 tipoUC LeDadosUC();
 tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs);
+void ListaUC(tipoUC vUCs[], int nUCs);
 
 #endif /* FUNCOES_UCS_H_INCLUDED */

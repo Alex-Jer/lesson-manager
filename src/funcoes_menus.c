@@ -12,7 +12,7 @@ int MenuPrincipal() {
   printf("1. Gerir UCs\n");
   printf("2. Gerir Aulas\n");
   printf("3. Estatistica\n");
-  printf("0. Voltar\n");
+  printf("0. Terminar\n");
   opcao = LerInteiro("\nOpcao", 0, 3);
 
   return opcao;
@@ -27,7 +27,7 @@ int MenuUCs() {
   printf("3. Listar UCs\n");
   printf("4. Guardar Alteracoes\n");
   printf("5. Ler Ficheiro\n");
-  printf("0. Fechar\n");
+  printf("0. Voltar\n");
   opcao = LerInteiro("\nOpcao", 0, 5);
 
   return opcao;

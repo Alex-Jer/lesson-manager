@@ -68,6 +68,24 @@ tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
       (*nUCs)++;
     }
   }
-
   return vUCs;
+}
+
+void ListaUC(tipoUC vUCs[], int nUCs) {
+  int i;
+
+  if (nUCs == 0) {
+    printf("ERRO: Nao existem UCs registadas!\n");
+  } else {
+    printf("\n\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
+    for (i = 0; i < nUCs; i++) {
+      printf("%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].designacao, vUCs[i].obrigatoria, vUCs[i].diurno,
+             vUCs[i].num_tipo_aulas_previstas);
+      // if (vUCs[i].diurno == 1) {
+      //   printf("Diurno\n");
+      // } else {
+      //   printf("Pos-Laboral\n");
+      // }
+    }
+  }
 }
