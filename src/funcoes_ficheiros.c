@@ -17,6 +17,13 @@ void EscreveFicheiroBinario(tipoUC vUCs[], int nUCs) {
         printf("ERRO: Falha na escrita de informacao no vetor!\n");
       } else {
         printf("\nGravado com sucesso no ficheiro binario!\n");
+
+        printf("\n\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
+        for (int i = 0; i < nUCs; i++) {
+          printf("%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].designacao, vUCs[i].obrigatoria, vUCs[i].diurno,
+                 vUCs[i].num_tipo_aulas_previstas);
+        }
+        //
       }
     }
     fclose(ficheiro);
@@ -41,6 +48,13 @@ tipoUC *LeFicheiroBinario(tipoUC vUCs[], int *nUCs) {
     } else {
       fread(vUCs, sizeof(tipoUC), *nUCs, ficheiro);
       printf("\nFicheiro lido com sucesso!");
+
+      printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
+      for (int i = 0; i < *nUCs; i++) {
+        printf("   %2d\t%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
+               vUCs[i].diurno, vUCs[i].num_tipo_aulas_previstas);
+      }
+      //
     }
     fclose(ficheiro);
   }

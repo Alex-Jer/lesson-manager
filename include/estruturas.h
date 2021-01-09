@@ -12,6 +12,7 @@ typedef struct {
 } tipoHora;
 
 typedef struct {
+  int id;
   char designacao[MAX_STRING];
   int obrigatoria;  // 0 - Não // 1 - Sim
   int semestre;

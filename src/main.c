@@ -9,7 +9,7 @@
 #include "funcoes_ucs.h"
 
 int main() {
-  int opcao, opcaoSubMenu, *nUCs = 0;
+  int opcao, opcaoSubMenu, idUC, *nUCs = 0;
   tipoUC *vUCs = NULL;  // Inicializar vetor dinâmico
 
   do {
@@ -23,7 +23,8 @@ int main() {
               vUCs = AcrescentaUC(vUCs, &nUCs);
               break;
             case 2:  // Editar
-              /* code */
+              idUC = LerInteiro("ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
+              vUCs = EliminaUC(vUCs, &nUCs, idUC);
               break;
             case 3:                 // Listar
               ListaUC(vUCs, nUCs);  //? Com ou sem &?
