@@ -8,7 +8,7 @@
 int MenuPrincipal() {
   int opcao;
 
-  printf("GESTOR DE AULAS ONLINE\n\n");
+  printf("\n\nGESTOR DE AULAS ONLINE\n\n");
   printf("1. Gerir UCs\n");
   printf("2. Gerir Aulas\n");
   printf("3. Estatistica\n");
@@ -21,12 +21,14 @@ int MenuPrincipal() {
 int MenuUCs() {
   int opcao;
 
-  printf("\nGESTOR DE UCs\n");
+  printf("\n\nGESTOR DE UCs\n\n");
   printf("1. Registar UC\n");
   printf("2. Editar UC\n");
   printf("3. Listar UCs\n");
-  printf("0. Voltar\n");
-  opcao = LerInteiro("\nOpcao", 0, 3);
+  printf("4. Guardar Alteracoes\n");
+  printf("5. Ler Ficheiro\n");
+  printf("0. Fechar\n");
+  opcao = LerInteiro("\nOpcao", 0, 5);
 
   return opcao;
 }

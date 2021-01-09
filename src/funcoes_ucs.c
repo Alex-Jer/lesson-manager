@@ -1,13 +1,26 @@
 #include "funcoes_ucs.h"
 
+#include "funcoes_ficheiros.h"
+
+// Retorna a posição da UC no vetor ou -1 se não encontrar nada
+int ProcuraUC(tipoUC vUCs[], int nUCs, char procuraNome[]) {
+  int i, pos = -1;
+  for (i = 0; i < nUCs; i++) {
+    if (strcmp(vUCs[i].designacao, procuraNome) == 0) {
+      pos = i;
+      i = nUCs;
+    }
+  }
+  return pos;
+}
+
 tipoUC LeDadosUC() {
   tipoUC uc;
-
   char obrigatoria;
   char diurno;
 
-  uc.obrigatoria = 1;
-  uc.diurno = 1;
+  uc.obrigatoria = 1;  // 0 - Não // 1 - Sim
+  uc.diurno = 1;       // 0 - Não // 1 - Sim
 
   LerString("Nome: ", uc.designacao, MAX_STRING);
 
@@ -36,15 +49,25 @@ tipoUC LeDadosUC() {
 }
 
 tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
-  // tipoUC dadosUC, *pUCs;
-  tipoUC dadosUC;
-  // int pos;
+  tipoUC dadosUC, *pUCs;
+  int pos;
 
-  // pUCs = vUCs;
+  pUCs = vUCs;
   dadosUC = LeDadosUC();
+  pos = ProcuraUC(vUCs, *nUCs, dadosUC.designacao);
 
-  (*nUCs)++;
-  printf("%s", dadosUC.designacao);
+  if (pos != -1) {
+    printf("ERRO: UC já existe!\n");
+  } else {
+    vUCs = realloc(vUCs, (*nUCs + 1) * sizeof(tipoUC));
+    if (vUCs == NULL) {
+      printf("ERRO: Impossível inserir UC!\n");
+      vUCs = pUCs;
+    } else {
+      vUCs[*nUCs] = dadosUC;
+      (*nUCs)++;
+    }
+  }
 
   return vUCs;
 }

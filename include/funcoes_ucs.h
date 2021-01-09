@@ -4,6 +4,7 @@
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
 
+int ProcuraUC(tipoUC vUCs[], int n, char procuraNome[]);
 tipoUC LeDadosUC();
 tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs);
 

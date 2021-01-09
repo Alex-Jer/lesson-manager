@@ -1,4 +1,6 @@
 #include "estruturas.h"
 
-void EscreveFicheiroTexto(tipoUC vUCs[], int elem);
-int LeFicheiroTexto(tipoUC vUCs[]);
+void EscreveFicheiroBinario(tipoUC vUCs[], int nUCs);
+tipoUC *LeFicheiroBinario(tipoUC vUCs[], int *nUCs);
+// void EscreveFicheiroTexto(tipoUC vUCs[], int nUCs);
+// int LeFicheiroTexto(tipoUC vUCs[], int *nUCs);

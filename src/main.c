@@ -4,6 +4,7 @@
 #include "constantes.h"
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
+#include "funcoes_ficheiros.h"
 #include "funcoes_menus.h"
 #include "funcoes_ucs.h"
 
@@ -27,6 +28,12 @@ int main() {
               break;
             case 3:  // Listar
               /* code */
+              break;
+            case 4:  // Gravar em ficheiro
+              EscreveFicheiroBinario(vUCs, nUCs);
+              break;
+            case 5:  // Ler ficheiro
+              vUCs = LeFicheiroBinario(vUCs, &nUCs);
               break;
             default:
               printf("0");
