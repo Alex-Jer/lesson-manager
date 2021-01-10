@@ -5,7 +5,7 @@
 int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo) {
   int numero, controlo;
   do {
-    printf("%s (%d a %d): ", mensagem, minimo, maximo);
+    printf("%s", mensagem);
     controlo = scanf("%d", &numero);  // scanf devolve quantidade de valores vàlidos obtidos
     LimpaBufferStdin();               // limpa todos os caracteres do buffer stdin
                                       // (nomeadamente o \n)
@@ -51,10 +51,10 @@ void LerString(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int 
     tamanhoString = strlen(vetorCaracteres);
 
     if (tamanhoString == 1) {
-      printf("Nao foram introduzidos caracteres!!! Apenas carregou no ENTER\n\n");
+      printf("\nNao foram introduzidos caracteres!!! Apenas carregou no ENTER\n\n");
       // apenas faz sentido limpar buffer se a ficarem caracteres
     } else if (tamanhoString > maximoCaracteres) {
-      printf("ERRO: Dados invalidos!");
+      printf("\nERRO: Dados invalidos!");
     }
   } while (tamanhoString == 1 || tamanhoString > maximoCaracteres);
 

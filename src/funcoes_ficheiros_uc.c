@@ -6,15 +6,15 @@ void EscreveFicheiroBinarioUC(tipoUC vUCs[], int nUCs) {
 
   ficheiro = fopen("dados.dat", "wb");
   if (ficheiro == NULL) {
-    printf("ERRO: Falha na abertura do ficheiro!\n");
+    printf("\nERRO: Falha na abertura do ficheiro!\n");
   } else {
     quantEscrito = fwrite(&nUCs, sizeof(int), 1, ficheiro);
     if (quantEscrito != 1) {
-      printf("ERRO: Falha na escrita da quantidade de UCs no ficheiro.\n");
+      printf("\nERRO: Falha na escrita da quantidade de UCs no ficheiro.\n");
     } else {
       quantEscrito = fwrite(vUCs, sizeof(tipoUC), nUCs, ficheiro);
       if (quantEscrito != nUCs) {
-        printf("ERRO: Falha na escrita de informacao no vetor!\n");
+        printf("\nERRO: Falha na escrita de informacao no vetor!\n");
       } else {
         printf("\nGravado com sucesso no ficheiro binario!\n");
         //! Temporário
@@ -36,18 +36,18 @@ tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
 
   ficheiro = fopen("dados.dat", "rb");
   if (ficheiro == NULL) {
-    printf("ERRO: Falha na abertura do ficheiro!\n");
+    printf("\nERRO: Falha na abertura do ficheiro!\n");
   } else {
     fread(&(*nUCs), sizeof(int), 1, ficheiro);
     pUCs = vUCs;
     vUCs = realloc(vUCs, (*nUCs) * sizeof(tipoUC));
 
     if (vUCs == NULL && *nUCs != 0) {
-      printf("ERRO: Erro ao reservar memoria.");
+      printf("\nERRO: Erro ao reservar memoria.");
       vUCs = pUCs;
     } else {
       fread(vUCs, sizeof(tipoUC), *nUCs, ficheiro);
-      printf("\nFicheiro lido com sucesso!");
+      printf("\nFicheiro lido com sucesso!\n");
       //! Temporário
       printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
       for (int i = 0; i < *nUCs; i++) {
@@ -85,7 +85,7 @@ tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
 
 //   ficheiro = fopen("dados.txt", "r");
 //   if (ficheiro == NULL) {
-//     printf("ERRO: Falha na abertura do ficheiro!");
+//     printf("\nERRO: Falha na abertura do ficheiro!");
 //   } else {
 //     fscanf(ficheiro, "%d", &nUCs);
 //     for (i = 0; i < *nUCs; i++) {

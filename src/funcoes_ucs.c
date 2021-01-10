@@ -46,23 +46,23 @@ tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
   int pos;
 
   if (*nUCs >= 40) {
-    printf("ERRO: Numero maximo de UCs atingido!\n");
+    printf("\nERRO: Numero maximo de UCs atingido!\n");
   } else {
     pUCs = vUCs;
     dadosUC = LeDadosUC();
     pos = ProcuraUC(vUCs, *nUCs, dadosUC.id);
 
     if (pos != -1) {
-      printf("ERRO: UC ja existe!\n");
+      printf("\nERRO: UC com o mesmo ID ja existe!\n");
     } else {
       vUCs = realloc(vUCs, (*nUCs + 1) * sizeof(tipoUC));
       if (vUCs == NULL) {
-        printf("ERRO: Impossível inserir UC!\n");
+        printf("\nERRO: Impossível inserir UC!\n");
         vUCs = pUCs;
       } else {
         vUCs[*nUCs] = dadosUC;
         (*nUCs)++;
-        printf("SUCESSO: UC inserida!\n");
+        printf("\nSUCESSO: UC inserida!\n");
       }
     }
   }
@@ -73,34 +73,28 @@ void ListaUC(tipoUC vUCs[], int nUCs) {
   int i;
 
   if (nUCs == 0) {
-    printf("ERRO: Nao existem UCs registadas!\n");
+    printf("\nERRO: Nao existem UCs registadas!\n");
   } else {
-    printf("\n\t\tID\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
-    for (i = 0; i < nUCs; i++) {
-      printf("%2d\t%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
+    printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
+    for (int i = 0; i < nUCs; i++) {
+      printf("   %2d\t%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
              vUCs[i].diurno, vUCs[i].num_tipo_aulas_previstas);
-      // if (vUCs[i].diurno == 1) {
-      //   printf("Diurno\n");
-      // } else {
-      //   printf("Pos-Laboral\n");
-      // }
     }
   }
-  printf("\nPressione ENTER para continuar . . .");
+  printf("\nPressione ENTER para continuar . . . ");
   getchar();
 }
 
 tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
-  tipoUC *pUCs, editadaUC;
+  tipoUC editadaUC;
   int pos;
-
-  editadaUC = LeDadosUC();
 
   if (*nUCs != 0) {
     pos = ProcuraUC(vUCs, *nUCs, idUC);
     if (pos == -1) {
-      printf("ERRO: UC nao encontrada!\n");
+      printf("\nERRO: UC nao encontrada!\n");
     } else {
+      editadaUC = LeDadosUC();
       vUCs[pos].id = editadaUC.id;
       strcpy(vUCs[pos].designacao, editadaUC.designacao);
       vUCs[pos].obrigatoria = editadaUC.obrigatoria;
@@ -122,14 +116,14 @@ tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   if (*nUCs != 0) {
     pos = ProcuraUC(vUCs, *nUCs, idUC);
     if (pos == -1) {
-      printf("ERRO: UC nao encontrada!\n");
+      printf("\nERRO: UC nao encontrada!\n");
     } else {
       for (i = pos; i < *nUCs - 1; i++) {
         vUCs[i] = vUCs[i + 1];
       }
       vUCs = realloc(vUCs, (*nUCs - 1) * sizeof(tipoUC));
       if (vUCs == NULL && (*nUCs - 1) != 0) {
-        printf("ERRO: Falha na alocacao de memoria!");
+        printf("\nERRO: Falha na alocacao de memoria!");
         vUCs = pUCs;  // Restaura backup
       }
       (*nUCs)--;
