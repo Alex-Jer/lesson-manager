@@ -22,21 +22,19 @@ tipoUC LeDadosUC() {
 
   uc.id = LerInteiro("Codigo: ", MIN_UCS, MAX_UCS);
   LerString("Nome: ", uc.designacao, MAX_STRING);
-  // LerString("Obrigatoria? (S/N): ", obrigatoria, MAX_CHAR);
   LerChar("Obrigatoria? (S/N): ", obrigatoria, MAX_STRING);
   uc.semestre = LerInteiro("Semestre", MIN_SEMESTRE, MAX_SEMESTRE);
-  // LerString("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_CHAR);
   LerChar("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
   uc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
   // TODO: Estrutura (?) T, TP, PL
   // TODO: Duração de cada T, TP, PL
   // uc.duracao = LerInteiro("Duracao da aul");
 
-  if (toupper(obrigatoria) == 'N') {
+  if (toupper(obrigatoria[0]) == 'N') {
     uc.obrigatoria = 0;
   }
 
-  if (toupper(diurno) == 'P') {
+  if (toupper(diurno[0]) == 'P') {
     uc.diurno = 0;
   }
 
@@ -90,6 +88,29 @@ void ListaUC(tipoUC vUCs[], int nUCs) {
   }
   printf("\nPressione ENTER para continuar . . .");
   getchar();
+}
+
+tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
+  tipoUC *pUCs, editadaUC;
+  int pos;
+
+  editadaUC = LeDadosUC();
+
+  if (*nUCs != 0) {
+    pos = ProcuraUC(vUCs, *nUCs, idUC);
+    if (pos == -1) {
+      printf("ERRO: UC nao encontrada!\n");
+    } else {
+      vUCs[pos].id = editadaUC.id;
+      strcpy(vUCs[pos].designacao, editadaUC.designacao);
+      vUCs[pos].obrigatoria = editadaUC.obrigatoria;
+      vUCs[pos].semestre = editadaUC.semestre;
+      vUCs[pos].diurno = editadaUC.diurno;
+      vUCs[pos].num_tipo_aulas_previstas = editadaUC.num_tipo_aulas_previstas;
+      printf("SUCESSO: UC modificada!\n");
+    }
+  }
+  return vUCs;
 }
 
 tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC) {

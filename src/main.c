@@ -23,6 +23,8 @@ int main() {
               vUCs = AcrescentaUC(vUCs, &nUCs);
               break;
             case 2:  // Editar
+              idUC = LerInteiro("ID da UC a editar: ", MIN_UCS, MAX_UCS);
+              vUCs = EditaUC(vUCs, &nUCs, idUC);
               break;
             case 3:  // Eliminar
               idUC = LerInteiro("ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
