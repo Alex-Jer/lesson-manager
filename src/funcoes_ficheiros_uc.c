@@ -1,6 +1,6 @@
-#include "funcoes_ficheiros.h"
+#include "funcoes_ficheiros_uc.h"
 
-void EscreveFicheiroBinario(tipoUC vUCs[], int nUCs) {
+void EscreveFicheiroBinarioUC(tipoUC vUCs[], int nUCs) {
   FILE *ficheiro;
   int quantEscrito;
 
@@ -17,7 +17,7 @@ void EscreveFicheiroBinario(tipoUC vUCs[], int nUCs) {
         printf("ERRO: Falha na escrita de informacao no vetor!\n");
       } else {
         printf("\nGravado com sucesso no ficheiro binario!\n");
-
+        //! Temporário
         printf("\n\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
         for (int i = 0; i < nUCs; i++) {
           printf("%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].designacao, vUCs[i].obrigatoria, vUCs[i].diurno,
@@ -30,7 +30,7 @@ void EscreveFicheiroBinario(tipoUC vUCs[], int nUCs) {
   }
 }
 
-tipoUC *LeFicheiroBinario(tipoUC vUCs[], int *nUCs) {
+tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
   FILE *ficheiro;
   tipoUC *pUCs;
 
@@ -48,7 +48,7 @@ tipoUC *LeFicheiroBinario(tipoUC vUCs[], int *nUCs) {
     } else {
       fread(vUCs, sizeof(tipoUC), *nUCs, ficheiro);
       printf("\nFicheiro lido com sucesso!");
-
+      //! Temporário
       printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
       for (int i = 0; i < *nUCs; i++) {
         printf("   %2d\t%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
@@ -61,7 +61,7 @@ tipoUC *LeFicheiroBinario(tipoUC vUCs[], int *nUCs) {
   return vUCs;
 }
 
-// void EscreveFicheiroTexto(tipoUC vUCs[], int nUCs) {
+// void EscreveFicheiroTextoUC(tipoUC vUCs[], int nUCs) {
 //   int i;
 //   FILE *ficheiro;
 
@@ -79,7 +79,7 @@ tipoUC *LeFicheiroBinario(tipoUC vUCs[], int *nUCs) {
 //   }
 // }
 
-// int LeFicheiroTexto(tipoUC vUCs[], int *nUCs) {
+// int LeFicheiroTextoUC(tipoUC vUCs[], int *nUCs) {
 //   FILE *ficheiro;
 //   int i;
 

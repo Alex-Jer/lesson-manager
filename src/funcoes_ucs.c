@@ -1,7 +1,5 @@
 #include "funcoes_ucs.h"
 
-#include "funcoes_ficheiros.h"
-
 // Retorna a posição da UC no vetor ou -1 se não encontrar o id
 int ProcuraUC(tipoUC vUCs[], int nUCs, int procuraId) {
   int i, pos = -1;
@@ -16,35 +14,31 @@ int ProcuraUC(tipoUC vUCs[], int nUCs, int procuraId) {
 
 tipoUC LeDadosUC() {
   tipoUC uc;
-  char obrigatoria;
-  char diurno;
+  char obrigatoria[MAX_STRING];
+  char diurno[MAX_STRING];
 
   uc.obrigatoria = 1;  // 0 - Não // 1 - Sim
   uc.diurno = 1;       // 0 - Não // 1 - Sim
 
   uc.id = LerInteiro("Codigo: ", MIN_UCS, MAX_UCS);
   LerString("Nome: ", uc.designacao, MAX_STRING);
-
-  printf("Obrigatoria? (S/N): ");  // Ler Char
-  scanf("%c", &obrigatoria);
-  LimpaBufferStdin();
-  if (obrigatoria == 'N') {
-    uc.obrigatoria = 0;
-  }  // Fim da leitura do caracter
-
+  // LerString("Obrigatoria? (S/N): ", obrigatoria, MAX_CHAR);
+  LerChar("Obrigatoria? (S/N): ", obrigatoria, MAX_STRING);
   uc.semestre = LerInteiro("Semestre", MIN_SEMESTRE, MAX_SEMESTRE);
-
-  printf("Diurno ou Pos-Laboral? (D/P): ");  // Ler Char
-  scanf("%c", &diurno);
-  LimpaBufferStdin();
-  if (diurno == 'P') {
-    uc.diurno = 0;
-  }  // Fim da leitura do caracter
-
-  // TODO: Estrutura (?) T, TP, PL
+  // LerString("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_CHAR);
+  LerChar("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
   uc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+  // TODO: Estrutura (?) T, TP, PL
   // TODO: Duração de cada T, TP, PL
   // uc.duracao = LerInteiro("Duracao da aul");
+
+  if (toupper(obrigatoria) == 'N') {
+    uc.obrigatoria = 0;
+  }
+
+  if (toupper(diurno) == 'P') {
+    uc.diurno = 0;
+  }
 
   return uc;
 }
@@ -94,6 +88,8 @@ void ListaUC(tipoUC vUCs[], int nUCs) {
       // }
     }
   }
+  printf("\nPressione ENTER para continuar . . .");
+  getchar();
 }
 
 tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC) {

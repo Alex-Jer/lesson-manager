@@ -24,11 +24,12 @@ int MenuUCs() {
   printf("\n\nGESTOR DE UCs\n\n");
   printf("1. Registar UC\n");
   printf("2. Editar UC\n");
-  printf("3. Listar UCs\n");
-  printf("4. Guardar Alteracoes\n");
-  printf("5. Ler Ficheiro\n");
+  printf("3. Eliminar UC\n");
+  printf("4. Listar UCs\n");
+  printf("5. Guardar Alteracoes\n");
+  printf("6. Ler Ficheiro\n");
   printf("0. Voltar\n");
-  opcao = LerInteiro("\nOpcao", 0, 5);
+  opcao = LerInteiro("\nOpcao", 0, 6);
 
   return opcao;
 }

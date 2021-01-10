@@ -51,12 +51,12 @@ void LerString(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int 
     tamanhoString = strlen(vetorCaracteres);
 
     if (tamanhoString == 1) {
-      printf(
-          "Nao foram introduzidos caracteres!!! . apenas carregou no ENTER "
-          "\n\n");  // apenas faz sentido limpar
-                    // buffer se a ficarem caracteres
+      printf("Nao foram introduzidos caracteres!!! Apenas carregou no ENTER\n\n");
+      // apenas faz sentido limpar buffer se a ficarem caracteres
+    } else if (tamanhoString > maximoCaracteres) {
+      printf("ERRO: Dados invalidos!");
     }
-  } while (tamanhoString == 1);
+  } while (tamanhoString == 1 || tamanhoString > maximoCaracteres);
 
   if (vetorCaracteres[tamanhoString - 1] != '\n') {  // ficaram caracteres no buffer....
     LimpaBufferStdin();                              // apenas faz sentido limpar buffer se a ficarem
@@ -66,10 +66,34 @@ void LerString(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int 
   }
 }
 
+void LerChar(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int maximoCaracteres) {
+  int tamanhoString;
+
+  do {  // Repete leitura caso sejam obtidas strings vazias
+    printf("%s", mensagem);
+    fgets(vetorCaracteres, maximoCaracteres, stdin);
+
+    tamanhoString = strlen(vetorCaracteres);
+
+    if (tamanhoString == 1) {
+      printf("\nERRO: Nao introduziu nenhum caracter! Apenas carregou no ENTER\n\n");
+    } else if (tamanhoString > 2) {
+      printf("\nERRO: Introduziu mais do que um caracter!\n\n");
+    }
+  } while (tamanhoString == 1 || tamanhoString > 2);
+
+  if (vetorCaracteres[tamanhoString - 1] != '\n') {
+    LimpaBufferStdin();
+  } else {
+    vetorCaracteres[tamanhoString - 1] = '\0';
+  }
+}
+
 void LimpaBufferStdin(void) {
   char chr;
   do {
     chr = getchar();
+    // TODO:
     // cppcheck-suppress checkCastIntToCharAndBack
   } while (chr != '\n' && chr != EOF);
 }

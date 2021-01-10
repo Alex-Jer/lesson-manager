@@ -4,7 +4,7 @@
 #include "constantes.h"
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
-#include "funcoes_ficheiros.h"
+#include "funcoes_ficheiros_uc.h"
 #include "funcoes_menus.h"
 #include "funcoes_ucs.h"
 
@@ -23,17 +23,19 @@ int main() {
               vUCs = AcrescentaUC(vUCs, &nUCs);
               break;
             case 2:  // Editar
+              break;
+            case 3:  // Eliminar
               idUC = LerInteiro("ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
               vUCs = EliminaUC(vUCs, &nUCs, idUC);
               break;
-            case 3:                 // Listar
+            case 4:                 // Listar
               ListaUC(vUCs, nUCs);  //? Com ou sem &?
               break;
-            case 4:  // Gravar em ficheiro
-              EscreveFicheiroBinario(vUCs, nUCs);
+            case 5:  // Gravar em ficheiro
+              EscreveFicheiroBinarioUC(vUCs, nUCs);
               break;
-            case 5:  // Ler ficheiro
-              vUCs = LeFicheiroBinario(vUCs, &nUCs);
+            case 6:  // Ler ficheiro
+              vUCs = LeFicheiroBinarioUC(vUCs, &nUCs);
               break;
           }
         } while (opcaoSubMenu != 0);
