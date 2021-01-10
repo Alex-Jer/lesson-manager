@@ -15,24 +15,25 @@ tipoUC RegistarUC()
     novaUc.diurno = true;
 
     LerString("Nome: ", novaUc.designacao, MAX_STRING);
-do
+    do
     {
-    printf("Obrigatoria? (S/N): ");
-    scanf(" %c", &obrigatoria);  //? Função LerString não funciona para 1 char?
-    LimpaBufferStdin();
-
-    if (obrigatoria!='S' &&  obrigatoria!='s' && obrigatoria!='N' && obrigatoria!='n')
-    {
-        printf(" \t\tOpcao invalida\n\t\t Insira uma nova opcao--> ");
-    }
-    else
-    {
-        if (obrigatoria == 'N'||obrigatoria == 'n')
+        printf("Obrigatoria? (S/N): ");
+        scanf(" %c", &obrigatoria);  //? Função LerString não funciona para 1 char?
+        LimpaBufferStdin();
+        obrigatoria = toupper(obrigatoria);
+        if (obrigatoria!='S' && obrigatoria!='N')
         {
-            novaUc.obrigatoria = false;
-        }  // Fim da leitura do caracter
+            printf(" \t\tOpcao invalida\n\t\t Insira uma nova opcao--> ");
+        }
+        else
+        {
+            if (obrigatoria == 'N')
+            {
+                novaUc.obrigatoria = false;
+            }  // Fim da leitura do caracter
+        }
     }
-    }while(obrigatoria!='S' &&  obrigatoria!='s' && obrigatoria!='N' && obrigatoria!='n');
+    while(obrigatoria!='S'&& obrigatoria!='N');
 
     novaUc.semestre = LerInteiro("Semestre", 1, 6);  //! Usar uma constante
 
@@ -41,15 +42,15 @@ do
         printf("Diurno ou noturno? (D/N): ");  // Ler Char
         scanf(" %c", &diurno);
         LimpaBufferStdin();
-
-        if (diurno!='D' &&  diurno!='d' && diurno!='N' && diurno!='n')
+        diurno = toupper(diurno);
+        if (diurno!='D' && diurno!='N')
         {
             printf(" \t\tOpcao invalida\n\t\t Insira uma nova opcao--> ");
         }
         else
         {
 
-            if (diurno == 'N'||obrigatoria == 'n')
+            if (diurno == 'N')
             {
                 novaUc.diurno = false;
             }
@@ -57,13 +58,33 @@ do
 
 
 
-    }while(diurno!='D' &&  diurno!='d' && diurno!='N' && diurno!='n');
+    }
+    while(diurno!='D' && diurno!='N');
 
 
     novaUc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", 1, 40);  //! Usar uma constante
+
+
     // TODO: Estrutura (?) T, TP, PL
-    printf("Qual o tipo de aula?(T/TP/PL): ");  // Ler Char
-    scanf("%s", &tipoDes);
+    //do
+    //{
+        printf("Qual o tipo de aula?(1-T/2-TP/3-PL): ");  // Ler Char
+        scanf("%c", &tipoDes);
+        LimpaBufferStdin();
+        //for(int contador = 1; contador <=tipoDes; contador++)
+        //{
+         //   if (tipoDes!='TP' && tipoDes!='T' && tipoDes!='PL')
+         //   {
+          //      printf(" \t\tOpcao invalida\n\t\t Insira uma nova opcao--> ");
+         //   }
+         //   else
+         //   {
+               // printf("Avancou",tipoDes);
+          //  }
+      //  }
+
+   // }while(tipoDes!='TP'&& tipoDes!='T'&& tipoDes!='PL');
+    printf( "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario: %c \nAulas previstas: %d \n tipoaula:%s ",novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas,tipoDes);
 
     /*  printf("Qual a duracao ?(1-T/2-TP/3-PL): ");  // Ler Char
       duracao = LerInteiro("Opcao", 1, 3);
@@ -90,8 +111,6 @@ do
 
     // Confirmar se escreve tudo
 
-    //printf( "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario: %s \nAulas previstas: %d \nTipo de aula:%s\ ",novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas,tipoDes);
-printf("\nHorario:",diurno);
     return novaUc;
 }
 /*
