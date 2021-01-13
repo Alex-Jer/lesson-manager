@@ -23,9 +23,11 @@ tipoUC LeDadosUC() {
   uc.id = LerInteiro("Codigo: ", MIN_UCS, MAX_UCS);
   LerString("Nome: ", uc.designacao, MAX_STRING);
   LerChar("Obrigatoria? (S/N): ", obrigatoria, MAX_STRING);
-  uc.semestre = LerInteiro("Semestre", MIN_SEMESTRE, MAX_SEMESTRE);
+  uc.semestre = LerInteiro("Semestre: ", MIN_SEMESTRE, MAX_SEMESTRE);
   LerChar("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
-  uc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+  uc.totalAulasPrevistas = LerInteiro("Total de aulas previstas: ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+  // uc.teorica.quantidade = LerInteiro("Numero de aulas teoricas previstas: ", MIN_AULAS_PREVISTAS,
+  // MAX_AULAS_PREVISTAS);
   // TODO: Estrutura (?) T, TP, PL
   // TODO: Duração de cada T, TP, PL
   // uc.duracao = LerInteiro("Duracao da aul");
@@ -77,8 +79,8 @@ void ListaUC(tipoUC vUCs[], int nUCs) {
   } else {
     printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
     for (int i = 0; i < nUCs; i++) {
-      printf("   %2d\t%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
-             vUCs[i].diurno, vUCs[i].num_tipo_aulas_previstas);
+      printf("   %2d\t%30s\t\t  %3d%11d\t\t        %03d\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
+             vUCs[i].diurno, vUCs[i].totalAulasPrevistas);
     }
   }
   printf("\nPressione ENTER para continuar . . . ");
@@ -100,7 +102,7 @@ tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
       vUCs[pos].obrigatoria = editadaUC.obrigatoria;
       vUCs[pos].semestre = editadaUC.semestre;
       vUCs[pos].diurno = editadaUC.diurno;
-      vUCs[pos].num_tipo_aulas_previstas = editadaUC.num_tipo_aulas_previstas;
+      vUCs[pos].totalAulasPrevistas = editadaUC.totalAulasPrevistas;
       printf("SUCESSO: UC modificada!\n");
     }
   }

@@ -21,7 +21,7 @@ void EscreveFicheiroBinarioUC(tipoUC vUCs[], int nUCs) {
         printf("\n\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
         for (int i = 0; i < nUCs; i++) {
           printf("%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].designacao, vUCs[i].obrigatoria, vUCs[i].diurno,
-                 vUCs[i].num_tipo_aulas_previstas);
+                 vUCs[i].totalAulasPrevistas);
         }
         //
       }
@@ -51,8 +51,8 @@ tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
       //! Temporário
       printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
       for (int i = 0; i < *nUCs; i++) {
-        printf("   %2d\t%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
-               vUCs[i].diurno, vUCs[i].num_tipo_aulas_previstas);
+        printf("   %2d\t%30s\t\t  %3d%11d\t\t        %03d\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
+               vUCs[i].diurno, vUCs[i].totalAulasPrevistas);
       }
       //
     }
@@ -73,7 +73,7 @@ tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
 //       fprintf(ficheiro, "%s\n", vUCs[i].designacao);
 //       fprintf(ficheiro, "%d\n", vUCs[i].diurno);
 //       fprintf(ficheiro, "%d\n", vUCs[i].duracao);
-//       fprintf(ficheiro, "%d\n", vUCs[i].num_tipo_aulas_previstas);
+//       fprintf(ficheiro, "%d\n", vUCs[i].totalAulasPrevistas);
 //     }
 //     fclose(ficheiro);
 //   }
@@ -92,7 +92,7 @@ tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
 //       fgets(vUCs[i].designacao, MAX_STRING, ficheiro);
 //       fscanf(ficheiro, "%d", &vUCs[i].diurno);
 //       fscanf(ficheiro, "%d", &vUCs[i].duracao);
-//       fscanf(ficheiro, "%d", &vUCs[i].num_tipo_aulas_previstas);
+//       fscanf(ficheiro, "%d", &vUCs[i].totalAulasPrevistas);
 //     }
 //     fclose(ficheiro);
 //   }
