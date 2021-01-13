@@ -4,60 +4,51 @@
 #include "constantes.h"
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
-#include "funcoes_ficheiros.h"
-#include "funcoes_menu.h"
+#include "funcoes_ficheiros_uc.h"
+#include "funcoes_menus.h"
 #include "funcoes_ucs.h"
 
-
 int main() {
-  MenuPrincipal();
+  int opcao, opcaoSubMenu, idUC, nUCs = 0;
+  tipoUC *vUCs = NULL;  // Inicializar vetor dinâmico
+
+  do {
+    opcao = MenuPrincipal();
+    switch (opcao) {
+      case 1:
+        do {
+          opcaoSubMenu = MenuUCs();
+          switch (opcaoSubMenu) {
+            case 1:  // Registar
+              vUCs = AcrescentaUC(vUCs, &nUCs);
+              break;
+            case 2:  // Editar
+              idUC = LerInteiro("ID da UC a editar: ", MIN_UCS, MAX_UCS);
+              vUCs = EditaUC(vUCs, &nUCs, idUC);
+              break;
+            case 3:  // Eliminar
+              idUC = LerInteiro("ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
+              vUCs = EliminaUC(vUCs, &nUCs, idUC);
+              break;
+            case 4:                 // Listar
+              ListaUC(vUCs, nUCs);  //? Com ou sem &?
+              break;
+            case 5:  // Gravar em ficheiro
+              EscreveFicheiroBinarioUC(vUCs, nUCs);
+              break;
+            case 6:  // Ler ficheiro
+              vUCs = LeFicheiroBinarioUC(vUCs, &nUCs);
+              break;
+          }
+        } while (opcaoSubMenu != 0);
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+    }
+  } while (opcao != 0);
+  free(vUCs);
+
   return 0;
-}
-
-void MenuPrincipal() {
-  int opcao;
-
-  printf("GESTOR DE AULAS ONLINE\n\n");
-  printf("1. Gerir UCs\n");
-  printf("2. Gerir Aulas\n");
-  printf("3. Estatistica\n");
-  opcao = LerInteiro("Opcao", 1, 3);
-
-  switch (opcao) {
-    case 1:
-      MenuUCs();
-      break;
-    case 2:
-      break;
-    case 3:
-      break;
-
-    default:
-      printf("0");
-      break;
-  }
-}
-
-void MenuUCs() {
-  int opcao;
-  tipoUC ucs[MAX_UCS];
-
-  printf("\nGESTOR DE UCs\n");
-  printf("1. Registar UC\n");
-  printf("2. Editar UC\n");
-  printf("3. Listar UCs\n");
-  opcao = LerInteiro("Opcao", 1, 3);
-
-  switch (opcao) {
-    case 1:
-      ucs[0] = RegistarUC();
-      break;
-    case 2:
-      break;
-    case 3:
-     // mostrarUCs(int quantUCs, tipoUC vUCs[MAX_UCS]);
-      break;
-    default:
-      break;
-  }
 }

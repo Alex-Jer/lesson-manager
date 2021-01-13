@@ -33,16 +33,18 @@
 		</Compiler>
 		<Unit filename="constantes.h" />
 		<Unit filename="estruturas.h" />
-		<Unit filename="funcoes_aula.h" />
 		<Unit filename="funcoes_auxiliares.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="funcoes_auxiliares.h" />
-		<Unit filename="funcoes_ficheiros.c">
+		<Unit filename="funcoes_ficheiros_uc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="funcoes_ficheiros.h" />
-		<Unit filename="funcoes_menu.h" />
+		<Unit filename="funcoes_ficheiros_uc.h" />
+		<Unit filename="funcoes_menus.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoes_menus.h" />
 		<Unit filename="funcoes_ucs.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -50,7 +52,8 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="main.h" />
-		<Extensions />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

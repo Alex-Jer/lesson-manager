@@ -1,137 +1,153 @@
-// #include "funcoes_ucs.h"
+#include "funcoes_ucs.h"
 
-#include "estruturas.h"
-#include "funcoes_auxiliares.h"
-#include "funcoes_ficheiros.h"
-
-tipoUC RegistarUC()
-{
-    tipoUC novaUc;
-    char obrigatoria;
-    char diurno;
-    char tipoDes[2];
-    int duracao;
-    novaUc.obrigatoria = true;
-    novaUc.diurno = true;
-
-    LerString("Nome: ", novaUc.designacao, MAX_STRING);
-    do
-    {
-        printf("Obrigatoria? (S/N): ");
-        scanf(" %c", &obrigatoria);  //? Função LerString não funciona para 1 char?
-        LimpaBufferStdin();
-        obrigatoria = toupper(obrigatoria);
-        if (obrigatoria!='S' && obrigatoria!='N')
-        {
-            printf(" \t\tOpcao invalida\n\t\t Insira uma nova opcao--> ");
-        }
-        else
-        {
-            if (obrigatoria == 'N')
-            {
-                novaUc.obrigatoria = false;
-            }  // Fim da leitura do caracter
-        }
+// Retorna a posição da UC no vetor ou -1 se não encontrar o id
+int ProcuraUC(tipoUC vUCs[], int nUCs, int procuraId) {
+  int i, pos = -1;
+  for (i = 0; i < nUCs; i++) {
+    if (vUCs[i].id == procuraId) {
+      pos = i;
+      i = nUCs;
     }
-    while(obrigatoria!='S'&& obrigatoria!='N');
-
-    novaUc.semestre = LerInteiro("Semestre", 1, 6);  //! Usar uma constante
-
-    do
-    {
-        printf("Diurno ou noturno? (D/N): ");  // Ler Char
-        scanf(" %c", &diurno);
-        LimpaBufferStdin();
-        diurno = toupper(diurno);
-        if (diurno!='D' && diurno!='N')
-        {
-            printf(" \t\tOpcao invalida\n\t\t Insira uma nova opcao--> ");
-        }
-        else
-        {
-
-            if (diurno == 'N')
-            {
-                novaUc.diurno = false;
-            }
-        }
-
-
-
-    }
-    while(diurno!='D' && diurno!='N');
-
-
-    novaUc.num_tipo_aulas_previstas = LerInteiro("Numero de aulas previstas", 1, 40);  //! Usar uma constante
-
-
-    // TODO: Estrutura (?) T, TP, PL
-    //do
-    //{
-        printf("Qual o tipo de aula?(1-T/2-TP/3-PL): ");  // Ler Char
-        scanf("%c", &tipoDes);
-        LimpaBufferStdin();
-        //for(int contador = 1; contador <=tipoDes; contador++)
-        //{
-         //   if (tipoDes!='TP' && tipoDes!='T' && tipoDes!='PL')
-         //   {
-          //      printf(" \t\tOpcao invalida\n\t\t Insira uma nova opcao--> ");
-         //   }
-         //   else
-         //   {
-               // printf("Avancou",tipoDes);
-          //  }
-      //  }
-
-   // }while(tipoDes!='TP'&& tipoDes!='T'&& tipoDes!='PL');
-    printf( "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario: %c \nAulas previstas: %d \n tipoaula:%s ",novaUc.designacao, obrigatoria, novaUc.semestre, diurno, novaUc.num_tipo_aulas_previstas,tipoDes);
-
-    /*  printf("Qual a duracao ?(1-T/2-TP/3-PL): ");  // Ler Char
-      duracao = LerInteiro("Opcao", 1, 3);
-
-      switch (duracao)
-      {
-      case 1:
-      {
-          printf("A duracao da aula sera de 0 min ");
-      }
-      break;
-      case 2:
-      {
-          printf("A duracao da aula sera de 120 min ");
-      }
-      break;
-      case 3:
-      {
-          printf("A duracao da aula sera de 180 min ");
-      }
-      break;
-      }*/
-    // TODO: Duração de cada T, TP, PL
-
-    // Confirmar se escreve tudo
-
-    return novaUc;
+  }
+  return pos;
 }
-/*
-void mostrarUCs(int quantUCs, tipoUC vUCs[MAX_UCS])
-{
-    int i;
 
-    // caso em que quant == 0
-    if (quantUCs == 0)
-    {
-        printf("\nNao ha informacao para mostrar (Nao ha UCs registadas)\n");
+tipoUC LeDadosUC() {
+  tipoUC uc;
+  char obrigatoria[MAX_STRING];
+  char diurno[MAX_STRING];
+
+  uc.obrigatoria = 1;  // 0 - Não // 1 - Sim
+  uc.diurno = 1;       // 0 - Não // 1 - Sim
+
+  uc.id = LerInteiro(" Codigo: ", MIN_UCS, MAX_UCS);
+  LerString(" Nome: ", uc.designacao, MAX_STRING);
+
+  do {
+    LerChar(" Obrigatoria? (S/N): ", obrigatoria, MAX_STRING);
+    obrigatoria[0] = toupper(obrigatoria[0]);
+
+    if (obrigatoria[0] != 'S' && obrigatoria[0] != 'N') {
+      printf(" ERRO: Opcao invalida!\n");
     }
-    else
-    {
-        for (i = 0; i < quantUCs; i++)
-        {
-            // printf(
-            //     "Os dados são:\nNome: %s \n Obrigatoria: %c \n Semestre: %d \nHorario %c \nAulas previstas: %d \nTipo de "
-            //     "aula:%s/n %s");
-            //,vUCs.designacao, obrigatoria, vUCs.semestre, diurno, vUCs.num_tipo_aulas_previstas, tipoDes,duracao
-        }
+  } while (obrigatoria[0] != 'S' && obrigatoria[0] != 'N');
+
+  uc.semestre = LerInteiro(" Semestre: ", MIN_SEMESTRE, MAX_SEMESTRE);
+  do {
+    LerChar(" Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
+    diurno[0] = toupper(diurno[0]);
+
+    if (diurno[0] != 'D' && diurno[0] != 'P') {
+      printf(" ERRO: Opcao invalida!\n");
     }
+  } while (diurno[0] != 'D' && diurno[0] != 'P');
+
+  uc.totalAulasPrevistas = LerInteiro(" Total de aulas previstas: ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+  // uc.teorica.quantidade = LerInteiro("Numero de aulas teoricas previstas: ", MIN_AULAS_PREVISTAS,
+  // MAX_AULAS_PREVISTAS);
+  // TODO: Estrutura (?) T, TP, PL
+  // TODO: Duração de cada T, TP, PL
+  // uc.duracao = LerInteiro("Duracao da aul");
+
+  if (obrigatoria[0] == 'N') {
+    uc.obrigatoria = 0;
+  }
+
+  if (diurno[0] == 'P') {
+    uc.diurno = 0;
+  }
+
+  return uc;
 }
-*/
+
+tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
+  tipoUC dadosUC, *pUCs;
+  int pos;
+
+  if (*nUCs >= 40) {
+    printf("\n ERRO: Numero maximo de UCs atingido!\n");
+  } else {
+    pUCs = vUCs;
+    dadosUC = LeDadosUC();
+    pos = ProcuraUC(vUCs, *nUCs, dadosUC.id);
+
+    if (pos != -1) {
+      printf("\n ERRO: UC com o mesmo ID ja existe!\n");
+    } else {
+      vUCs = realloc(vUCs, (*nUCs + 1) * sizeof(tipoUC));
+      if (vUCs == NULL) {
+        printf("\n ERRO: Impossível inserir UC!\n");
+        vUCs = pUCs;
+      } else {
+        vUCs[*nUCs] = dadosUC;
+        (*nUCs)++;
+        printf("\n SUCESSO: UC inserida!\n");
+      }
+    }
+  }
+  return vUCs;
+}
+
+void ListaUC(tipoUC vUCs[], int nUCs) {
+  int i;
+
+  if (nUCs == 0) {
+    printf("\n ERRO: Nao existem UCs registadas!\n");
+  } else {
+    printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno    Num. de aulas previstas\n");
+    for (int i = 0; i < nUCs; i++) {
+      printf("   %2d\t%30s\t\t  %3d%11d\t\t        %03d\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
+             vUCs[i].diurno, vUCs[i].totalAulasPrevistas);
+    }
+  }
+  printf("\n Pressione ENTER para continuar . . . ");
+  getchar();
+}
+
+tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
+  tipoUC editadaUC;
+  int pos;
+
+  if (*nUCs != 0) {
+    pos = ProcuraUC(vUCs, *nUCs, idUC);
+    if (pos == -1) {
+      printf("\n ERRO: UC nao encontrada!\n");
+    } else {
+      editadaUC = LeDadosUC();
+      vUCs[pos].id = editadaUC.id;
+      strcpy(vUCs[pos].designacao, editadaUC.designacao);
+      vUCs[pos].obrigatoria = editadaUC.obrigatoria;
+      vUCs[pos].semestre = editadaUC.semestre;
+      vUCs[pos].diurno = editadaUC.diurno;
+      vUCs[pos].totalAulasPrevistas = editadaUC.totalAulasPrevistas;
+      printf(" SUCESSO: UC modificada!\n");
+    }
+  }
+  return vUCs;
+}
+
+tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC) {
+  tipoUC *pUCs;
+  int i, pos;
+
+  pUCs = vUCs;  // Backup do vetor
+
+  if (*nUCs != 0) {
+    pos = ProcuraUC(vUCs, *nUCs, idUC);
+    if (pos == -1) {
+      printf("\n ERRO: UC nao encontrada!\n");
+    } else {
+      for (i = pos; i < *nUCs - 1; i++) {
+        vUCs[i] = vUCs[i + 1];
+      }
+      vUCs = realloc(vUCs, (*nUCs - 1) * sizeof(tipoUC));
+      if (vUCs == NULL && (*nUCs - 1) != 0) {
+        printf("\n ERRO: Falha na alocacao de memoria!");
+        vUCs = pUCs;  // Restaura backup
+      }
+      (*nUCs)--;
+      printf(" SUCESSO: UC eliminada!\n");
+    }
+  }
+  return vUCs;
+}
