@@ -22,9 +22,26 @@ tipoUC LeDadosUC() {
 
   uc.id = LerInteiro("Codigo: ", MIN_UCS, MAX_UCS);
   LerString("Nome: ", uc.designacao, MAX_STRING);
-  LerChar("Obrigatoria? (S/N): ", obrigatoria, MAX_STRING);
+
+  do {
+    LerChar("Obrigatoria? (S/N): ", obrigatoria, MAX_STRING);
+    obrigatoria[0] = toupper(obrigatoria[0]);
+
+    if (obrigatoria[0] != 'S' && obrigatoria[0] != 'N') {
+      printf("ERRO: Opcao invalida!\n");
+    }
+  } while (obrigatoria[0] != 'S' && obrigatoria[0] != 'N');
+
   uc.semestre = LerInteiro("Semestre: ", MIN_SEMESTRE, MAX_SEMESTRE);
-  LerChar("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
+  do {
+    LerChar("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
+    diurno[0] = toupper(diurno[0]);
+
+    if (diurno[0] != 'D' && diurno[0] != 'P') {
+      printf("ERRO: Opcao invalida!\n");
+    }
+  } while (diurno[0] != 'D' && diurno[0] != 'P');
+
   uc.totalAulasPrevistas = LerInteiro("Total de aulas previstas: ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
   // uc.teorica.quantidade = LerInteiro("Numero de aulas teoricas previstas: ", MIN_AULAS_PREVISTAS,
   // MAX_AULAS_PREVISTAS);
@@ -32,11 +49,11 @@ tipoUC LeDadosUC() {
   // TODO: Duração de cada T, TP, PL
   // uc.duracao = LerInteiro("Duracao da aul");
 
-  if (toupper(obrigatoria[0]) == 'N') {
+  if (obrigatoria[0] == 'N') {
     uc.obrigatoria = 0;
   }
 
-  if (toupper(diurno[0]) == 'P') {
+  if (diurno[0] == 'P') {
     uc.diurno = 0;
   }
 

@@ -9,7 +9,7 @@
 #include "funcoes_ucs.h"
 
 int main() {
-  int opcao, opcaoSubMenu, idUC, *nUCs = 0;
+  int opcao, opcaoSubMenu, idUC, nUCs = 0;
   tipoUC *vUCs = NULL;  // Inicializar vetor dinâmico
 
   do {
