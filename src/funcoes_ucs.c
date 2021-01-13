@@ -19,6 +19,9 @@ tipoUC LeDadosUC() {
 
   uc.obrigatoria = 1;  // 0 - Não // 1 - Sim
   uc.diurno = 1;       // 0 - Não // 1 - Sim
+  uc.teorica.quantidade = 0;
+  uc.teoricopratica.quantidade = 0;
+  uc.praticolab.quantidade = 0;
 
   uc.id = LerInteiro("Codigo: ", MIN_UCS, MAX_UCS);
   LerString("Nome: ", uc.designacao, MAX_STRING);
@@ -32,7 +35,7 @@ tipoUC LeDadosUC() {
     }
   } while (obrigatoria[0] != 'S' && obrigatoria[0] != 'N');
 
-  uc.semestre = LerInteiro("Semestre: ", MIN_SEMESTRE, MAX_SEMESTRE);
+  uc.semestre = LerInteiro("Semestre (1 a 6): ", MIN_SEMESTRE, MAX_SEMESTRE);
   do {
     LerChar("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
     diurno[0] = toupper(diurno[0]);
@@ -42,12 +45,25 @@ tipoUC LeDadosUC() {
     }
   } while (diurno[0] != 'D' && diurno[0] != 'P');
 
-  uc.totalAulasPrevistas = LerInteiro("Total de aulas previstas: ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
-  // uc.teorica.quantidade = LerInteiro("Numero de aulas teoricas previstas: ", MIN_AULAS_PREVISTAS,
-  // MAX_AULAS_PREVISTAS);
-  // TODO: Estrutura (?) T, TP, PL
-  // TODO: Duração de cada T, TP, PL
-  // uc.duracao = LerInteiro("Duracao da aul");
+  printf("\n-> Aulas Teoricas <-\n");
+  uc.teorica.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+  if (uc.teorica.quantidade != 0) {
+    uc.teorica.duracao = LerInteiro("Duracao de cada aula (30 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+  }
+
+  printf("\n-> Aulas Teoricopraticas <-\n");
+  uc.teoricopratica.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+  if (uc.teoricopratica.quantidade != 0) {
+    uc.teoricopratica.duracao = LerInteiro("Duracao de cada aula (30 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+  }
+
+  printf("\n-> Aulas Praticolaboratoriais <-\n");
+  uc.praticolab.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+  if (uc.praticolab.quantidade != 0) {
+    uc.praticolab.duracao = LerInteiro("Duracao de cada aula (30 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+  }
+
+  uc.totalAulasPrevistas = uc.teorica.quantidade + uc.teoricopratica.quantidade + uc.praticolab.quantidade;
 
   if (obrigatoria[0] == 'N') {
     uc.obrigatoria = 0;
@@ -88,16 +104,28 @@ tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
   return vUCs;
 }
 
-void ListaUC(tipoUC vUCs[], int nUCs) {
+void ListaUCs(tipoUC vUCs[], int nUCs) {
   int i;
 
   if (nUCs == 0) {
     printf("\nERRO: Nao existem UCs registadas!\n");
   } else {
-    printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
-    for (int i = 0; i < nUCs; i++) {
-      printf("   %2d\t%30s\t\t  %3d%11d\t\t        %03d\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
-             vUCs[i].diurno, vUCs[i].totalAulasPrevistas);
+    printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t Regime\t\tT\t        TP               PL\n");
+    for (i = 0; i < nUCs; i++) {
+      printf("   %2d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
+      if (vUCs[i].obrigatoria == 1) {
+        printf("Sim\t\t ");
+      } else {
+        printf("Nao\t\t ");
+      }
+      if (vUCs[i].diurno == 1) {
+        printf("Diurno\t\t");
+      } else {
+        printf("Pos-Laboral\t");
+      }
+      printf("%2d (%03dmin)    %2d (%03dmin)     %2d (%03dmin)\n", vUCs[i].teorica.quantidade, vUCs[i].teorica.duracao,
+             vUCs[i].teoricopratica.quantidade, vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.quantidade,
+             vUCs[i].praticolab.duracao);
     }
   }
   printf("\nPressione ENTER para continuar . . . ");

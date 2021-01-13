@@ -10,10 +10,10 @@ int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo) {
     LimpaBufferStdin();               // limpa todos os caracteres do buffer stdin
                                       // (nomeadamente o \n)
     if (controlo == 0) {
-      printf("Devera inserir um numero inteiro \n");
+      printf("ERRO: Insira um numero inteiro!\n");
     } else {
       if (numero < minimo || numero > maximo) {
-        printf("Numero invalido. Insira novamente:\n");
+        printf("ERRO: Numero invalido!\n");
       }
     }
   } while (numero < minimo || numero > maximo || controlo == 0);

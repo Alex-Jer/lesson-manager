@@ -25,7 +25,7 @@ typedef struct {
   int totalAulasPrevistas;
   tipoTipoDeAula teorica;
   tipoTipoDeAula teoricopratica;
-  tipoTipoDeAula praticolaboratorial;
+  tipoTipoDeAula praticolab;
 } tipoUC;
 
 typedef struct {

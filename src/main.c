@@ -30,8 +30,8 @@ int main() {
               idUC = LerInteiro("ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
               vUCs = EliminaUC(vUCs, &nUCs, idUC);
               break;
-            case 4:                 // Listar
-              ListaUC(vUCs, nUCs);  //? Com ou sem &?
+            case 4:  // Listar
+              ListaUCs(vUCs, nUCs);
               break;
             case 5:  // Gravar em ficheiro
               EscreveFicheiroBinarioUC(vUCs, nUCs);

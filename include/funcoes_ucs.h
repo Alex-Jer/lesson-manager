@@ -10,7 +10,7 @@
 int ProcuraUC(tipoUC vUCs[], int nUCs, int procuraId);
 tipoUC LeDadosUC();
 tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs);
-void ListaUC(tipoUC vUCs[], int nUCs);
+void ListaUCs(tipoUC vUCs[], int nUCs);
 tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC);
 tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC);
 

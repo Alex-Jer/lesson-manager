@@ -18,12 +18,24 @@ void EscreveFicheiroBinarioUC(tipoUC vUCs[], int nUCs) {
       } else {
         printf("\nGravado com sucesso no ficheiro binario!\n");
         //! Temporário
-        printf("\n\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
+        printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t Regime         T       TP       PL\n");
         for (int i = 0; i < nUCs; i++) {
-          printf("%30s\t%3d     %11d\t   %03d\t\t\n", vUCs[i].designacao, vUCs[i].obrigatoria, vUCs[i].diurno,
-                 vUCs[i].totalAulasPrevistas);
+          printf("   %2d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
+          if (vUCs[i].obrigatoria == 1) {
+            printf("Sim\t\t ");
+          } else {
+            printf("Nao\t\t ");
+          }
+          if (vUCs[i].diurno == 1) {
+            printf("Diurno\t\t");
+          } else {
+            printf("Pos-Laboral\t");
+          }
+          printf("%d (%dmin)    %d(%dmin)     %d(%dmin)\n", vUCs[i].teorica.quantidade, vUCs[i].teorica.duracao,
+                 vUCs[i].teoricopratica.quantidade, vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.quantidade,
+                 vUCs[i].praticolab.duracao);
         }
-        //
+        //!
       }
     }
     fclose(ficheiro);
@@ -49,12 +61,24 @@ tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
       fread(vUCs, sizeof(tipoUC), *nUCs, ficheiro);
       printf("\nFicheiro lido com sucesso!\n");
       //! Temporário
-      printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t  Diurno   Num. de aulas previstas\n");
+      printf("\n   ID\t\t\t    Designacao\t  Obrigatoria\t Regime         T       TP       PL\n");
       for (int i = 0; i < *nUCs; i++) {
-        printf("   %2d\t%30s\t\t  %3d%11d\t\t        %03d\n", vUCs[i].id, vUCs[i].designacao, vUCs[i].obrigatoria,
-               vUCs[i].diurno, vUCs[i].totalAulasPrevistas);
+        printf("   %2d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
+        if (vUCs[i].obrigatoria == 1) {
+          printf("Sim\t\t ");
+        } else {
+          printf("Nao\t\t ");
+        }
+        if (vUCs[i].diurno == 1) {
+          printf("Diurno\t\t");
+        } else {
+          printf("Pos-Laboral\t");
+        }
+        printf("%d (%dmin)    %d(%dmin)     %d(%dmin)\n", vUCs[i].teorica.quantidade, vUCs[i].teorica.duracao,
+               vUCs[i].teoricopratica.quantidade, vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.quantidade,
+               vUCs[i].praticolab.duracao);
       }
-      //
+      //!
     }
     fclose(ficheiro);
   }
