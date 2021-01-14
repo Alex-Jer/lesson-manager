@@ -5,6 +5,7 @@
 
 #include "funcoes_auxiliares.h"
 
+// Mostra no ecrã o Menu Principal e pede uma opção ao utilizador
 int MenuPrincipal() {
   int opcao;
 
@@ -18,6 +19,7 @@ int MenuPrincipal() {
   return opcao;
 }
 
+// Mostra no ecrã o Menu de UCs e pede uma opção ao utilizador
 int MenuUCs() {
   int opcao;
 

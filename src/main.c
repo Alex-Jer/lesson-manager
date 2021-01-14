@@ -48,6 +48,7 @@ int main() {
         break;
     }
   } while (opcao != 0);
+
   free(vUCs);
 
   return 0;

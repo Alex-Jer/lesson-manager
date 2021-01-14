@@ -1,10 +1,11 @@
 #include "funcoes_ficheiros_uc.h"
 
+// Cria ou substitui um ficheiro dados_uc.dat com os dados do vetor de UCs
 void EscreveFicheiroBinarioUC(tipoUC vUCs[], int nUCs) {
   FILE *ficheiro;
   int quantEscrito;
 
-  ficheiro = fopen("dados.dat", "wb");
+  ficheiro = fopen("dados_ucs.dat", "wb");
   if (ficheiro == NULL) {
     printf("\nERRO: Falha na abertura do ficheiro!\n");
   } else {
@@ -47,11 +48,12 @@ void EscreveFicheiroBinarioUC(tipoUC vUCs[], int nUCs) {
   }
 }
 
+// Lê o ficheiro dados_ucs.dat e preenche o vetor com os dados do ficheiro
 tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
   FILE *ficheiro;
   tipoUC *pUCs;
 
-  ficheiro = fopen("dados.dat", "rb");
+  ficheiro = fopen("dados_ucs.dat", "rb");
   if (ficheiro == NULL) {
     printf("\nERRO: Falha na abertura do ficheiro!\n");
   } else {

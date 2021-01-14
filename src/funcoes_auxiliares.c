@@ -1,7 +1,6 @@
 #include "funcoes_auxiliares.h"
 
-// Acrescentada variavel controlo para repetir insercao se ao for inserido
-// numero int
+// Pede um número inteiro ao utilizador
 int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo) {
   int numero, controlo;
   do {
@@ -21,6 +20,7 @@ int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo) {
   return numero;
 }
 
+// Pede um número float ao utilizador
 float LerFloat(char mensagem[MAX_STRING], float minimo, float maximo) {
   float numero;
   int controlo;
@@ -41,6 +41,7 @@ float LerFloat(char mensagem[MAX_STRING], float minimo, float maximo) {
   return numero;
 }
 
+// Pede uma string ao utilizador
 void LerString(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int maximoCaracteres) {
   int tamanhoString;
 
@@ -66,6 +67,7 @@ void LerString(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int 
   }
 }
 
+// Pede um caracter ao utilizador
 void LerChar(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int maximoCaracteres) {
   int tamanhoString;
 
@@ -89,6 +91,7 @@ void LerChar(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int ma
   }
 }
 
+// Limpa o buffer
 void LimpaBufferStdin(void) {
   char chr;
   do {

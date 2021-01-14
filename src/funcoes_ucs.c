@@ -12,6 +12,7 @@ int ProcuraUC(tipoUC vUCs[], int nUCs, int procuraId) {
   return pos;
 }
 
+// Pede ao utilizador dados de uma UC
 tipoUC LeDadosUC() {
   tipoUC uc;
   char obrigatoria[MAX_STRING];
@@ -76,6 +77,7 @@ tipoUC LeDadosUC() {
   return uc;
 }
 
+// Acrescenta uma UC ao vetor dinâmico de UCs
 tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
   tipoUC dadosUC, *pUCs;
   int pos;
@@ -104,6 +106,7 @@ tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
   return vUCs;
 }
 
+// Mostra no ecrã uma tabela de todas as UCs no vetor
 void ListaUCs(tipoUC vUCs[], int nUCs) {
   int i;
 
@@ -137,6 +140,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
   getchar();
 }
 
+// Pede dados ao utilizador através da função LeDadosUC e altera a UC recebida como parâmetro
 tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   tipoUC editadaUC;
   int pos;
@@ -166,6 +170,7 @@ tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   return vUCs;
 }
 
+// Elimina a UC recebida como parâmetro
 tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   tipoUC *pUCs;
   int i, pos;
