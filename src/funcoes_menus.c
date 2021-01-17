@@ -35,3 +35,20 @@ int MenuUCs() {
 
   return opcao;
 }
+
+// Mostra no ecrã o Menu de Aulas e pede uma opção ao utilizador
+int MenuAulas() {
+  int opcao;
+
+  printf("\n\n===== GESTOR DE AULAS =====\n\n");
+  printf("1 - Inserir Aula\n");
+  printf("2 - Editar Aula\n");
+  printf("3 - Eliminar Aula\n");
+  printf("4 - Listar Aulas\n");
+  printf("5 - Guardar Alteracoes\n");
+  printf("6 - Ler Ficheiro\n");
+  printf("0 - Voltar\n");
+  opcao = LerInteiro("\nOpcao--> ", 0, 6);
+
+  return opcao;
+}

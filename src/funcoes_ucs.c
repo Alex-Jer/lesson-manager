@@ -141,7 +141,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
 }
 
 // Pede dados ao utilizador através da função LeDadosUC e altera a UC recebida como parâmetro
-tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
+void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   tipoUC editadaUC;
   int pos;
 
@@ -167,7 +167,6 @@ tipoUC *EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
       printf("SUCESSO: UC modificada!\n");
     }
   }
-  return vUCs;
 }
 
 // Elimina a UC recebida como parâmetro

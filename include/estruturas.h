@@ -30,7 +30,7 @@ typedef struct {
 
 typedef struct {
   char designacao[MAX_STRING];
-  int ucId;
+  int idUC;
   char tipoAula[MAX_TIPO_AULA];  // T, TP, PL
   char docente[MAX_STRING];
   tipoData data;

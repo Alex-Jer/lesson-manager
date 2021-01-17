@@ -1,7 +1,7 @@
 #include "funcoes_ficheiros_uc.h"
 
 // Cria ou substitui um ficheiro dados_uc.dat com os dados do vetor de UCs
-void EscreveFicheiroBinarioUC(tipoUC vUCs[], int nUCs) {
+void EscreveFicheiroBinarioUCs(tipoUC vUCs[], int nUCs) {
   FILE *ficheiro;
   int quantEscrito;
 
@@ -49,7 +49,7 @@ void EscreveFicheiroBinarioUC(tipoUC vUCs[], int nUCs) {
 }
 
 // Lê o ficheiro dados_ucs.dat e preenche o vetor com os dados do ficheiro
-tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
+tipoUC *LeFicheiroBinarioUCs(tipoUC vUCs[], int *nUCs) {
   FILE *ficheiro;
   tipoUC *pUCs;
 
@@ -97,29 +97,45 @@ tipoUC *LeFicheiroBinarioUC(tipoUC vUCs[], int *nUCs) {
   return vUCs;
 }
 
-// void EscreveFicheiroTextoUC(tipoUC vUCs[], int nUCs) {
-//   int i;
-//   FILE *ficheiro;
+void EscreveFicheiroTextoUCs(tipoUC vUCs[], int nUCs) {
+  int i;
+  FILE *ficheiro;
 
-//   ficheiro = fopen("dados.txt", "w");
-//   if (ficheiro == NULL) {
-//     printf("Erro ao abrir ficheiro!\n");
-//   } else {
-//     for (i = 0; i < nUCs; i++) {
-//       fprintf(ficheiro, "%s\n", vUCs[i].designacao);
-//       fprintf(ficheiro, "%d\n", vUCs[i].diurno);
-//       fprintf(ficheiro, "%d\n", vUCs[i].duracao);
-//       fprintf(ficheiro, "%d\n", vUCs[i].totalAulasPrevistas);
-//     }
-//     fclose(ficheiro);
-//   }
-// }
+  ficheiro = fopen("dados_ucs.txt", "w");
+  if (ficheiro == NULL) {
+    printf("Erro ao abrir ficheiro!\n");
+  } else {
+    fprintf(ficheiro, "\n   ID\t\t\t\t\t\t\t\t\t\t\t");
+    fprintf(ficheiro, "Designacao\t  ");
+    fprintf(ficheiro, "Obrigatoria\t\t");
+    fprintf(ficheiro, "Regime\t\t\t\t ");
+    fprintf(ficheiro, "Semestre\t\t");
+    fprintf(ficheiro, "T              TP             PL\n");
+    for (i = 0; i < nUCs; i++) {
+      fprintf(ficheiro, "   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
+      if (vUCs[i].obrigatoria == 1) {
+        fprintf(ficheiro, "Sim\t\t\t\t\t\t");
+      } else {
+        fprintf(ficheiro, "Nao\t\t\t\t\t\t");
+      }
+      if (vUCs[i].diurno == 1) {
+        fprintf(ficheiro, "Diurno\t\t\t\t ");
+      } else {
+        fprintf(ficheiro, "Pos-Laboral\t\t ");
+      }
+      fprintf(ficheiro, "%d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vUCs[i].semestre,
+              vUCs[i].teorica.quantidade, vUCs[i].teorica.duracao, vUCs[i].teoricopratica.quantidade,
+              vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.quantidade, vUCs[i].praticolab.duracao);
+    }
+    fclose(ficheiro);
+  }
+}
 
 // int LeFicheiroTextoUC(tipoUC vUCs[], int *nUCs) {
 //   FILE *ficheiro;
 //   int i;
 
-//   ficheiro = fopen("dados.txt", "r");
+//   ficheiro = fopen("dados_ucs.txt", "r");
 //   if (ficheiro == NULL) {
 //     printf("\nERRO: Falha na abertura do ficheiro!");
 //   } else {
