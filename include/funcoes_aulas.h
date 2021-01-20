@@ -12,7 +12,7 @@ int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]);
 tipoAula LeDadosAula(tipoUC vUCs[], int *nUCs);
 tipoAula *AcrescentaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUCs);
 void ListaAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
-tipoAula *EditaAula(tipoAula vAulas[], int *nAulas, int designacaoAula);
-tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, int designacaoAula);
+void EditaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[], tipoUC vUCs[], int *nUCs);
+tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]);
 
 #endif /* FUNCOES_AULAS_H_INCLUDED */

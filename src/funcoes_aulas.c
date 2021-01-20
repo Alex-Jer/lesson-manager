@@ -85,10 +85,11 @@ tipoAula *AcrescentaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUC
   tipoAula dadosAula, *pAulas;
   int pos;
 
-  if (*nAulas >= 40) {
-    printf("\nERRO: Numero maximo de Aulas atingido!\n");
+  pAulas = vAulas;
+
+  if (*nUCs <= 0) {
+    printf("\nERRO: Nao ha UCs registadas!\n");
   } else {
-    pAulas = vAulas;
     dadosAula = LeDadosAula(vUCs, nUCs);
     pos = ProcuraAula(vAulas, *nAulas, dadosAula.designacao);
 
@@ -117,8 +118,9 @@ void ListaAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[] /* nUCs */) {
     printf("\nERRO: Nao existem aulas registadas!\n");
   } else {
     for (i = 0; i < nAulas; i++) {
+      printf("\n************\n");
       printf("\nDesignacao: %s\n", vAulas[i].designacao);
-      printf("UC: %s\n", vUCs[vAulas[i].idUC].designacao);
+      printf("UC: %s\n", vUCs[vAulas[i].idUC - 1].designacao);
       printf("Tipo: %s\n", vAulas[i].tipoAula);
       printf("Docente: %s\n", vAulas[i].docente);
       printf("Data: %02d-%02d-%04d\n", vAulas[i].data.dia, vAulas[i].data.mes, vAulas[i].data.ano);
@@ -144,45 +146,44 @@ void ListaAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[] /* nUCs */) {
   getchar();
 }
 
-/*
 // Pede dados ao utilizador através da função LeDadosAula e altera a Aula recebida como parâmetro
-void EditaAula(tipoAula vAulas[], int *nAulas, int idAula) {
+void EditaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[], tipoUC vUCs[], int *nUCs) {
   tipoAula editadaAula;
   int pos;
 
   if (*nAulas != 0) {
-    pos = ProcuraAula(vAulas, *nAulas, idAula);
+    pos = ProcuraAula(vAulas, *nAulas, designacaoAula);
     if (pos == -1) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
-      editadaAula = LeDadosAula();
-      vAulas[pos].id = editadaAula.id;
+      editadaAula = LeDadosAula(vUCs, nUCs);
       strcpy(vAulas[pos].designacao, editadaAula.designacao);
-      vAulas[pos].obrigatoria = editadaAula.obrigatoria;
-      vAulas[pos].semestre = editadaAula.semestre;
-      vAulas[pos].diurno = editadaAula.diurno;
-      vAulas[pos].teorica.quantidade = editadaAula.teorica.quantidade;
-      vAulas[pos].teorica.duracao = editadaAula.teorica.duracao;
-      vAulas[pos].teoricopratica.quantidade = editadaAula.teoricopratica.quantidade;
-      vAulas[pos].teoricopratica.duracao = editadaAula.teoricopratica.duracao;
-      vAulas[pos].praticolab.quantidade = editadaAula.praticolab.quantidade;
-      vAulas[pos].praticolab.duracao = editadaAula.praticolab.duracao;
-      vAulas[pos].totalAulasPrevistas =
-          editadaAula.teorica.quantidade + editadaAula.teoricopratica.quantidade + editadaAula.praticolab.quantidade;
+      vAulas[pos].idUC = editadaAula.idUC;
+      strcpy(vAulas[pos].tipoAula, editadaAula.tipoAula);
+      strcpy(vAulas[pos].docente, editadaAula.docente);
+      vAulas[pos].data.dia = editadaAula.data.dia;
+      vAulas[pos].data.mes = editadaAula.data.mes;
+      vAulas[pos].data.ano = editadaAula.data.ano;
+      vAulas[pos].inicio.horas = editadaAula.inicio.horas;
+      vAulas[pos].inicio.minutos = editadaAula.inicio.minutos;
+      vAulas[pos].fim.horas = editadaAula.fim.horas;
+      vAulas[pos].fim.minutos = editadaAula.fim.minutos;
+      vAulas[pos].estado = editadaAula.estado;
+      vAulas[pos].gravacao = editadaAula.gravacao;
       printf("SUCESSO: Aula modificada!\n");
     }
   }
 }
 
 // Elimina a Aula recebida como parâmetro
-tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, int idAula) {
+tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]) {
   tipoAula *pAulas;
   int i, pos;
 
   pAulas = vAulas;  // Backup do vetor
 
   if (*nAulas != 0) {
-    pos = ProcuraAula(vAulas, *nAulas, idAula);
+    pos = ProcuraAula(vAulas, *nAulas, designacaoAula);
     if (pos == -1) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
@@ -200,4 +201,3 @@ tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, int idAula) {
   }
   return vAulas;
 }
-*/

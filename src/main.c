@@ -56,11 +56,11 @@ int main() {
               break;
             case 2:  // Editar
               LerString("Designacao da aula a editar: ", designacaoAula, MAX_UCS);
-              // EditaAula(vAulas, &nAulas, designacaoAula);
+              EditaAula(vAulas, &nAulas, designacaoAula, vUCs, &nUCs);
               break;
             case 3:  // Eliminar
-              LerString("Designacao da aula a editar: ", designacaoAula, MAX_UCS);
-              // vAulas = EliminaAula(vAulas, &nAulas, designacaoAula);
+              LerString("Designacao da aula a eliminar: ", designacaoAula, MAX_UCS);
+              vAulas = EliminaAula(vAulas, &nAulas, designacaoAula);
               break;
             case 4:  // Listar
               ListaAulas(vAulas, nAulas, vUCs);
