@@ -14,5 +14,4 @@ tipoAula *AcrescentaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUC
 void ListaAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
 tipoAula *EditaAula(tipoAula vAulas[], int *nAulas, int designacaoAula);
 tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, int designacaoAula);
-
 #endif /* FUNCOES_AULAS_H_INCLUDED */

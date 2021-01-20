@@ -13,5 +13,4 @@ tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs);
 void ListaUCs(tipoUC vUCs[], int nUCs);
 void EditaUC(tipoUC vUCs[], int *nUCs, int idUC);
 tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC);
-
 #endif /* FUNCOES_UCS_H_INCLUDED */

@@ -11,7 +11,6 @@ int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]) {
   }
   return pos;
 }
-
 // Pede ao utilizador dados de uma Aula
 tipoAula LeDadosAula(tipoUC vUCs[], int *nUCs) {
   tipoAula aula;
@@ -143,7 +142,6 @@ void ListaAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[] /* nUCs */) {
   printf("\nPressione ENTER para continuar . . . ");
   getchar();
 }
-
 /*
 // Pede dados ao utilizador através da função LeDadosAula e altera a Aula recebida como parâmetro
 void EditaAula(tipoAula vAulas[], int *nAulas, int idAula) {

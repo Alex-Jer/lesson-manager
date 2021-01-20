@@ -11,7 +11,6 @@ int ProcuraUC(tipoUC vUCs[], int nUCs, int procuraId) {
   }
   return pos;
 }
-
 // Pede ao utilizador dados de uma UC
 tipoUC LeDadosUC() {
   tipoUC uc;

@@ -113,3 +113,71 @@
 1611152896 e:\apps\gestor-aulas\funcoes_ficheiros_aula.h
 	"estruturas.h"
 
+1611157879 source:c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_aulas.c
+	"funcoes_aulas.h"
+
+1611157538 c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_aulas.h
+	<ctype.h>
+	<string.h>
+	"estruturas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ucs.h"
+
+1611153205 c:\users\utilizador\desktop\github\gestor-aulas backup\estruturas.h
+	"constantes.h"
+
+1611157342 c:\users\utilizador\desktop\github\gestor-aulas backup\constantes.h
+	<stdio.h>
+	<stdlib.h>
+
+1610551416 c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_auxiliares.h
+	<stdio.h>
+	<string.h>
+	"constantes.h"
+
+1611159222 c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_ucs.h
+	<ctype.h>
+	"estruturas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_uc.h"
+
+1611153205 c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_ficheiros_uc.h
+	"estruturas.h"
+
+1611153205 source:c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_auxiliares.c
+	"funcoes_auxiliares.h"
+
+1611153205 source:c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_ficheiros_aula.c
+	"funcoes_ficheiros_aula.h"
+
+1611153205 c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_ficheiros_aula.h
+	"estruturas.h"
+
+1611153205 source:c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_ficheiros_uc.c
+	"funcoes_ficheiros_uc.h"
+
+1611170698 source:c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_menus.c
+	"funcoes_menus.h"
+	<stdio.h>
+	<stdlib.h>
+	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_uc.h"
+	"funcoes_ucs.h"
+
+1611170710 c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_menus.h
+
+1611159930 source:c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_ucs.c
+	"funcoes_ucs.h"
+
+1611166007 source:c:\users\utilizador\desktop\github\gestor-aulas backup\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"estruturas.h"
+	"funcoes_aulas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_aula.h"
+	"funcoes_ficheiros_uc.h"
+	"funcoes_menus.h"
+	"funcoes_ucs.h"
+

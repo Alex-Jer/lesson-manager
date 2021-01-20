@@ -1,4 +1,4 @@
 
    ID											Designacao	  Obrigatoria		Regime				 Semestre		T              TP             PL
-   01	       Sistemas Computacionais	  Sim						Diurno				 1.	        10 (090min)    15 (060min)    00 (000min)
-   02	                 Programacao I	  Sim						Pos-Laboral		 1.	        00 (000min)    20 (240min)    01 (050min)
+   01	                             h	  Sim						Diurno				 2.	        12 (034min)    14 (045min)    02 (045min)
+   02	                          joao	  Sim						Diurno				 2.	        14 (045min)    13 (056min)    03 (067min)
