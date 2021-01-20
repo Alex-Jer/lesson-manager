@@ -3,5 +3,6 @@
 
 int MenuPrincipal();
 int MenuUCs();
+int MenuAulas();
 
 #endif /* FUNCOES_MENU_H_INCLUDED */
