@@ -83,7 +83,7 @@ int main() {
               ListaTodasAulas(vAulas, nAulas, vUCs);
               break;
             case 5:
-              ListaAlteraEstadoAulas(vAulas, nAulas);
+              ListaAlteraEstadoAulas(vAulas, nAulas, vUCs);
               break;
             case 6:  // Gravar em ficheiro
               EscreveFicheiroBinarioAulas(vAulas, nAulas);

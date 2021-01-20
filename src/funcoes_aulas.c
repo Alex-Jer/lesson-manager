@@ -176,7 +176,7 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
 }
 
 // Mostra no ecrã as Aulas Agendadas
-void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas) {
+void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
   int i, pos, quantA = 0, quantD = 0, quantR = 0;
   char designacaoAula[MAX_STRING], confirmacao[MAX_CHAR];
 
@@ -224,19 +224,58 @@ void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
       if (vAulas[pos].estado == 'A') {
-        printf("\nDeseja alterar o estado da aula %s de \"Agendada\" para \"A Decorrer\"? ", designacaoAula);
-        LerChar("(S/N): ", confirmacao, MAX_CHAR);
+        do {
+          printf("\nDeseja alterar o estado da aula %s de \"Agendada\" para \"A Decorrer\"? ", designacaoAula);
+          LerChar("(S/N): ", confirmacao, MAX_CHAR);
+
+          confirmacao[0] = toupper(confirmacao[0]);
+          if (confirmacao[0] != 'S' && confirmacao[0] != 'N') {
+            printf("ERRO: Opcao invalida!\n");
+          }
+        } while (confirmacao[0] != 'S' && confirmacao[0] != 'N');
         if (confirmacao[0] == 'S') {
+          if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
+            vAulas[pos].inicio.horas =
+                LerInteiro("Hora de inicio da aula (8 as 17): ", MIN_HORA_INICIO_DIURNO, MAX_HORA_INICIO_DIURNO);
+            vAulas[pos].inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+          } else {
+            vAulas[pos].inicio.horas = LerInteiro("Hora inicio da aula (18 as 23): ", MIN_HORA_INICIO_PL, MAX_HORA_INICIO_PL);
+            vAulas[pos].inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+          }
           vAulas[pos].estado = 'D';
-          printf("\nSUCESSO: Estado Alterado!\n");
         }
+        printf("\nSUCESSO: Estado Alterado!\n");
       } else if (vAulas[pos].estado == 'D') {
-        printf("\nDeseja alterar o estado da aula %s de \"A Decorrer\" para \"Realizada\"? ", designacaoAula);
-        LerChar("(S/N): ", confirmacao, MAX_CHAR);
-        if (confirmacao[0] == 'S') {
-          vAulas[pos].estado = 'R';
-          printf("\nSUCESSO: Estado Alterado!\n");
-        }
+        do {
+          printf("\nDeseja alterar o estado da aula %s de \"A Decorrer\" para \"Realizada\"? ", designacaoAula);
+          LerChar("(S/N): ", confirmacao, MAX_CHAR);
+
+          confirmacao[0] = toupper(confirmacao[0]);
+          if (confirmacao[0] != 'S' && confirmacao[0] != 'N') {
+            printf("ERRO: Opcao invalida!\n");
+          }
+        } while (confirmacao[0] != 'S' && confirmacao[0] != 'N');
+
+        do {
+          if (confirmacao[0] == 'S') {
+            if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
+              vAulas[pos].fim.horas = LerInteiro("Hora de fim da aula (9 as 18): ", MIN_HORA_FIM_DIURNO, MAX_HORA_FIM_DIURNO);
+              vAulas[pos].fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+            } else {
+              vAulas[pos].fim.horas = LerInteiro("Hora de fim da aula (19 as 24): ", MIN_HORA_FIM_PL, MAX_HORA_FIM_PL);
+              vAulas[pos].fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+            }
+            vAulas[pos].estado = 'R';
+          }
+          if (vAulas[pos].inicio.horas > vAulas[pos].fim.horas) {
+            printf("\nERRO: Hora invalida!\n");
+          } else if (vAulas[pos].inicio.horas == vAulas[pos].fim.horas) {
+            printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
+          }
+        } while (vAulas[pos].inicio.horas >= vAulas[pos].fim.horas);
+        printf("\nSUCESSO: Estado Alterado!\n");
+      } else if (vAulas[pos].estado == 'R') {
+        printf("\nERRO: A aula %s ja terminou!", designacaoAula);
       }
     }
   }
