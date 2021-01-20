@@ -13,18 +13,29 @@ int ProcuraUC(tipoUC vUCs[], int nUCs, int procuraId) {
 }
 
 // Pede ao utilizador dados de uma UC
-tipoUC LeDadosUC() {
+tipoUC LeDadosUC(tipoUC vUCs[], int nUCs, int modoEdicao) {
   tipoUC uc;
   char obrigatoria[MAX_STRING];
   char diurno[MAX_STRING];
 
   uc.obrigatoria = 1;  // 0 - Não // 1 - Sim
   uc.diurno = 1;       // 0 - Não // 1 - Sim
+  uc.teorica.duracao = 0;
   uc.teorica.quantidade = 0;
+  uc.teoricopratica.duracao = 0;
   uc.teoricopratica.quantidade = 0;
+  uc.praticolab.duracao = 0;
   uc.praticolab.quantidade = 0;
 
-  uc.id = LerInteiro("Codigo: ", MIN_UCS, MAX_UCS);
+  if (modoEdicao == 0) {
+    do {
+      uc.id = LerInteiro("Codigo: ", MIN_UCS, MAX_UCS);
+      if (ProcuraUC(vUCs, nUCs, uc.id) != -1) {
+        printf("\nERRO: Ja existe uma UC com esse ID!\n\n");
+      }
+    } while (ProcuraUC(vUCs, nUCs, uc.id) != -1);
+  }
+
   LerString("Nome: ", uc.designacao, MAX_STRING);
 
   do {
@@ -46,25 +57,32 @@ tipoUC LeDadosUC() {
     }
   } while (diurno[0] != 'D' && diurno[0] != 'P');
 
-  printf("\n-> Aulas Teoricas <-\n");
-  uc.teorica.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
-  if (uc.teorica.quantidade != 0) {
-    uc.teorica.duracao = LerInteiro("Duracao de cada aula (30 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
-  }
+  do {
+    printf("\n-> Aulas Teoricas <-\n");
+    uc.teorica.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    if (uc.teorica.quantidade != 0) {
+      uc.teorica.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+    }
 
-  printf("\n-> Aulas Teoricopraticas <-\n");
-  uc.teoricopratica.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
-  if (uc.teoricopratica.quantidade != 0) {
-    uc.teoricopratica.duracao = LerInteiro("Duracao de cada aula (30 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
-  }
+    printf("\n-> Aulas Teoricopraticas <-\n");
+    uc.teoricopratica.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    if (uc.teoricopratica.quantidade != 0) {
+      uc.teoricopratica.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+    }
 
-  printf("\n-> Aulas Praticolaboratoriais <-\n");
-  uc.praticolab.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
-  if (uc.praticolab.quantidade != 0) {
-    uc.praticolab.duracao = LerInteiro("Duracao de cada aula (30 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
-  }
+    printf("\n-> Aulas Praticolaboratoriais <-\n");
+    uc.praticolab.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    if (uc.praticolab.quantidade != 0) {
+      uc.praticolab.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+    }
 
-  uc.totalAulasPrevistas = uc.teorica.quantidade + uc.teoricopratica.quantidade + uc.praticolab.quantidade;
+    uc.totalAulasPrevistas = uc.teorica.quantidade + uc.teoricopratica.quantidade + uc.praticolab.quantidade;
+
+    if (uc.totalAulasPrevistas <= 0) {
+      printf("\nERRO: Tem de inserir pelo menos 1 aula!\n");
+    }
+
+  } while (uc.totalAulasPrevistas <= 0);
 
   if (obrigatoria[0] == 'N') {
     uc.obrigatoria = 0;
@@ -86,7 +104,7 @@ tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
     printf("\nERRO: Numero maximo de UCs atingido!\n");
   } else {
     pUCs = vUCs;
-    dadosUC = LeDadosUC();
+    dadosUC = LeDadosUC(vUCs, *nUCs, 0);
     pos = ProcuraUC(vUCs, *nUCs, dadosUC.id);
 
     if (pos != -1) {
@@ -131,7 +149,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
       } else {
         printf("Pos-Laboral\t");
       }
-      printf("   %d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vUCs[i].semestre, vUCs[i].teorica.quantidade,
+      printf("   #%d\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vUCs[i].semestre, vUCs[i].teorica.quantidade,
              vUCs[i].teorica.duracao, vUCs[i].teoricopratica.quantidade, vUCs[i].teoricopratica.duracao,
              vUCs[i].praticolab.quantidade, vUCs[i].praticolab.duracao);
     }
@@ -150,8 +168,7 @@ void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
     if (pos == -1) {
       printf("\nERRO: UC nao encontrada!\n");
     } else {
-      editadaUC = LeDadosUC();
-      vUCs[pos].id = editadaUC.id;
+      editadaUC = LeDadosUC(vUCs, *nUCs, 1);
       strcpy(vUCs[pos].designacao, editadaUC.designacao);
       vUCs[pos].obrigatoria = editadaUC.obrigatoria;
       vUCs[pos].semestre = editadaUC.semestre;
