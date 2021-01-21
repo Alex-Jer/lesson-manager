@@ -83,14 +83,22 @@ int main() {
               ListaTodasAulas(vAulas, nAulas, vUCs);
               break;
             case 5:
-              ListaAlteraEstadoAulas(vAulas, nAulas, vUCs);
+              if (nAulas <= 0) {
+                printf("\nERRO: Nao existem aulas registadas!\n");
+              } else {
+                ListaAlteraEstadoAulas(vAulas, nAulas, vUCs);
+              }
               break;
             case 6:  // Gravar em ficheiro
               EscreveFicheiroBinarioAulas(vAulas, nAulas);
               // EscreveFicheiroTextoAulas(vAulas, nAulas);
               break;
             case 7:  // Ler ficheiro
-              vAulas = LeFicheiroBinarioAulas(vAulas, &nAulas);
+              if (nUCs <= 0) {
+                printf("\nERRO: Nao existem UCs registadas!\n");
+              } else {
+                vAulas = LeFicheiroBinarioAulas(vAulas, &nAulas);
+              }
               break;
           }
         } while (opcaoSubMenu != 0);

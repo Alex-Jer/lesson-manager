@@ -16,15 +16,10 @@ int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]) {
 tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao) {
   tipoAula aula;
   int pos;
-  char tipoAula[MAX_STRING], estado[MAX_STRING], gravacao[MAX_STRING];
-
-  aula.gravacao = 1;  // 0 - Não // 1 - Sim
+  char tipoAula[MAX_STRING];
 
   if (modoEdicao == 0) {
     aula.estado = 'A';
-  }
-
-  if (modoEdicao == 0) {
     LerString("Nome: ", aula.designacao, MAX_STRING);
   }
 
@@ -77,32 +72,6 @@ tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao) {
           printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
         }
       } while (aula.inicio.horas >= aula.fim.horas);
-
-      if (modoEdicao == 1) {
-        do {
-          LerChar("Aula [A]gendada, a [D]ecorrer ou ja [R]ealizada? (A/D/R): ", estado, MAX_STRING);
-          estado[0] = toupper(estado[0]);
-
-          if (estado[0] != 'A' && estado[0] != 'D' && estado[0] != 'R') {
-            printf("ERRO: Opcao invalida!\n");
-          }
-        } while (estado[0] != 'A' && estado[0] != 'D' && estado[0] != 'R');
-
-        aula.estado = estado[0];
-      }
-
-      do {
-        LerChar("Gravacao disponivel? (S/N): ", gravacao, MAX_STRING);
-        gravacao[0] = toupper(gravacao[0]);
-
-        if (gravacao[0] != 'S' && gravacao[0] != 'N') {
-          printf("ERRO: Opcao invalida!\n");
-        }
-      } while (gravacao[0] != 'S' && gravacao[0] != 'N');
-
-      if (gravacao[0] == 'N') {
-        aula.gravacao = 0;
-      }
     }
   } while (pos == -1);
 
@@ -164,7 +133,7 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
         printf("Estado: Realizada\n");
       }
 
-      if (vAulas[i].gravacao == 1) {
+      if (vAulas[i].gravacao == 'G') {
         printf("Gravacao: Sim\n");
       } else {
         printf("Gravacao: Nao\n");
@@ -178,7 +147,9 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
 // Mostra no ecrã as Aulas Agendadas
 void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
   int i, pos, quantA = 0, quantD = 0, quantR = 0;
-  char designacaoAula[MAX_STRING], confirmacao[MAX_CHAR];
+  char designacaoAula[MAX_STRING], confirmacao[MAX_CHAR], gravacao[MAX_CHAR];
+
+  gravacao[0] = 'A';
 
   if (nAulas == 0) {
     printf("\nERRO: Nao existem aulas registadas!");
@@ -223,7 +194,7 @@ void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
     if (pos == -1) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
-      if (vAulas[pos].estado == 'A') {
+      if (vAulas[pos].estado == 'A') {  // Altera estado de Agendada para A Decorrer
         do {
           printf("\nDeseja alterar o estado da aula %s de \"Agendada\" para \"A Decorrer\"? ", designacaoAula);
           LerChar("(S/N): ", confirmacao, MAX_CHAR);
@@ -243,9 +214,22 @@ void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
             vAulas[pos].inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
           }
           vAulas[pos].estado = 'D';
+
+          do {
+            LerChar("A aula sera gravada? (S/N): ", gravacao, MAX_STRING);
+            gravacao[0] = toupper(gravacao[0]);
+
+            if (gravacao[0] != 'S' && gravacao[0] != 'N') {
+              printf("ERRO: Opcao invalida!\n");
+            }
+          } while (gravacao[0] != 'S' && gravacao[0] != 'N');
+
+          if (gravacao[0] == 'N') {
+            vAulas[pos].gravacao = 'N';
+          }
         }
         printf("\nSUCESSO: Estado Alterado!\n");
-      } else if (vAulas[pos].estado == 'D') {
+      } else if (vAulas[pos].estado == 'D') {  // Altera estado de A Decorrer para Realizada
         do {
           printf("\nDeseja alterar o estado da aula %s de \"A Decorrer\" para \"Realizada\"? ", designacaoAula);
           LerChar("(S/N): ", confirmacao, MAX_CHAR);
@@ -273,6 +257,12 @@ void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
             printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
           }
         } while (vAulas[pos].inicio.horas >= vAulas[pos].fim.horas);
+
+        if (gravacao[0] == 'A') {
+          vAulas[pos].gravacao = 'G';
+          printf("\nINFO: Gravacao disponibilizada.\n");
+        }
+
         printf("\nSUCESSO: Estado Alterado!\n");
       } else if (vAulas[pos].estado == 'R') {
         printf("\nERRO: A aula %s ja terminou!", designacaoAula);
@@ -302,7 +292,6 @@ void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs
       vAulas[pos].inicio.minutos = editadaAula.inicio.minutos;
       vAulas[pos].fim.horas = editadaAula.fim.horas;
       vAulas[pos].fim.minutos = editadaAula.fim.minutos;
-      vAulas[pos].gravacao = editadaAula.gravacao;
       printf("SUCESSO: Aula modificada!\n");
     }
   }
