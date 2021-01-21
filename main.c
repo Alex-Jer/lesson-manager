@@ -11,13 +11,13 @@
 #include "funcoes_ucs.h"
 
 int main() {
-  int opcao, opcaoSubMenu, idUC, nUCs = 0, nAulas = 0, gravacao = 0;
+  int opcao, opcaoSubMenu, idUC, nUCs = 0, nAulas = 0,gravacao=0;
   char designacaoAula[MAX_STRING];
   tipoUC *vUCs = NULL;      // Inicializar vetor dinâmico de UCs
   tipoAula *vAulas = NULL;  // Inicializar vetor dinâmico de Aulas
 
   do {
-    opcao = MenuPrincipal(nUCs, nAulas, gravacao);
+    opcao = MenuPrincipal(nUCs,nAulas,gravacao);
     switch (opcao) {
       case 1:
         do {

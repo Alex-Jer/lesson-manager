@@ -6,13 +6,15 @@
 #include "funcoes_auxiliares.h"
 #include "funcoes_ficheiros_uc.h"
 #include "funcoes_ucs.h"
+
 // Mostra no ecrã o Menu Principal e pede uma opção ao utilizador
-int MenuPrincipal(int nUCs, int nAulas, int gravacao) {
+int MenuPrincipal(int nUCs,int nAulas,int gravacao) {
   int opcao;
-  printf("\nNumero de Ucs: %d", nUCs);
-  printf("\nNumero de aulas agendadas: %d", nAulas);
+  
+  printf("\nNumero de Ucs: %d",nUCs);
+  printf("\nNumero de aulas agendadas: %d",nAulas);
   printf("\nNumero de aulas realizadas: %d");
-  printf("\nNumero de aulas gravadas: %d", gravacao);
+  printf("\nNumero de aulas gravadas: %d",gravacao);
   printf("\n\n===== MENU PRINCIPAL =====\n\n");
   printf("1 - Gerir UCs\n");
   printf("2 - Gerir Aulas\n");

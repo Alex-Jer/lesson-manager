@@ -11,6 +11,7 @@ int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]) {
   }
   return pos;
 }
+
 // Pede ao utilizador dados de uma Aula
 tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao) {
   tipoAula aula;
@@ -142,7 +143,134 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
   printf("\nPressione ENTER para continuar . . . ");
   getchar();
 }
-/*
+
+// Mostra no ecrã as Aulas Agendadas
+void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
+  int i, pos, quantA = 0, quantD = 0, quantR = 0;
+  char designacaoAula[MAX_STRING], confirmacao[MAX_CHAR], gravacao[MAX_CHAR];
+
+  gravacao[0] = 'A';
+
+  if (nAulas == 0) {
+    printf("\nERRO: Nao existem aulas registadas!");
+  } else {
+    printf("\n***** Aulas Agendadas *****\n");
+    for (i = 0; i < nAulas; i++) {
+      if (vAulas[i].estado == 'A') {
+        printf("\n%s", vAulas[i].designacao);
+        quantA++;
+      }
+    }
+    if (quantA == 0) {
+      printf("\n(Nenhuma aula agendada.)");
+    }
+
+    printf("\n\n***** Aulas A Decorrer ****\n");
+    for (i = 0; i < nAulas; i++) {
+      if (vAulas[i].estado == 'D') {
+        printf("\n%s", vAulas[i].designacao);
+        quantD++;
+      }
+    }
+    if (quantD == 0) {
+      printf("\n(Nenhuma aula a decorrer.)\n");
+    }
+
+    printf("\n\n***** Aulas Realizadas *****\n");
+    for (i = 0; i < nAulas; i++) {
+      if (vAulas[i].estado == 'R') {
+        printf("\n%s", vAulas[i].designacao);
+        quantR++;
+      }
+    }
+    if (quantR == 0) {
+      printf("\n(Nenhuma aula realizada.)");
+    }
+  }
+
+  LerString("\n\nDesignacao da aula a alterar: ", designacaoAula, MAX_STRING);
+  if (nAulas >= 0) {
+    pos = ProcuraAula(vAulas, nAulas, designacaoAula);
+    if (pos == -1) {
+      printf("\nERRO: Aula nao encontrada!\n");
+    } else {
+      if (vAulas[pos].estado == 'A') {  // Altera estado de Agendada para A Decorrer
+        do {
+          printf("\nDeseja alterar o estado da aula %s de \"Agendada\" para \"A Decorrer\"? ", designacaoAula);
+          LerChar("(S/N): ", confirmacao, MAX_CHAR);
+
+          confirmacao[0] = toupper(confirmacao[0]);
+          if (confirmacao[0] != 'S' && confirmacao[0] != 'N') {
+            printf("ERRO: Opcao invalida!\n");
+          }
+        } while (confirmacao[0] != 'S' && confirmacao[0] != 'N');
+        if (confirmacao[0] == 'S') {
+          if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
+            vAulas[pos].inicio.horas =
+                LerInteiro("Hora de inicio da aula (8 as 17): ", MIN_HORA_INICIO_DIURNO, MAX_HORA_INICIO_DIURNO);
+            vAulas[pos].inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+          } else {
+            vAulas[pos].inicio.horas = LerInteiro("Hora inicio da aula (18 as 23): ", MIN_HORA_INICIO_PL, MAX_HORA_INICIO_PL);
+            vAulas[pos].inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+          }
+          vAulas[pos].estado = 'D';
+
+          do {
+            LerChar("A aula sera gravada? (S/N): ", gravacao, MAX_STRING);
+            gravacao[0] = toupper(gravacao[0]);
+
+            if (gravacao[0] != 'S' && gravacao[0] != 'N') {
+              printf("ERRO: Opcao invalida!\n");
+            }
+          } while (gravacao[0] != 'S' && gravacao[0] != 'N');
+
+          if (gravacao[0] == 'N') {
+            vAulas[pos].gravacao = 'N';
+          }
+        }
+        printf("\nSUCESSO: Estado Alterado!\n");
+      } else if (vAulas[pos].estado == 'D') {  // Altera estado de A Decorrer para Realizada
+        do {
+          printf("\nDeseja alterar o estado da aula %s de \"A Decorrer\" para \"Realizada\"? ", designacaoAula);
+          LerChar("(S/N): ", confirmacao, MAX_CHAR);
+
+          confirmacao[0] = toupper(confirmacao[0]);
+          if (confirmacao[0] != 'S' && confirmacao[0] != 'N') {
+            printf("ERRO: Opcao invalida!\n");
+          }
+        } while (confirmacao[0] != 'S' && confirmacao[0] != 'N');
+
+        do {
+          if (confirmacao[0] == 'S') {
+            if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
+              vAulas[pos].fim.horas = LerInteiro("Hora de fim da aula (9 as 18): ", MIN_HORA_FIM_DIURNO, MAX_HORA_FIM_DIURNO);
+              vAulas[pos].fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+            } else {
+              vAulas[pos].fim.horas = LerInteiro("Hora de fim da aula (19 as 24): ", MIN_HORA_FIM_PL, MAX_HORA_FIM_PL);
+              vAulas[pos].fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+            }
+            vAulas[pos].estado = 'R';
+          }
+          if (vAulas[pos].inicio.horas > vAulas[pos].fim.horas) {
+            printf("\nERRO: Hora invalida!\n");
+          } else if (vAulas[pos].inicio.horas == vAulas[pos].fim.horas) {
+            printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
+          }
+        } while (vAulas[pos].inicio.horas >= vAulas[pos].fim.horas);
+
+        if (gravacao[0] == 'A') {
+          vAulas[pos].gravacao = 'G';
+          printf("\nINFO: Gravacao disponibilizada.\n");
+        }
+
+        printf("\nSUCESSO: Estado Alterado!\n");
+      } else if (vAulas[pos].estado == 'R') {
+        printf("\nERRO: A aula %s ja terminou!", designacaoAula);
+      }
+    }
+  }
+}
+
 // Pede dados ao utilizador através da função LeDadosAula e altera a Aula recebida como parâmetro
 void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs) {
   tipoAula editadaAula;
@@ -195,4 +323,3 @@ tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]) {
   }
   return vAulas;
 }
-*/
