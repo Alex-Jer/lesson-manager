@@ -38,6 +38,7 @@ typedef struct {
   tipoHora fim;
   char estado;    // A - Agendada // D - A Decorrer // R - Realizada
   char gravacao;  // N - Não // A - A Gravar // G - Gravada
+  //* int quantAcessos;
 } tipoAula;
 
 #endif /* ESTRUTURAS_H_INCLUDED */

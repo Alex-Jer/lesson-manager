@@ -136,7 +136,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
     printf("Obrigatoria\t ");
     printf("Regime            ");
     printf("Semestre    ");
-    printf("T              TP             PL\n");
+    printf("T (Realizadas) TP (Realizadas) PL (Realizadas)\n");
     for (i = 0; i < nUCs; i++) {
       printf("   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
       if (vUCs[i].obrigatoria == 1) {
@@ -149,9 +149,9 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
       } else {
         printf("Pos-Laboral\t");
       }
-      printf("   #%d\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vUCs[i].semestre, vUCs[i].teorica.quantidade,
-             vUCs[i].teorica.duracao, vUCs[i].teoricopratica.quantidade, vUCs[i].teoricopratica.duracao,
-             vUCs[i].praticolab.quantidade, vUCs[i].praticolab.duracao);
+      printf("   #%d\t        %02d (%03dmin)    %02d (%03dmin)     %02d (%03dmin)\n", vUCs[i].semestre,
+             vUCs[i].teorica.quantidade, vUCs[i].teorica.duracao, vUCs[i].teoricopratica.quantidade,
+             vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.quantidade, vUCs[i].praticolab.duracao);
     }
   }
   printf("\nPressione ENTER para continuar . . . ");
