@@ -47,45 +47,47 @@
 	"funcoes_menus.h"
 	"funcoes_ucs.h"
 
-1611152896 source:e:\apps\gestor-aulas\funcoes_auxiliares.c
+1611249541 source:e:\apps\gestor-aulas\funcoes_auxiliares.c
 	"funcoes_auxiliares.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_auxiliares.h
+1611249541 e:\apps\gestor-aulas\funcoes_auxiliares.h
 	<stdio.h>
 	<string.h>
 	"constantes.h"
 
-1611152896 e:\apps\gestor-aulas\constantes.h
+1611249541 e:\apps\gestor-aulas\constantes.h
 	<stdio.h>
 	<stdlib.h>
 
-1611152896 source:e:\apps\gestor-aulas\funcoes_ficheiros_uc.c
+1611249541 source:e:\apps\gestor-aulas\funcoes_ficheiros_uc.c
 	"funcoes_ficheiros_uc.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_ficheiros_uc.h
+1611249541 e:\apps\gestor-aulas\funcoes_ficheiros_uc.h
 	"estruturas.h"
 
-1611152896 e:\apps\gestor-aulas\estruturas.h
+1611249541 e:\apps\gestor-aulas\estruturas.h
 	"constantes.h"
 
-1611152896 source:e:\apps\gestor-aulas\funcoes_menus.c
+1611249781 source:e:\apps\gestor-aulas\funcoes_menus.c
 	"funcoes_menus.h"
 	<stdio.h>
 	<stdlib.h>
 	"funcoes_auxiliares.h"
-
-1611152896 e:\apps\gestor-aulas\funcoes_menus.h
-
-1611152896 source:e:\apps\gestor-aulas\funcoes_ucs.c
+	"funcoes_ficheiros_uc.h"
 	"funcoes_ucs.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_ucs.h
+1611249798 e:\apps\gestor-aulas\funcoes_menus.h
+
+1611249541 source:e:\apps\gestor-aulas\funcoes_ucs.c
+	"funcoes_ucs.h"
+
+1611249541 e:\apps\gestor-aulas\funcoes_ucs.h
 	<ctype.h>
 	"estruturas.h"
 	"funcoes_auxiliares.h"
 	"funcoes_ficheiros_uc.h"
 
-1611152896 source:e:\apps\gestor-aulas\main.c
+1611249869 source:e:\apps\gestor-aulas\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
@@ -97,19 +99,85 @@
 	"funcoes_menus.h"
 	"funcoes_ucs.h"
 
-1611152896 source:e:\apps\gestor-aulas\funcoes_aulas.c
+1611249541 source:e:\apps\gestor-aulas\funcoes_aulas.c
 	"funcoes_aulas.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_aulas.h
+1611249541 e:\apps\gestor-aulas\funcoes_aulas.h
 	<ctype.h>
 	<string.h>
 	"estruturas.h"
 	"funcoes_auxiliares.h"
 	"funcoes_ucs.h"
 
-1611152896 source:e:\apps\gestor-aulas\funcoes_ficheiros_aula.c
+1611249541 source:e:\apps\gestor-aulas\funcoes_ficheiros_aula.c
 	"funcoes_ficheiros_aula.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_ficheiros_aula.h
+1611249541 e:\apps\gestor-aulas\funcoes_ficheiros_aula.h
 	"estruturas.h"
+
+1611249541 source:e:\apps\gestor-aulas - copy\funcoes_aulas.c
+	"funcoes_aulas.h"
+
+1611249541 e:\apps\gestor-aulas - copy\funcoes_aulas.h
+	<ctype.h>
+	<string.h>
+	"estruturas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ucs.h"
+
+1611249541 e:\apps\gestor-aulas - copy\estruturas.h
+	"constantes.h"
+
+1611249541 e:\apps\gestor-aulas - copy\constantes.h
+	<stdio.h>
+	<stdlib.h>
+
+1611249541 e:\apps\gestor-aulas - copy\funcoes_auxiliares.h
+	<stdio.h>
+	<string.h>
+	"constantes.h"
+
+1611249541 e:\apps\gestor-aulas - copy\funcoes_ucs.h
+	<ctype.h>
+	"estruturas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_uc.h"
+
+1611249541 e:\apps\gestor-aulas - copy\funcoes_ficheiros_uc.h
+	"estruturas.h"
+
+1611249541 source:e:\apps\gestor-aulas - copy\funcoes_auxiliares.c
+	"funcoes_auxiliares.h"
+
+1611249541 source:e:\apps\gestor-aulas - copy\funcoes_ficheiros_aula.c
+	"funcoes_ficheiros_aula.h"
+
+1611249541 e:\apps\gestor-aulas - copy\funcoes_ficheiros_aula.h
+	"estruturas.h"
+
+1611249541 source:e:\apps\gestor-aulas - copy\funcoes_ficheiros_uc.c
+	"funcoes_ficheiros_uc.h"
+
+1611249541 source:e:\apps\gestor-aulas - copy\funcoes_menus.c
+	"funcoes_menus.h"
+	<stdio.h>
+	<stdlib.h>
+	"funcoes_auxiliares.h"
+
+1611249541 e:\apps\gestor-aulas - copy\funcoes_menus.h
+
+1611249541 source:e:\apps\gestor-aulas - copy\funcoes_ucs.c
+	"funcoes_ucs.h"
+
+1611249541 source:e:\apps\gestor-aulas - copy\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"estruturas.h"
+	"funcoes_aulas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_aula.h"
+	"funcoes_ficheiros_uc.h"
+	"funcoes_menus.h"
+	"funcoes_ucs.h"
 

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #define MAX_STRING 50
+#define MAX_CHAR 3
 #define MAX_TIPO_AULA 3
 #define MAX_UCS 40
 #define MAX_SEMESTRE 6
@@ -12,7 +13,7 @@
 #define MAX_AULAS_PREVISTAS 20
 #define MIN_AULAS_PREVISTAS 0
 #define MAX_DURACAO_AULA 240
-#define MIN_DURACAO_AULA 30
+#define MIN_DURACAO_AULA 60
 #define MAX_UCS 40
 #define MIN_UCS 1
 #define MIN_DIA 1
@@ -21,8 +22,14 @@
 #define MAX_MES 12
 #define MIN_ANO 2020
 #define MAX_ANO 2100
-#define MIN_HORA 0
-#define MAX_HORA 24
+#define MIN_HORA_INICIO_DIURNO 8
+#define MAX_HORA_INICIO_DIURNO 17
+#define MIN_HORA_FIM_DIURNO 9
+#define MAX_HORA_FIM_DIURNO 18
+#define MIN_HORA_INICIO_PL 18
+#define MAX_HORA_INICIO_PL 23
+#define MIN_HORA_FIM_PL 19
+#define MAX_HORA_FIM_PL 24
 #define MIN_MINUTOS 0
 #define MAX_MINUTOS 59
 

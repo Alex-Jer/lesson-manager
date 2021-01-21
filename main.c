@@ -11,13 +11,13 @@
 #include "funcoes_ucs.h"
 
 int main() {
-  int opcao, opcaoSubMenu, idUC, nUCs = 0, nAulas = 0;
+  int opcao, opcaoSubMenu, idUC, nUCs = 0, nAulas = 0, gravacao = 0;
   char designacaoAula[MAX_STRING];
   tipoUC *vUCs = NULL;      // Inicializar vetor dinâmico de UCs
   tipoAula *vAulas = NULL;  // Inicializar vetor dinâmico de Aulas
 
   do {
-    opcao = MenuPrincipal();
+    opcao = MenuPrincipal(nUCs, nAulas, gravacao);
     switch (opcao) {
       case 1:
         do {
@@ -27,12 +27,20 @@ int main() {
               vUCs = AcrescentaUC(vUCs, &nUCs);
               break;
             case 2:  // Editar
-              idUC = LerInteiro("ID da UC a editar: ", MIN_UCS, MAX_UCS);
-              EditaUC(vUCs, &nUCs, idUC);
+              if (nUCs <= 0) {
+                printf("\nERRO: Nao ha UCs registadas!\n");
+              } else {
+                idUC = LerInteiro("ID da UC a editar: ", MIN_UCS, MAX_UCS);
+                EditaUC(vUCs, &nUCs, idUC);
+              }
               break;
             case 3:  // Eliminar
-              idUC = LerInteiro("ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
-              vUCs = EliminaUC(vUCs, &nUCs, idUC);
+              if (nUCs <= 0) {
+                printf("\nERRO: Nao ha UCs registadas!\n");
+              } else {
+                idUC = LerInteiro("ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
+                vUCs = EliminaUC(vUCs, &nUCs, idUC);
+              }
               break;
             case 4:  // Listar
               ListaUCs(vUCs, nUCs);
@@ -52,25 +60,45 @@ int main() {
           opcaoSubMenu = MenuAulas();
           switch (opcaoSubMenu) {
             case 1:  // Registar
-              vAulas = AcrescentaAula(vAulas, &nAulas, vUCs, &nUCs);
+              vAulas = AgendaAula(vAulas, &nAulas, vUCs, &nUCs);
               break;
             case 2:  // Editar
-              LerString("Designacao da aula a editar: ", designacaoAula, MAX_UCS);
-              // EditaAula(vAulas, &nAulas, designacaoAula);
+              if (nAulas <= 0) {
+                printf("\nERRO: Nao existem aulas registadas!\n");
+              } else {
+                LerString("\nDesignacao da aula a editar: ", designacaoAula, MAX_STRING);
+                EditaAula(vAulas, nAulas, designacaoAula, vUCs, nUCs);
+              }
               break;
+
             case 3:  // Eliminar
-              LerString("Designacao da aula a editar: ", designacaoAula, MAX_UCS);
-              // vAulas = EliminaAula(vAulas, &nAulas, designacaoAula);
+              if (nAulas <= 0) {
+                printf("\nERRO: Nao existem aulas registadas!\n");
+              } else {
+                LerString("\nDesignacao da aula a eliminar: ", designacaoAula, MAX_STRING);
+                vAulas = EliminaAula(vAulas, &nAulas, designacaoAula);
+              }
               break;
             case 4:  // Listar
-              ListaAulas(vAulas, nAulas, vUCs);
+              ListaTodasAulas(vAulas, nAulas, vUCs);
               break;
-            case 5:  // Gravar em ficheiro
+            case 5:
+              if (nAulas <= 0) {
+                printf("\nERRO: Nao existem aulas registadas!\n");
+              } else {
+                ListaAlteraEstadoAulas(vAulas, nAulas, vUCs);
+              }
+              break;
+            case 6:  // Gravar em ficheiro
               EscreveFicheiroBinarioAulas(vAulas, nAulas);
               // EscreveFicheiroTextoAulas(vAulas, nAulas);
               break;
-            case 6:  // Ler ficheiro
-              vAulas = LeFicheiroBinarioAulas(vAulas, &nAulas);
+            case 7:  // Ler ficheiro
+              if (nUCs <= 0) {
+                printf("\nERRO: Nao existem UCs registadas!\n");
+              } else {
+                vAulas = LeFicheiroBinarioAulas(vAulas, &nAulas);
+              }
               break;
           }
         } while (opcaoSubMenu != 0);

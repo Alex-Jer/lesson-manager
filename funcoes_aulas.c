@@ -13,18 +13,20 @@ int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]) {
 }
 
 // Pede ao utilizador dados de uma Aula
-tipoAula LeDadosAula(tipoUC vUCs[], int *nUCs) {
+tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao) {
   tipoAula aula;
   int pos;
-  char tipoAula[MAX_STRING], estado[MAX_STRING], gravacao[MAX_STRING];
+  char tipoAula[MAX_STRING];
 
-  aula.gravacao = 1;  // 0 - Não // 1 - Sim
-
-  LerString("Nome: ", aula.designacao, MAX_STRING);
+  if (modoEdicao == 0) {
+    aula.estado = 'A';
+    LerString("Nome: ", aula.designacao, MAX_STRING);
+  }
 
   do {
     aula.idUC = LerInteiro("Codigo da UC: ", MIN_UCS, MAX_UCS);
-    pos = ProcuraUC(vUCs, *nUCs, aula.idUC);
+
+    pos = ProcuraUC(vUCs, nUCs, aula.idUC);
     if (pos == -1) {
       printf("\nERRO: UC nao encontrada!\n\n");
     } else {
@@ -44,36 +46,32 @@ tipoAula LeDadosAula(tipoUC vUCs[], int *nUCs) {
       aula.data.mes = LerInteiro("Mes: ", MIN_MES, MAX_MES);
       aula.data.ano = LerInteiro("Ano: ", MIN_ANO, MAX_ANO);
 
-      printf("\n-> Hora de Inicio <-\n");
-      aula.inicio.horas = LerInteiro("Hora: ", MIN_HORA, MAX_HORA);
-      aula.inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
-      printf("\n-> Hora de Fim <-\n");
-      aula.fim.horas = LerInteiro("Hora: ", MIN_HORA, MAX_HORA);
-      aula.fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
-
+      //! Melhorar validação das horas
       do {
-        LerChar("Aula [A]gendada, a [D]ecorrer ou ja [R]ealizada? (A/D/R): ", estado, MAX_STRING);
-        estado[0] = toupper(estado[0]);
-
-        if (estado[0] != 'A' && estado[0] != 'D' && estado[0] != 'R') {
-          printf("ERRO: Opcao invalida!\n");
+        printf("\n-> Hora de Inicio <-\n");
+        if (vUCs[aula.idUC - 1].diurno == 1) {
+          aula.inicio.horas = LerInteiro("Hora (8 as 17): ", MIN_HORA_INICIO_DIURNO, MAX_HORA_INICIO_DIURNO);
+          aula.inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+        } else {
+          aula.inicio.horas = LerInteiro("Hora (18 as 23): ", MIN_HORA_INICIO_PL, MAX_HORA_INICIO_PL);
+          aula.inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
         }
-      } while (estado[0] != 'A' && estado[0] != 'D' && estado[0] != 'R');
 
-      aula.estado = estado[0];
-
-      do {
-        LerChar("Gravacao disponivel? (S/N): ", gravacao, MAX_STRING);
-        gravacao[0] = toupper(gravacao[0]);
-
-        if (gravacao[0] != 'S' && gravacao[0] != 'N') {
-          printf("ERRO: Opcao invalida!\n");
+        printf("\n-> Hora de Fim <-\n");
+        if (vUCs[aula.idUC - 1].diurno == 1) {
+          aula.fim.horas = LerInteiro("Hora (9 as 18): ", MIN_HORA_FIM_DIURNO, MAX_HORA_FIM_DIURNO);
+          aula.fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+        } else {
+          aula.fim.horas = LerInteiro("Hora (19 as 24): ", MIN_HORA_FIM_PL, MAX_HORA_FIM_PL);
+          aula.fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
         }
-      } while (gravacao[0] != 'S' && gravacao[0] != 'N');
 
-      if (gravacao[0] == 'N') {
-        aula.gravacao = 0;
-      }
+        if (aula.inicio.horas > aula.fim.horas) {
+          printf("\nERRO: Hora invalida!\n");
+        } else if (aula.inicio.horas == aula.fim.horas) {
+          printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
+        }
+      } while (aula.inicio.horas >= aula.fim.horas);
     }
   } while (pos == -1);
 
@@ -81,15 +79,16 @@ tipoAula LeDadosAula(tipoUC vUCs[], int *nUCs) {
 }
 
 // Acrescenta uma Aula ao vetor dinâmico de Aulas
-tipoAula *AcrescentaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUCs) {
+tipoAula *AgendaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUCs) {
   tipoAula dadosAula, *pAulas;
   int pos;
 
-  if (*nAulas >= 40) {
-    printf("\nERRO: Numero maximo de Aulas atingido!\n");
+  pAulas = vAulas;
+
+  if (*nUCs <= 0) {
+    printf("\nERRO: Nao ha UCs registadas!\n");
   } else {
-    pAulas = vAulas;
-    dadosAula = LeDadosAula(vUCs, nUCs);
+    dadosAula = LeDadosAula(vUCs, *nUCs, 0);
     pos = ProcuraAula(vAulas, *nAulas, dadosAula.designacao);
 
     if (pos != -1) {
@@ -102,23 +101,24 @@ tipoAula *AcrescentaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUC
       } else {
         vAulas[*nAulas] = dadosAula;
         (*nAulas)++;
-        printf("\nSUCESSO: Aula inserida!\n");
+        printf("\nSUCESSO: Aula inserida!");
       }
     }
   }
   return vAulas;
 }
 
-// Mostra no ecrã uma tabela de todas as Aulas no vetor
-void ListaAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[] /* nUCs */) {
+// Mostra no ecrã todas as Aulas no vetor
+void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
   int i;
 
   if (nAulas == 0) {
     printf("\nERRO: Nao existem aulas registadas!\n");
   } else {
     for (i = 0; i < nAulas; i++) {
+      printf("\n************\n");
       printf("\nDesignacao: %s\n", vAulas[i].designacao);
-      printf("UC: %s\n", vUCs[vAulas[i].idUC].designacao);
+      printf("UC: %s\n", vUCs[vAulas[i].idUC - 1].designacao);
       printf("Tipo: %s\n", vAulas[i].tipoAula);
       printf("Docente: %s\n", vAulas[i].docente);
       printf("Data: %02d-%02d-%04d\n", vAulas[i].data.dia, vAulas[i].data.mes, vAulas[i].data.ano);
@@ -133,7 +133,7 @@ void ListaAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[] /* nUCs */) {
         printf("Estado: Realizada\n");
       }
 
-      if (vAulas[i].gravacao == 1) {
+      if (vAulas[i].gravacao == 'G') {
         printf("Gravacao: Sim\n");
       } else {
         printf("Gravacao: Nao\n");
@@ -144,45 +144,168 @@ void ListaAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[] /* nUCs */) {
   getchar();
 }
 
-/*
-// Pede dados ao utilizador através da função LeDadosAula e altera a Aula recebida como parâmetro
-void EditaAula(tipoAula vAulas[], int *nAulas, int idAula) {
-  tipoAula editadaAula;
-  int pos;
+// Mostra no ecrã as Aulas Agendadas
+void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
+  int i, pos, quantA = 0, quantD = 0, quantR = 0;
+  char designacaoAula[MAX_STRING], confirmacao[MAX_CHAR], gravacao[MAX_CHAR];
 
-  if (*nAulas != 0) {
-    pos = ProcuraAula(vAulas, *nAulas, idAula);
+  gravacao[0] = 'A';
+
+  if (nAulas == 0) {
+    printf("\nERRO: Nao existem aulas registadas!");
+  } else {
+    printf("\n***** Aulas Agendadas *****\n");
+    for (i = 0; i < nAulas; i++) {
+      if (vAulas[i].estado == 'A') {
+        printf("\n%s", vAulas[i].designacao);
+        quantA++;
+      }
+    }
+    if (quantA == 0) {
+      printf("\n(Nenhuma aula agendada.)");
+    }
+
+    printf("\n\n***** Aulas A Decorrer ****\n");
+    for (i = 0; i < nAulas; i++) {
+      if (vAulas[i].estado == 'D') {
+        printf("\n%s", vAulas[i].designacao);
+        quantD++;
+      }
+    }
+    if (quantD == 0) {
+      printf("\n(Nenhuma aula a decorrer.)\n");
+    }
+
+    printf("\n\n***** Aulas Realizadas *****\n");
+    for (i = 0; i < nAulas; i++) {
+      if (vAulas[i].estado == 'R') {
+        printf("\n%s", vAulas[i].designacao);
+        quantR++;
+      }
+    }
+    if (quantR == 0) {
+      printf("\n(Nenhuma aula realizada.)");
+    }
+  }
+
+  LerString("\n\nDesignacao da aula a alterar: ", designacaoAula, MAX_STRING);
+  if (nAulas >= 0) {
+    pos = ProcuraAula(vAulas, nAulas, designacaoAula);
     if (pos == -1) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
-      editadaAula = LeDadosAula();
-      vAulas[pos].id = editadaAula.id;
-      strcpy(vAulas[pos].designacao, editadaAula.designacao);
-      vAulas[pos].obrigatoria = editadaAula.obrigatoria;
-      vAulas[pos].semestre = editadaAula.semestre;
-      vAulas[pos].diurno = editadaAula.diurno;
-      vAulas[pos].teorica.quantidade = editadaAula.teorica.quantidade;
-      vAulas[pos].teorica.duracao = editadaAula.teorica.duracao;
-      vAulas[pos].teoricopratica.quantidade = editadaAula.teoricopratica.quantidade;
-      vAulas[pos].teoricopratica.duracao = editadaAula.teoricopratica.duracao;
-      vAulas[pos].praticolab.quantidade = editadaAula.praticolab.quantidade;
-      vAulas[pos].praticolab.duracao = editadaAula.praticolab.duracao;
-      vAulas[pos].totalAulasPrevistas =
-          editadaAula.teorica.quantidade + editadaAula.teoricopratica.quantidade + editadaAula.praticolab.quantidade;
+      if (vAulas[pos].estado == 'A') {  // Altera estado de Agendada para A Decorrer
+        do {
+          printf("\nDeseja alterar o estado da aula %s de \"Agendada\" para \"A Decorrer\"? ", designacaoAula);
+          LerChar("(S/N): ", confirmacao, MAX_CHAR);
+
+          confirmacao[0] = toupper(confirmacao[0]);
+          if (confirmacao[0] != 'S' && confirmacao[0] != 'N') {
+            printf("ERRO: Opcao invalida!\n");
+          }
+        } while (confirmacao[0] != 'S' && confirmacao[0] != 'N');
+        if (confirmacao[0] == 'S') {
+          if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
+            vAulas[pos].inicio.horas =
+                LerInteiro("Hora de inicio da aula (8 as 17): ", MIN_HORA_INICIO_DIURNO, MAX_HORA_INICIO_DIURNO);
+            vAulas[pos].inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+          } else {
+            vAulas[pos].inicio.horas = LerInteiro("Hora inicio da aula (18 as 23): ", MIN_HORA_INICIO_PL, MAX_HORA_INICIO_PL);
+            vAulas[pos].inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+          }
+          vAulas[pos].estado = 'D';
+
+          do {
+            LerChar("A aula sera gravada? (S/N): ", gravacao, MAX_STRING);
+            gravacao[0] = toupper(gravacao[0]);
+
+            if (gravacao[0] != 'S' && gravacao[0] != 'N') {
+              printf("ERRO: Opcao invalida!\n");
+            }
+          } while (gravacao[0] != 'S' && gravacao[0] != 'N');
+
+          if (gravacao[0] == 'N') {
+            vAulas[pos].gravacao = 'N';
+          }
+        }
+        printf("\nSUCESSO: Estado Alterado!\n");
+      } else if (vAulas[pos].estado == 'D') {  // Altera estado de A Decorrer para Realizada
+        do {
+          printf("\nDeseja alterar o estado da aula %s de \"A Decorrer\" para \"Realizada\"? ", designacaoAula);
+          LerChar("(S/N): ", confirmacao, MAX_CHAR);
+
+          confirmacao[0] = toupper(confirmacao[0]);
+          if (confirmacao[0] != 'S' && confirmacao[0] != 'N') {
+            printf("ERRO: Opcao invalida!\n");
+          }
+        } while (confirmacao[0] != 'S' && confirmacao[0] != 'N');
+
+        do {
+          if (confirmacao[0] == 'S') {
+            if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
+              vAulas[pos].fim.horas = LerInteiro("Hora de fim da aula (9 as 18): ", MIN_HORA_FIM_DIURNO, MAX_HORA_FIM_DIURNO);
+              vAulas[pos].fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+            } else {
+              vAulas[pos].fim.horas = LerInteiro("Hora de fim da aula (19 as 24): ", MIN_HORA_FIM_PL, MAX_HORA_FIM_PL);
+              vAulas[pos].fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+            }
+            vAulas[pos].estado = 'R';
+          }
+          if (vAulas[pos].inicio.horas > vAulas[pos].fim.horas) {
+            printf("\nERRO: Hora invalida!\n");
+          } else if (vAulas[pos].inicio.horas == vAulas[pos].fim.horas) {
+            printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
+          }
+        } while (vAulas[pos].inicio.horas >= vAulas[pos].fim.horas);
+
+        if (gravacao[0] == 'A') {
+          vAulas[pos].gravacao = 'G';
+          printf("\nINFO: Gravacao disponibilizada.\n");
+        }
+
+        printf("\nSUCESSO: Estado Alterado!\n");
+      } else if (vAulas[pos].estado == 'R') {
+        printf("\nERRO: A aula %s ja terminou!", designacaoAula);
+      }
+    }
+  }
+}
+
+// Pede dados ao utilizador através da função LeDadosAula e altera a Aula recebida como parâmetro
+void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs) {
+  tipoAula editadaAula;
+  int pos;
+
+  if (nAulas >= 0) {
+    pos = ProcuraAula(vAulas, nAulas, designacaoAula);
+    if (pos == -1) {
+      printf("\nERRO: Aula nao encontrada!\n");
+    } else {
+      editadaAula = LeDadosAula(vUCs, nUCs, 1);
+      vAulas[pos].idUC = editadaAula.idUC;
+      strcpy(vAulas[pos].tipoAula, editadaAula.tipoAula);
+      strcpy(vAulas[pos].docente, editadaAula.docente);
+      vAulas[pos].data.dia = editadaAula.data.dia;
+      vAulas[pos].data.mes = editadaAula.data.mes;
+      vAulas[pos].data.ano = editadaAula.data.ano;
+      vAulas[pos].inicio.horas = editadaAula.inicio.horas;
+      vAulas[pos].inicio.minutos = editadaAula.inicio.minutos;
+      vAulas[pos].fim.horas = editadaAula.fim.horas;
+      vAulas[pos].fim.minutos = editadaAula.fim.minutos;
       printf("SUCESSO: Aula modificada!\n");
     }
   }
 }
 
 // Elimina a Aula recebida como parâmetro
-tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, int idAula) {
+tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]) {
   tipoAula *pAulas;
   int i, pos;
 
   pAulas = vAulas;  // Backup do vetor
 
   if (*nAulas != 0) {
-    pos = ProcuraAula(vAulas, *nAulas, idAula);
+    pos = ProcuraAula(vAulas, *nAulas, designacaoAula);
     if (pos == -1) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
@@ -200,4 +323,3 @@ tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, int idAula) {
   }
   return vAulas;
 }
-*/

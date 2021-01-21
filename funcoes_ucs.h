@@ -8,7 +8,7 @@
 #include "funcoes_ficheiros_uc.h"
 
 int ProcuraUC(tipoUC vUCs[], int nUCs, int procuraId);
-tipoUC LeDadosUC();
+tipoUC LeDadosUC(tipoUC vUCs[], int nUCs, int modoEdicao);
 tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs);
 void ListaUCs(tipoUC vUCs[], int nUCs);
 void EditaUC(tipoUC vUCs[], int *nUCs, int idUC);

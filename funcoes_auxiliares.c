@@ -96,7 +96,5 @@ void LimpaBufferStdin(void) {
   char chr;
   do {
     chr = getchar();
-    // TODO:
-    // cppcheck-suppress checkCastIntToCharAndBack
   } while (chr != '\n' && chr != EOF);
 }
