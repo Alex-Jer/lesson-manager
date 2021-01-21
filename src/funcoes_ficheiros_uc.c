@@ -18,30 +18,6 @@ void EscreveFicheiroBinarioUCs(tipoUC vUCs[], int nUCs) {
         printf("\nERRO: Falha na escrita de informacao no vetor!\n");
       } else {
         printf("\nGravado com sucesso no ficheiro binario!\n");
-        //! Temporário
-        printf("\n   ID\t\t\t    ");
-        printf("Designacao\t  ");
-        printf("Obrigatoria\t ");
-        printf("Regime            ");
-        printf("Semestre    ");
-        printf("T              TP             PL\n");
-        for (int i = 0; i < nUCs; i++) {
-          printf("   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
-          if (vUCs[i].obrigatoria == 1) {
-            printf("Sim\t\t ");
-          } else {
-            printf("Nao\t\t ");
-          }
-          if (vUCs[i].diurno == 1) {
-            printf("Diurno\t\t");
-          } else {
-            printf("Pos-Laboral\t");
-          }
-          printf("   %d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vUCs[i].semestre,
-                 vUCs[i].teorica.quantidade, vUCs[i].teorica.duracao, vUCs[i].teoricopratica.quantidade,
-                 vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.quantidade, vUCs[i].praticolab.duracao);
-        }
-        //!
       }
     }
     fclose(ficheiro);

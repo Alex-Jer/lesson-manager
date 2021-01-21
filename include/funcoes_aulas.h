@@ -6,6 +6,7 @@
 
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
+#include "funcoes_ficheiros_aula.h"
 #include "funcoes_ucs.h"
 
 int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]);
@@ -15,5 +16,6 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
 void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
 void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs);
 tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]);
+void AssisteAula(tipoAula vAulas[], int nAulas, char designacaoAula[], int numeroEstudante);
 
 #endif /* FUNCOES_AULAS_H_INCLUDED */

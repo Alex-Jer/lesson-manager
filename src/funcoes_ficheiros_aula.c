@@ -18,30 +18,6 @@ void EscreveFicheiroBinarioAulas(tipoAula vAulas[], int nAulas) {
         printf("\nERRO: Falha na escrita de informacao no vetor!\n");
       } else {
         printf("\nGravado com sucesso no ficheiro binario!");
-        //! Temporário
-        // printf("\n   ID\t\t\t    ");
-        // printf("Designacao\t  ");
-        // printf("Obrigatoria\t ");
-        // printf("Regime            ");
-        // printf("Semestre    ");
-        // printf("T              TP             PL\n");
-        // for (int i = 0; i < nAulas; i++) {
-        //   printf("   %02d\t%30s\t  ", vAulas[i].id, vAulas[i].designacao);
-        //   if (vAulas[i].obrigatoria == 1) {
-        //     printf("Sim\t\t ");
-        //   } else {
-        //     printf("Nao\t\t ");
-        //   }
-        //   if (vAulas[i].diurno == 1) {
-        //     printf("Diurno\t\t");
-        //   } else {
-        //     printf("Pos-Laboral\t");
-        //   }
-        //   printf("   %d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vAulas[i].semestre,
-        //          vAulas[i].teorica.quantidade, vAulas[i].teorica.duracao, vAulas[i].teoricopratica.quantidade,
-        //          vAulas[i].teoricopratica.duracao, vAulas[i].praticolab.quantidade, vAulas[i].praticolab.duracao);
-        // }
-        //!
       }
     }
     fclose(ficheiro);
@@ -67,35 +43,25 @@ tipoAula *LeFicheiroBinarioAulas(tipoAula vAulas[], int *nAulas) {
     } else {
       fread(vAulas, sizeof(tipoAula), *nAulas, ficheiro);
       printf("\nFicheiro lido com sucesso!");
-      //! Temporário
-      // printf("\n   ID\t\t\t    ");
-      // printf("Designacao\t  ");
-      // printf("Obrigatoria\t ");
-      // printf("Regime            ");
-      // printf("Semestre    ");
-      // printf("T              TP             PL\n");
-      // for (int i = 0; i < *nAulas; i++) {
-      //   printf("   %02d\t%30s\t  ", vAulas[i].id, vAulas[i].designacao);
-      //   if (vAulas[i].obrigatoria == 1) {
-      //     printf("Sim\t\t ");
-      //   } else {
-      //     printf("Nao\t\t ");
-      //   }
-      //   if (vAulas[i].diurno == 1) {
-      //     printf("Diurno\t\t");
-      //   } else {
-      //     printf("Pos-Laboral\t");
-      //   }
-      //   printf("   %d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vAulas[i].semestre,
-      //          vAulas[i].teorica.quantidade, vAulas[i].teorica.duracao, vAulas[i].teoricopratica.quantidade,
-      //          vAulas[i].teoricopratica.duracao, vAulas[i].praticolab.quantidade, vAulas[i].praticolab.duracao);
-      // }
-      //!
     }
     fclose(ficheiro);
   }
   return vAulas;
 }
+
+void EscreveFicheiroTextoLog(tipoAula aula, char tipoAcesso[], int numeroEstudante) {
+  FILE *ficheiro;
+
+  ficheiro = fopen("log.txt", "a");
+
+  if (ficheiro == NULL) {
+    printf("Erro ao abrir o ficheiro!\n");
+  } else {
+    fprintf(ficheiro, "ACESSO %s - Aula: %s Num. Estudante: %d\n", tipoAcesso, aula.designacao, numeroEstudante);
+    fclose(ficheiro);
+  }
+}
+
 /*
 void EscreveFicheiroTextoAulas(tipoAula vAulas[], int nAulas) {
   int i;

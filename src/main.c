@@ -11,7 +11,7 @@
 #include "funcoes_ucs.h"
 
 int main() {
-  int opcao, opcaoSubMenu, idUC, nUCs = 0, nAulas = 0;
+  int opcao, opcaoSubMenu, idUC, numeroEstudante, nUCs = 0, nAulas = 0;
   char designacaoAula[MAX_STRING];
   tipoUC *vUCs = NULL;      // Inicializar vetor dinâmico de UCs
   tipoAula *vAulas = NULL;  // Inicializar vetor dinâmico de Aulas
@@ -82,18 +82,27 @@ int main() {
             case 4:  // Listar
               ListaTodasAulas(vAulas, nAulas, vUCs);
               break;
-            case 5:
+            case 5:  // Alterar Estado
               if (nAulas <= 0) {
                 printf("\nERRO: Nao existem aulas registadas!\n");
               } else {
                 ListaAlteraEstadoAulas(vAulas, nAulas, vUCs);
               }
               break;
-            case 6:  // Gravar em ficheiro
+            case 6:  // Assistir a uma Aula
+              if (nAulas <= 0) {
+                printf("\nERRO: Nao existem aulas registadas!\n");
+              } else {
+                numeroEstudante = LerInteiro("\nInsira o seu numero de estudante: ", MIN_NUM_ESTUDANTE, MAX_NUM_ESTUDANTE);
+                LerString("\nDesignacao da aula que deseja assistir: ", designacaoAula, MAX_STRING);
+                AssisteAula(vAulas, nAulas, designacaoAula, numeroEstudante);
+              }
+              break;
+            case 7:  // Gravar em ficheiro
               EscreveFicheiroBinarioAulas(vAulas, nAulas);
               // EscreveFicheiroTextoAulas(vAulas, nAulas);
               break;
-            case 7:  // Ler ficheiro
+            case 8:  // Ler ficheiro
               if (nUCs <= 0) {
                 printf("\nERRO: Nao existem UCs registadas!\n");
               } else {

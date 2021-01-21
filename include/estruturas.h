@@ -17,6 +17,13 @@ typedef struct {
 } tipoTipoDeAula;  // Aulas T, TP, PL
 
 typedef struct {
+  // int numEstudante;  // Ex: 2201799
+  // char online;       // 0 - Acesso Offline // 1 - Acesso Online
+  int online;
+  int offline;
+} tipoAcesso;
+
+typedef struct {
   int id;
   char designacao[MAX_STRING];
   int obrigatoria;  // 0 - Não // 1 - Sim
@@ -38,7 +45,9 @@ typedef struct {
   tipoHora fim;
   char estado;    // A - Agendada // D - A Decorrer // R - Realizada
   char gravacao;  // N - Não // A - A Gravar // G - Gravada
-  //* int quantAcessos;
+  int estudantesOnline[MAX_QUANT_ESTUDANTES];
+  tipoAcesso nAcessos;
+  // tipoAcesso nAcessos[MAX_QUANT_ESTUDANTES];
 } tipoAula;
 
 #endif /* ESTRUTURAS_H_INCLUDED */

@@ -46,10 +46,11 @@ int MenuAulas() {
   printf("3 - Eliminar Aula\n");
   printf("4 - Listar Dados Aulas\n");
   printf("5 - Alterar Estado Aulas\n");
-  printf("6 - Guardar Alteracoes\n");
-  printf("7 - Ler Ficheiro\n");
+  printf("6 - Assistir Aula\n");
+  printf("7 - Guardar Alteracoes\n");
+  printf("8 - Ler Ficheiro\n");
   printf("0 - Voltar\n");
-  opcao = LerInteiro("\nOpcao--> ", 0, 7);
+  opcao = LerInteiro("\nOpcao--> ", 0, 8);
 
   return opcao;
 }
