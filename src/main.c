@@ -62,11 +62,12 @@ int main() {
             case 1:  // Registar
               vAulas = AgendaAula(vAulas, &nAulas, vUCs, &nUCs);
               break;
-            case 2:  // Editar
+            case 2:  // Alterar Agendamento
               if (nAulas <= 0) {
                 printf("\nERRO: Nao existem aulas registadas!\n");
               } else {
-                // LerString("\nDesignacao da aula a editar: ", designacaoAula, MAX_STRING);
+                LerString("\nDesignacao da aula: ", designacaoAula, MAX_STRING);
+                EditaAgendamento(vAulas, nAulas, designacaoAula, vUCs);
                 // EditaAula(vAulas, nAulas, designacaoAula, vUCs, nUCs);
               }
               break;

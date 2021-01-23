@@ -16,6 +16,7 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
 void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[]);
 void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
 void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs);
+void EditaAgendamento(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[]);
 tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]);
 void AssisteAula(tipoAula vAulas[], int nAulas, char designacaoAula[], int numeroEstudante);
 

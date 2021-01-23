@@ -393,6 +393,59 @@ void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs
   }
 }
 
+// Altera o Agendamento de uma Aula
+void EditaAgendamento(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[]) {
+  tipoAula editadaAula;
+  int pos;
+
+  if (nAulas >= 0) {
+    pos = ProcuraAula(vAulas, nAulas, designacaoAula);
+    if (pos == -1) {
+      printf("\nERRO: Aula nao encontrada!\n");
+    } else {
+      editadaAula.data.dia = LerInteiro("Dia: ", MIN_DIA, MAX_DIA);
+      editadaAula.data.mes = LerInteiro("Mes: ", MIN_MES, MAX_MES);
+      editadaAula.data.ano = LerInteiro("Ano: ", MIN_ANO, MAX_ANO);
+
+      //! Melhorar validação das horas
+      do {
+        printf("\n-> Hora de Inicio <-\n");
+        if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
+          editadaAula.inicio.horas = LerInteiro("Hora (8 as 17): ", MIN_HORA_INICIO_DIURNO, MAX_HORA_INICIO_DIURNO);
+          editadaAula.inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+        } else {
+          editadaAula.inicio.horas = LerInteiro("Hora (18 as 23): ", MIN_HORA_INICIO_PL, MAX_HORA_INICIO_PL);
+          editadaAula.inicio.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+        }
+
+        printf("\n-> Hora de Fim <-\n");
+        if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
+          editadaAula.fim.horas = LerInteiro("Hora (9 as 18): ", MIN_HORA_FIM_DIURNO, MAX_HORA_FIM_DIURNO);
+          editadaAula.fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+        } else {
+          editadaAula.fim.horas = LerInteiro("Hora (19 as 24): ", MIN_HORA_FIM_PL, MAX_HORA_FIM_PL);
+          editadaAula.fim.minutos = LerInteiro("Minutos: ", MIN_MINUTOS, MAX_MINUTOS);
+        }
+
+        if (editadaAula.inicio.horas > editadaAula.fim.horas) {
+          printf("\nERRO: Hora invalida!\n");
+        } else if (editadaAula.inicio.horas == editadaAula.fim.horas) {
+          printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
+        }
+      } while (editadaAula.inicio.horas >= editadaAula.fim.horas);
+
+      vAulas[pos].data.dia = editadaAula.data.dia;
+      vAulas[pos].data.mes = editadaAula.data.mes;
+      vAulas[pos].data.ano = editadaAula.data.ano;
+      vAulas[pos].inicio.horas = editadaAula.inicio.horas;
+      vAulas[pos].inicio.minutos = editadaAula.inicio.minutos;
+      vAulas[pos].fim.horas = editadaAula.fim.horas;
+      vAulas[pos].fim.minutos = editadaAula.fim.minutos;
+      printf("\nSUCESSO: Aula modificada!\n");
+    }
+  }
+}
+
 // Elimina a Aula recebida como parâmetro
 tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]) {
   tipoAula *pAulas;

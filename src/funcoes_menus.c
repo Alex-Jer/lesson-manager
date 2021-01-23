@@ -68,7 +68,7 @@ int MenuAulas() {
 
   printf("\n\n ===== GERIR AULAS =====\n\n");
   printf(" 1 - Agendar Aula\n");
-  printf(" 2 - Editar Dados Aula\n");
+  printf(" 2 - Alterar Agendamento\n");
   printf(" 3 - Eliminar Aula\n");
   printf(" 4 - Listar Todas as Aulas\n");
   printf(" 5 - Consultar Dados Aula\n");
