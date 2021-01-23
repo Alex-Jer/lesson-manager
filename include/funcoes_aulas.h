@@ -10,7 +10,7 @@
 #include "funcoes_ucs.h"
 
 int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]);
-tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas, int modoEdicao);
+tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas);
 tipoAula *AgendaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUCs);
 void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
 void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[]);

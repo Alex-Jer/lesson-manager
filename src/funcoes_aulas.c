@@ -13,7 +13,7 @@ int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]) {
 }
 
 // Pede ao utilizador dados de uma Aula
-tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas, int modoEdicao) {
+tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
   tipoAula aula;
   int pos, erro = 0;
   char tipoAula[MAX_STRING];
@@ -21,10 +21,8 @@ tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas, int
   aula.nAcessos.online = 0;
   aula.nAcessos.offline = 0;
 
-  if (modoEdicao == 0) {  // Valida se o utilizador não está a editar a UC, ou seja, se está a criar uma nova UC
-    aula.estado = 'A';    // pois o nome da aula é único e não pode ser editado
-    LerString("Nome: ", aula.designacao, MAX_STRING);
-  }
+  aula.estado = 'A';
+  LerString("Nome: ", aula.designacao, MAX_STRING);
 
   do {
     aula.idUC = LerInteiro("Codigo da UC: ", MIN_UCS, MAX_UCS);
@@ -123,7 +121,7 @@ tipoAula *AgendaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUCs) {
   if (*nUCs <= 0) {
     printf("\nERRO: Nao ha UCs registadas!\n");
   } else {
-    dadosAula = LeDadosAula(vUCs, *nUCs, vAulas, *nAulas, 0);
+    dadosAula = LeDadosAula(vUCs, *nUCs, vAulas, *nAulas);
     pos = ProcuraAula(vAulas, *nAulas, dadosAula.designacao);
 
     if (pos != -1) {
@@ -385,7 +383,7 @@ void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs
     if (pos == -1) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
-      editadaAula = LeDadosAula(vUCs, nUCs, vAulas, nAulas, 1);
+      editadaAula = LeDadosAula(vUCs, nUCs, vAulas, nAulas);
       if (strcmp(vAulas[pos].tipoAula, "T") == 0) {
         vUCs[vAulas[pos].idUC - 1].teorica.nAgendadas--;
         printf("\nnome: %s\n", vUCs[pos].designacao);
