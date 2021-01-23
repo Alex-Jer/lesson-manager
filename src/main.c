@@ -17,7 +17,7 @@ int main() {
   tipoAula *vAulas = NULL;  // Inicializar vetor dinâmico de Aulas
 
   do {
-    opcao = MenuPrincipal();
+    opcao = MenuPrincipal(nUCs, vAulas, nAulas);
     switch (opcao) {
       case 1:
         do {
