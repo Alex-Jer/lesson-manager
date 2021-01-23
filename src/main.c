@@ -66,8 +66,8 @@ int main() {
               if (nAulas <= 0) {
                 printf("\nERRO: Nao existem aulas registadas!\n");
               } else {
-                LerString("\nDesignacao da aula a editar: ", designacaoAula, MAX_STRING);
-                EditaAula(vAulas, nAulas, designacaoAula, vUCs, nUCs);
+                // LerString("\nDesignacao da aula a editar: ", designacaoAula, MAX_STRING);
+                // EditaAula(vAulas, nAulas, designacaoAula, vUCs, nUCs);
               }
               break;
 
@@ -82,14 +82,26 @@ int main() {
             case 4:  // Listar
               ListaTodasAulas(vAulas, nAulas, vUCs);
               break;
-            case 5:  // Alterar Estado
+            case 5:  // Consultar Aula
+              if (nAulas <= 0) {
+                printf("\nERRO: Nao existem aulas registadas!\n");
+              } else {
+                if (nAulas <= 0) {
+                  printf("\nERRO: Nao existem aulas registadas!\n");
+                } else {
+                  LerString("\nDesignacao da aula a consultar: ", designacaoAula, MAX_STRING);
+                  ListaUmaAula(vAulas, nAulas, designacaoAula, vUCs);
+                }
+              }
+              break;
+            case 6:  // Alterar Estado
               if (nAulas <= 0) {
                 printf("\nERRO: Nao existem aulas registadas!\n");
               } else {
                 ListaAlteraEstadoAulas(vAulas, nAulas, vUCs);
               }
               break;
-            case 6:  // Assistir a uma Aula
+            case 7:  // Assistir a uma Aula
               if (nAulas <= 0) {
                 printf("\nERRO: Nao existem aulas registadas!\n");
               } else {
@@ -98,11 +110,12 @@ int main() {
                 AssisteAula(vAulas, nAulas, designacaoAula, numeroEstudante);
               }
               break;
-            case 7:  // Gravar em ficheiro
+            case 8:  // Gravar em ficheiro
+              EscreveFicheiroBinarioUCs(vUCs, nUCs);
               EscreveFicheiroBinarioAulas(vAulas, nAulas);
               // EscreveFicheiroTextoAulas(vAulas, nAulas);
               break;
-            case 8:  // Ler ficheiro
+            case 9:  // Ler ficheiro
               if (nUCs <= 0) {
                 printf("\nERRO: Nao existem UCs registadas!\n");
               } else {
@@ -113,6 +126,10 @@ int main() {
         } while (opcaoSubMenu != 0);
         break;
       case 3:
+        do {
+          opcaoSubMenu = DadosEstatisticos(vUCs, nUCs, vAulas, nAulas);
+        } while (opcaoSubMenu != 0);
+
         break;
     }
   } while (opcao != 0);

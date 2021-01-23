@@ -90,8 +90,8 @@ void EscreveFicheiroTextoAulas(tipoAula vAulas[], int nAulas) {
         fprintf(ficheiro, "Pos-Laboral\t\t ");
       }
       fprintf(ficheiro, "%d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vAulas[i].semestre,
-              vAulas[i].teorica.quantidade, vAulas[i].teorica.duracao, vAulas[i].teoricopratica.quantidade,
-              vAulas[i].teoricopratica.duracao, vAulas[i].praticolab.quantidade, vAulas[i].praticolab.duracao);
+              vAulas[i].teorica.nPrevistas, vAulas[i].teorica.duracao, vAulas[i].teoricopratica.nPrevistas,
+              vAulas[i].teoricopratica.duracao, vAulas[i].praticolab.nPrevistas, vAulas[i].praticolab.duracao);
     }
     fclose(ficheiro);
   }

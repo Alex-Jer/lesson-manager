@@ -18,7 +18,7 @@ int MenuPrincipal(int nUCs, tipoAula vAulas[], int nAulas) {
     }
   }
 
-  printf("\n\n ===== MENU PRINCIPAL =====\n\n");
+  printf("\n\n =================== MENU PRINCIPAL ===================\n\n");
 
   if (nUCs > 0 && nAgendadas > 0) {
     printf(" Num de UCs: %d\t\t\tNum Aulas Agendadas: %d\n", nUCs, nAgendadas);
@@ -70,13 +70,44 @@ int MenuAulas() {
   printf(" 1 - Agendar Aula\n");
   printf(" 2 - Editar Dados Aula\n");
   printf(" 3 - Eliminar Aula\n");
-  printf(" 4 - Listar Dados Aulas\n");
-  printf(" 5 - Alterar Estado Aulas\n");
-  printf(" 6 - Assistir Aula\n");
-  printf(" 7 - Guardar Alteracoes\n");
-  printf(" 8 - Ler Ficheiro\n");
+  printf(" 4 - Listar Todas as Aulas\n");
+  printf(" 5 - Consultar Dados Aula\n");
+  printf(" 6 - Alterar Estado Aula\n");
+  printf(" 7 - Assistir Aula\n");
+  printf(" 8 - Guardar Alteracoes\n");
+  printf(" 9 - Ler Ficheiro\n");
   printf(" 0 - Voltar\n");
-  opcao = LerInteiro("\n Opcao--> ", 0, 8);
+  opcao = LerInteiro("\n Opcao--> ", 0, 9);
+
+  return opcao;
+}
+
+// Mostra no ecrã um conjunto de dados estatísticos
+int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
+  int opcao, i, nRealizadas = 0, nPresencas = 0;
+  float mediaPresencas;
+
+  for (i = 0; i < nAulas; i++) {
+    if (vAulas[i].estado == 'R') {
+      nPresencas += vAulas[i].nAcessos.online;
+      nRealizadas++;
+    }
+  }
+
+  mediaPresencas = (float)nPresencas / nRealizadas;
+
+  printf("\n\n ===== DADOS ESTATISTICOS =====\n\n");
+  if (nPresencas > 0) {
+    printf(" Media de presencas em aulas realizadas: %.2f\n", mediaPresencas);
+  } else {
+    printf(" Media de presencas em aulas realizadas: **\n");
+  }
+
+  printf(" UCs com aulas gravadas: **%%\n");
+  printf(" UC(s) com menor quantidade de acessos a gravacoes: **\n");
+  printf(" Aula(s) online realizadas a mais tempo: **\n");
+
+  opcao = LerInteiro("\n Insira 0 para voltar--> ", 0, 0);
 
   return opcao;
 }

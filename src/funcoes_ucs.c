@@ -20,12 +20,9 @@ tipoUC LeDadosUC(tipoUC vUCs[], int nUCs, int modoEdicao) {
 
   uc.obrigatoria = 1;  // 0 - Não // 1 - Sim
   uc.diurno = 1;       // 0 - Não // 1 - Sim
-  uc.teorica.duracao = 0;
-  uc.teorica.quantidade = 0;
-  uc.teoricopratica.duracao = 0;
-  uc.teoricopratica.quantidade = 0;
-  uc.praticolab.duracao = 0;
-  uc.praticolab.quantidade = 0;
+  uc.teorica.nAgendadas = 0;
+  uc.teoricopratica.nAgendadas = 0;
+  uc.praticolab.nAgendadas = 0;
 
   if (modoEdicao == 0) {
     do {
@@ -59,24 +56,30 @@ tipoUC LeDadosUC(tipoUC vUCs[], int nUCs, int modoEdicao) {
 
   do {
     printf("\n-> Aulas Teoricas <-\n");
-    uc.teorica.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
-    if (uc.teorica.quantidade != 0) {
+    uc.teorica.nPrevistas = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    if (uc.teorica.nPrevistas != 0) {
       uc.teorica.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+    } else {
+      uc.teorica.duracao = 0;
     }
 
     printf("\n-> Aulas Teoricopraticas <-\n");
-    uc.teoricopratica.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
-    if (uc.teoricopratica.quantidade != 0) {
+    uc.teoricopratica.nPrevistas = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    if (uc.teoricopratica.nPrevistas != 0) {
       uc.teoricopratica.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+    } else {
+      uc.teoricopratica.duracao = 0;
     }
 
     printf("\n-> Aulas Praticolaboratoriais <-\n");
-    uc.praticolab.quantidade = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
-    if (uc.praticolab.quantidade != 0) {
+    uc.praticolab.nPrevistas = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    if (uc.praticolab.nPrevistas != 0) {
       uc.praticolab.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+    } else {
+      uc.praticolab.duracao = 0;
     }
 
-    uc.totalAulasPrevistas = uc.teorica.quantidade + uc.teoricopratica.quantidade + uc.praticolab.quantidade;
+    uc.totalAulasPrevistas = uc.teorica.nPrevistas + uc.teoricopratica.nPrevistas + uc.praticolab.nPrevistas;
 
     if (uc.totalAulasPrevistas <= 0) {
       printf("\nERRO: Tem de inserir pelo menos 1 aula!\n");
@@ -150,8 +153,8 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
         printf("Pos-Laboral\t");
       }
       printf("   #%d\t        %02d (%03dmin)    %02d (%03dmin)     %02d (%03dmin)\n", vUCs[i].semestre,
-             vUCs[i].teorica.quantidade, vUCs[i].teorica.duracao, vUCs[i].teoricopratica.quantidade,
-             vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.quantidade, vUCs[i].praticolab.duracao);
+             vUCs[i].teorica.nPrevistas, vUCs[i].teorica.duracao, vUCs[i].teoricopratica.nPrevistas,
+             vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.nPrevistas, vUCs[i].praticolab.duracao);
     }
   }
   printf("\nPressione ENTER para continuar . . . ");
@@ -173,14 +176,14 @@ void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
       vUCs[pos].obrigatoria = editadaUC.obrigatoria;
       vUCs[pos].semestre = editadaUC.semestre;
       vUCs[pos].diurno = editadaUC.diurno;
-      vUCs[pos].teorica.quantidade = editadaUC.teorica.quantidade;
+      vUCs[pos].teorica.nPrevistas = editadaUC.teorica.nPrevistas;
       vUCs[pos].teorica.duracao = editadaUC.teorica.duracao;
-      vUCs[pos].teoricopratica.quantidade = editadaUC.teoricopratica.quantidade;
+      vUCs[pos].teoricopratica.nPrevistas = editadaUC.teoricopratica.nPrevistas;
       vUCs[pos].teoricopratica.duracao = editadaUC.teoricopratica.duracao;
-      vUCs[pos].praticolab.quantidade = editadaUC.praticolab.quantidade;
+      vUCs[pos].praticolab.nPrevistas = editadaUC.praticolab.nPrevistas;
       vUCs[pos].praticolab.duracao = editadaUC.praticolab.duracao;
       vUCs[pos].totalAulasPrevistas =
-          editadaUC.teorica.quantidade + editadaUC.teoricopratica.quantidade + editadaUC.praticolab.quantidade;
+          editadaUC.teorica.nPrevistas + editadaUC.teoricopratica.nPrevistas + editadaUC.praticolab.nPrevistas;
       printf("SUCESSO: UC modificada!\n");
     }
   }

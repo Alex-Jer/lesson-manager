@@ -6,5 +6,6 @@
 int MenuPrincipal(int nUCs, tipoAula vAulas[], int nAulas);
 int MenuUCs();
 int MenuAulas();
+int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas);
 
 #endif /* FUNCOES_MENU_H_INCLUDED */

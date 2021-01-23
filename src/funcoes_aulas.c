@@ -38,10 +38,27 @@ tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao) {
         strcpy(tipoAula, strupr(tipoAula));
         if ((strcmp(tipoAula, "T") != 0) && (strcmp(tipoAula, "TP") != 0) && (strcmp(tipoAula, "PL") != 0)) {
           printf("ERRO: Opcao invalida!\n");
+        } else if ((strcmp(tipoAula, "T") == 0) && vUCs[pos].teorica.nPrevistas <= 0) {
+          printf("ERRO: Esta UC nao tem aulas teoricas!\n");
+        } else if ((strcmp(tipoAula, "TP") == 0) && vUCs[pos].teoricopratica.nPrevistas <= 0) {
+          printf("ERRO: Esta UC nao tem aulas teoricopraticas!\n");
+        } else if ((strcmp(tipoAula, "PL") == 0) && vUCs[pos].praticolab.nPrevistas <= 0) {
+          printf("ERRO: Esta UC nao tem aulas praticolaboratoriais!\n");
         }
-      } while ((strcmp(tipoAula, "T") != 0) && (strcmp(tipoAula, "TP") != 0) && (strcmp(tipoAula, "PL") != 0));
+      } while (((strcmp(tipoAula, "T") != 0) && (strcmp(tipoAula, "TP") != 0) && (strcmp(tipoAula, "PL") != 0)) ||
+               ((strcmp(tipoAula, "T") == 0) && vUCs[pos].teorica.nPrevistas <= 0) ||
+               ((strcmp(tipoAula, "TP") == 0) && vUCs[pos].teoricopratica.nPrevistas <= 0) ||
+               ((strcmp(tipoAula, "PL") == 0) && vUCs[pos].praticolab.nPrevistas <= 0));
 
       strcpy(aula.tipoAula, tipoAula);
+
+      if (strcmp(aula.tipoAula, "T") == 0) {
+        vUCs[aula.idUC - 1].teorica.nAgendadas++;
+      } else if (strcmp(aula.tipoAula, "TP") == 0) {
+        vUCs[aula.idUC - 1].teoricopratica.nAgendadas++;
+      } else {
+        vUCs[aula.idUC - 1].praticolab.nAgendadas++;
+      }
 
       LerString("Docente: ", aula.docente, MAX_STRING);
 
@@ -147,6 +164,61 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
   getchar();
 }
 
+// Mostra no ecrã uma aula escolhida pelo utilizador
+void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[]) {
+  int pos, porAgendarT, porAgendarTP, porAgendarPL;
+
+  if (nAulas >= 0) {
+    pos = ProcuraAula(vAulas, nAulas, designacaoAula);
+    if (pos == -1) {
+      printf("\nERRO: Aula nao encontrada!\n");
+    } else {
+      printf("\nDesignacao: %s\n", vAulas[pos].designacao);
+      printf("UC: %s\n", vUCs[vAulas[pos].idUC - 1].designacao);
+      printf("Tipo: %s\n", vAulas[pos].tipoAula);
+      printf("Docente: %s\n", vAulas[pos].docente);
+      printf("Data: %02d-%02d-%04d\n", vAulas[pos].data.dia, vAulas[pos].data.mes, vAulas[pos].data.ano);
+      printf("Hora: %02d:%02d - %02d:%02d\n", vAulas[pos].inicio.horas, vAulas[pos].inicio.minutos, vAulas[pos].fim.horas,
+             vAulas[pos].fim.minutos);
+
+      if (vAulas[pos].estado == 'A') {
+        printf("Estado: Agendada\n");
+      } else if (vAulas[pos].estado == 'D') {
+        printf("Estado: A decorrer\n");
+      } else {
+        printf("Estado: Realizada\n");
+      }
+
+      if (vAulas[pos].gravacao == 'G') {
+        printf("Gravacao: Sim\n");
+      } else {
+        printf("Gravacao: Nao\n");
+      }
+
+      porAgendarT = vUCs[vAulas[pos].idUC - 1].teorica.nPrevistas - vUCs[vAulas[pos].idUC - 1].teorica.nAgendadas;
+      // printf("\nnome: %s\n", vUCs[vAulas[pos].idUC - 1].designacao);
+      // printf("nPrevistasT: %d\n", vUCs[vAulas[pos].idUC - 1].teorica.nPrevistas);
+      // printf("nAgendadasT: %d\n", vUCs[vAulas[pos].idUC - 1].teorica.nAgendadas);
+      porAgendarTP = vUCs[vAulas[pos].idUC - 1].teoricopratica.nPrevistas - vUCs[vAulas[pos].idUC - 1].teoricopratica.nAgendadas;
+      porAgendarPL = vUCs[vAulas[pos].idUC - 1].praticolab.nPrevistas - vUCs[vAulas[pos].idUC - 1].praticolab.nAgendadas;
+      // printf("\nnome: %s\n", vUCs[vAulas[pos].idUC - 1].designacao);
+      // printf("nPrevistasPL: %d\n", vUCs[vAulas[pos].idUC - 1].praticolab.nPrevistas);
+      // printf("nAgendadasPL: %d\n\n", vUCs[vAulas[pos].idUC - 1].praticolab.nAgendadas);
+
+      if (strcmp(vAulas[pos].tipoAula, "T") == 0) {
+        printf("Aulas por agendar: %d\n", porAgendarT);
+      } else if (strcmp(vAulas[pos].tipoAula, "TP") == 0) {
+        printf("Aulas por agendar: %d\n", porAgendarTP);
+      } else {
+        printf("Aulas por agendar: %d\n", porAgendarPL);
+      }
+    }
+  }
+
+  printf("\nPressione ENTER para continuar . . . ");
+  getchar();
+}
+
 // Mostra no ecrã as Aulas Agendadas
 void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
   int i, pos, quantA = 0, quantD = 0, quantR = 0;
@@ -233,6 +305,8 @@ void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
 
           if (temGravacao[0] == 'N') {  // Se o utilizador não desejar que a aula seja gravada
             vAulas[pos].gravacao = 'N';
+          } else {
+            vAulas[pos].gravacao = 'A';
           }
         }
         printf("\nSUCESSO: Estado Alterado!\n");
@@ -290,6 +364,20 @@ void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
       editadaAula = LeDadosAula(vUCs, nUCs, 1);
+      if (strcmp(vAulas[pos].tipoAula, "T") == 0) {
+        vUCs[vAulas[pos].idUC - 1].teorica.nAgendadas--;
+        printf("\nnome: %s\n", vUCs[pos].designacao);
+        printf("\nagendadasT: %d\n", vUCs[pos].teorica.nAgendadas);
+      } else if ((strcmp(vAulas[pos].tipoAula, "TP") == 0)) {
+        vUCs[vAulas[pos].idUC - 1].teoricopratica.nAgendadas--;
+        printf("\nnome: %s\n", vUCs[pos].designacao);
+        printf("\nagendadasTP: %d\n", vUCs[pos].teoricopratica.nAgendadas);
+      } else {
+        vUCs[vAulas[pos].idUC - 1].teorica.nAgendadas--;
+        printf("\nnome: %s\n", vUCs[pos].designacao);
+        printf("\nagendadasPL: %d\n\n", vUCs[pos].praticolab.nAgendadas);
+      }
+
       vAulas[pos].idUC = editadaAula.idUC;
       strcpy(vAulas[pos].tipoAula, editadaAula.tipoAula);
       strcpy(vAulas[pos].docente, editadaAula.docente);

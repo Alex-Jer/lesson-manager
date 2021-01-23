@@ -12,13 +12,12 @@ typedef struct {
 } tipoHora;
 
 typedef struct {
-  int quantidade;
+  int nPrevistas;
+  int nAgendadas;
   int duracao;
 } tipoTipoDeAula;  // Aulas T, TP, PL
 
 typedef struct {
-  // int numEstudante;  // Ex: 2201799
-  // char online;       // 0 - Acesso Offline // 1 - Acesso Online
   int online;
   int offline;
 } tipoAcesso;

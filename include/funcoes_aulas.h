@@ -13,6 +13,7 @@ int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]);
 tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao);
 tipoAula *AgendaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUCs);
 void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
+void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[]);
 void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
 void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs);
 tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]);
