@@ -492,6 +492,7 @@ void AssisteAula(tipoAula vAulas[], int nAulas, char designacaoAula[], int numer
         printf("\nSUCESSO: A assistir a aula %s", vAulas[pos].designacao);
         printf("\nindice: %d", vAulas[pos].nAcessos.online);  //!
         EscreveFicheiroTextoLog(vAulas[pos], "ONLINE", numeroEstudante);
+        EscreveFicheiroBinLog(vAulas[pos], "ONLINE", numeroEstudante);
         vAulas[pos].nAcessos.online++;
         printf("\nacessos online: %d", vAulas[pos].nAcessos.online);  //!
       } else if (vAulas[pos].estado == 'R' && vAulas[pos].gravacao == 'N') {
@@ -500,6 +501,7 @@ void AssisteAula(tipoAula vAulas[], int nAulas, char designacaoAula[], int numer
         printf("\nSUCESSO: A visualizar gravacao da aula %s", vAulas[pos].designacao);
         printf("\nindice: %d", vAulas[pos].nAcessos.offline);  //!
         EscreveFicheiroTextoLog(vAulas[pos], "OFFLINE", numeroEstudante);
+        EscreveFicheiroBinLog(vAulas[pos], "OFFLINE", numeroEstudante);
         vAulas[pos].nAcessos.offline++;
         printf("\nacessos offline: %d", vAulas[pos].nAcessos.offline);  //!
       }

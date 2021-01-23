@@ -17,7 +17,7 @@ void EscreveFicheiroBinarioAulas(tipoAula vAulas[], int nAulas) {
       if (quantEscrito != nAulas) {
         printf("\nERRO: Falha na escrita de informacao no vetor!\n");
       } else {
-        printf("\nGravado com sucesso no ficheiro binario!");
+        printf("\nGravado com sucesso no ficheiro binario!\n");
       }
     }
     fclose(ficheiro);
@@ -58,6 +58,42 @@ void EscreveFicheiroTextoLog(tipoAula aula, char tipoAcesso[], int numeroEstudan
     printf("Erro ao abrir o ficheiro!\n");
   } else {
     fprintf(ficheiro, "ACESSO %s - Aula: %s Num. Estudante: %d\n", tipoAcesso, aula.designacao, numeroEstudante);
+    fclose(ficheiro);
+  }
+}
+
+void EscreveFicheiroBinLog(tipoAula aula, char tipoAcesso[], int numeroEstudante) {
+  FILE *ficheiro;
+  int quantEscrito, compTipoAcesso, compDesignacao;
+
+  ficheiro = fopen("log.dat", "ab");
+
+  if (ficheiro == NULL) {
+    printf("Erro ao abrir o ficheiro!\n");
+  } else {
+    compTipoAcesso = strlen(tipoAcesso);
+    compDesignacao = strlen(aula.designacao);
+    quantEscrito = fwrite(tipoAcesso, sizeof(char), compTipoAcesso, ficheiro);
+    // TODO:
+    // if (quantEscrito != compTipoAcesso) {
+    //   printf("\nErro ao escrever o tipo de acesso\n");
+    // } else {
+    //   printf("\nGravado com sucesso no ficheiro binario\n");
+    // }
+
+    quantEscrito = fwrite(aula.designacao, sizeof(char), compDesignacao, ficheiro);
+    // if (quantEscrito != compDesignacao) {
+    //   printf("\nErro ao escrever a designacao da aula\n");
+    // } else {
+    //   printf("\nGravado com sucesso no ficheiro binario\n");
+    // }
+
+    quantEscrito = fwrite(&numeroEstudante, sizeof(int), 1, ficheiro);
+    // if (quantEscrito != 1) {
+    //   printf("\nErro ao escrever o numero de estudante\n");
+    // } else {
+    //   printf("\nGravado com sucesso no ficheiro binario\n");
+    // }
     fclose(ficheiro);
   }
 }
