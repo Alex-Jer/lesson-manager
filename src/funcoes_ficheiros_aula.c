@@ -64,7 +64,8 @@ void EscreveFicheiroTextoLog(tipoAula aula, char tipoAcesso[], int numeroEstudan
 
 void EscreveFicheiroBinLog(tipoAula aula, char tipoAcesso[], int numeroEstudante) {
   FILE *ficheiro;
-  int quantEscrito, compTipoAcesso, compDesignacao;
+  int quantEscrito;
+  int compTipoAcesso, compDesignacao;
 
   ficheiro = fopen("log.dat", "ab");
 

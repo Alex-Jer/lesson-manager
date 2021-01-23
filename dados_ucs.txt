@@ -1,4 +1,3 @@
 
    ID											Designacao	  Obrigatoria		Regime				 Semestre		T              TP             PL
-   01	                            SC	  Sim						Diurno				 1.	        10 (060min)    00 (000min)    00 (000min)
-   02	                            P1	  Sim						Diurno				 1.	        00 (000min)    00 (000min)    20 (240min)
+   01	                         teste	  Sim						Diurno				 1.	        00 (000min)    00 (000min)    20 (240min)

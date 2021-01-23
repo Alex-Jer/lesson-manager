@@ -44,9 +44,8 @@ typedef struct {
   tipoHora fim;
   char estado;    // A - Agendada // D - A Decorrer // R - Realizada
   char gravacao;  // N - Não // A - A Gravar // G - Gravada
-  int estudantesOnline[MAX_QUANT_ESTUDANTES];
+  int presencas[MAX_QUANT_ESTUDANTES];
   tipoAcesso nAcessos;
-  // tipoAcesso nAcessos[MAX_QUANT_ESTUDANTES];
 } tipoAula;
 
 #endif /* ESTRUTURAS_H_INCLUDED */

@@ -84,17 +84,49 @@ int MenuAulas() {
 
 // Mostra no ecrã um conjunto de dados estatísticos
 int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
-  int opcao, i, nRealizadas = 0, nPresencas = 0;
-  float mediaPresencas;
+  int opcao, iAulas, iUCs, nRealizadas = 0, nPresencas = 0, nGravadas = 0;
+  float mediaPresencas, mediaGravadas, nGravadasPerc;
 
-  for (i = 0; i < nAulas; i++) {
-    if (vAulas[i].estado == 'R') {
-      nPresencas += vAulas[i].nAcessos.online;
-      nRealizadas++;
+  for (iUCs = 0; iUCs < nUCs; iUCs++) {
+    for (iAulas = 0; iAulas < nAulas; iAulas++) {
+      // printf("\n%d", iAulas);
+      // printf("\n%d - %s\n", vAulas[iAulas].idUC, vUCs[vAulas[iAulas].idUC - 1].designacao);
+      if (vAulas[iAulas].idUC == iUCs + 1) {
+        printf("\n%d - %s\n", vAulas[iAulas].idUC, vUCs[vAulas[iAulas].idUC - 1].designacao);
+      }
     }
   }
 
+  /*
+    if (vAulas[]) {
+      //
+    }
+  }
+
+  for (iAulas = 0; iAulas < nAulas; iAulas++) {
+    if (vAulas[iAulas].estado == 'R') {
+      //
+    }
+
+    for (iUCs = vAulas[iAulas].idUC - 1; iUCs < nUCs; iUCs++) {
+      // vUCs[i].
+    }
+  */
+
+  if (vAulas[iAulas].estado == 'D') {
+    nPresencas += vAulas[iAulas].nAcessos.online;
+    nRealizadas++;
+  }
+
+  if (vAulas[iAulas].gravacao == 'G') {
+    nGravadas++;
+  }
+
+  printf("\n%d\n", nGravadas);
+
   mediaPresencas = (float)nPresencas / nRealizadas;
+  mediaGravadas = (float)nGravadas / nAulas;
+  nGravadasPerc = mediaGravadas * 100;
 
   printf("\n\n ===== DADOS ESTATISTICOS =====\n\n");
   if (nPresencas > 0) {
@@ -103,7 +135,12 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
     printf(" Media de presencas em aulas realizadas: **\n");
   }
 
-  printf(" UCs com aulas gravadas: **%%\n");
+  if (nAulas > 0) {
+    printf(" UCs com aulas gravadas: %.2f%%\n", nGravadasPerc);
+  } else {
+    printf(" UCs com aulas gravadas: **%%\n");
+  }
+
   printf(" UC(s) com menor quantidade de acessos a gravacoes: **\n");
   printf(" Aula(s) online realizadas a mais tempo: **\n");
 

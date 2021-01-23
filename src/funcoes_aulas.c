@@ -13,9 +13,9 @@ int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]) {
 }
 
 // Pede ao utilizador dados de uma Aula
-tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao) {
+tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas, int modoEdicao) {
   tipoAula aula;
-  int pos;
+  int pos, erro = 0;
   char tipoAula[MAX_STRING];
 
   aula.nAcessos.online = 0;
@@ -91,7 +91,22 @@ tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao) {
         } else if (aula.inicio.horas == aula.fim.horas) {
           printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
         }
-      } while (aula.inicio.horas >= aula.fim.horas);
+
+        for (int i = 0; i < nAulas; i++) {
+          if ((aula.data.dia == vAulas[i].data.dia) && (aula.data.mes == vAulas[i].data.mes) &&
+              (aula.data.ano == vAulas[i].data.ano) &&
+              ((aula.inicio.horas >= vAulas[i].inicio.horas) && (aula.inicio.horas <= vAulas[i].fim.horas)) &&
+              ((aula.fim.horas >= vAulas[i].fim.horas) && (aula.fim.horas <= vAulas[i].fim.horas)) &&
+              (aula.idUC == vAulas[i].idUC)) {
+            printf("\nERRO: Uma aula ja foi agendada para essa hora!\n");
+            erro = 1;
+            i = nAulas;
+          } else {
+            erro = 0;
+          }
+        }
+
+      } while (aula.inicio.horas >= aula.fim.horas || erro == 1);
     }
   } while (pos == -1);
 
@@ -108,7 +123,7 @@ tipoAula *AgendaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUCs) {
   if (*nUCs <= 0) {
     printf("\nERRO: Nao ha UCs registadas!\n");
   } else {
-    dadosAula = LeDadosAula(vUCs, *nUCs, 0);
+    dadosAula = LeDadosAula(vUCs, *nUCs, vAulas, *nAulas, 0);
     pos = ProcuraAula(vAulas, *nAulas, dadosAula.designacao);
 
     if (pos != -1) {
@@ -145,18 +160,22 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
       printf("Hora: %02d:%02d - %02d:%02d\n", vAulas[i].inicio.horas, vAulas[i].inicio.minutos, vAulas[i].fim.horas,
              vAulas[i].fim.minutos);
 
+      if (vAulas[i].gravacao == 'G') {
+        printf("Gravacao: Disponivel\n");
+      } else if (vAulas[i].gravacao == 'A') {
+        printf("Gravacao: A gravar...\n");
+      } else {
+        printf("Gravacao: Indisponivel\n");
+      }
+
       if (vAulas[i].estado == 'A') {
         printf("Estado: Agendada\n");
       } else if (vAulas[i].estado == 'D') {
         printf("Estado: A decorrer\n");
+        printf("Num alunos presentes: %d\n", vAulas[i].nAcessos.online);
       } else {
         printf("Estado: Realizada\n");
-      }
-
-      if (vAulas[i].gravacao == 'G') {
-        printf("Gravacao: Sim\n");
-      } else {
-        printf("Gravacao: Nao\n");
+        printf("Acessos a gravacao: %d\n", vAulas[i].nAcessos.offline);
       }
     }
   }
@@ -166,7 +185,7 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
 
 // Mostra no ecrã uma aula escolhida pelo utilizador
 void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[]) {
-  int pos, porAgendarT, porAgendarTP, porAgendarPL;
+  int pos, i, porAgendarT, porAgendarTP, porAgendarPL;
 
   if (nAulas >= 0) {
     pos = ProcuraAula(vAulas, nAulas, designacaoAula);
@@ -185,25 +204,23 @@ void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC v
         printf("Estado: Agendada\n");
       } else if (vAulas[pos].estado == 'D') {
         printf("Estado: A decorrer\n");
+        printf("Num alunos presentes: %d\n", vAulas[pos].nAcessos.online);
       } else {
         printf("Estado: Realizada\n");
+        printf("Acessos a gravacao: %d\n", vAulas[pos].nAcessos.offline);
       }
 
       if (vAulas[pos].gravacao == 'G') {
-        printf("Gravacao: Sim\n");
+        printf("Gravacao: Disponivel\n");
+      } else if (vAulas[pos].gravacao == 'A') {
+        printf("Gravacao: A gravar...\n");
       } else {
-        printf("Gravacao: Nao\n");
+        printf("Gravacao: Indisponivel\n");
       }
 
       porAgendarT = vUCs[vAulas[pos].idUC - 1].teorica.nPrevistas - vUCs[vAulas[pos].idUC - 1].teorica.nAgendadas;
-      // printf("\nnome: %s\n", vUCs[vAulas[pos].idUC - 1].designacao);
-      // printf("nPrevistasT: %d\n", vUCs[vAulas[pos].idUC - 1].teorica.nPrevistas);
-      // printf("nAgendadasT: %d\n", vUCs[vAulas[pos].idUC - 1].teorica.nAgendadas);
       porAgendarTP = vUCs[vAulas[pos].idUC - 1].teoricopratica.nPrevistas - vUCs[vAulas[pos].idUC - 1].teoricopratica.nAgendadas;
       porAgendarPL = vUCs[vAulas[pos].idUC - 1].praticolab.nPrevistas - vUCs[vAulas[pos].idUC - 1].praticolab.nAgendadas;
-      // printf("\nnome: %s\n", vUCs[vAulas[pos].idUC - 1].designacao);
-      // printf("nPrevistasPL: %d\n", vUCs[vAulas[pos].idUC - 1].praticolab.nPrevistas);
-      // printf("nAgendadasPL: %d\n\n", vUCs[vAulas[pos].idUC - 1].praticolab.nAgendadas);
 
       if (strcmp(vAulas[pos].tipoAula, "T") == 0) {
         printf("Aulas por agendar: %d\n", porAgendarT);
@@ -211,6 +228,11 @@ void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC v
         printf("Aulas por agendar: %d\n", porAgendarTP);
       } else {
         printf("Aulas por agendar: %d\n", porAgendarPL);
+      }
+
+      printf("\n*** Presencas ***\n\n");
+      for (i = 0; i < vAulas[pos].nAcessos.online; i++) {  //*
+        printf("Estudante %d\n", vAulas[pos].presencas[i]);
       }
     }
   }
@@ -363,7 +385,7 @@ void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs
     if (pos == -1) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
-      editadaAula = LeDadosAula(vUCs, nUCs, 1);
+      editadaAula = LeDadosAula(vUCs, nUCs, vAulas, nAulas, 1);
       if (strcmp(vAulas[pos].tipoAula, "T") == 0) {
         vUCs[vAulas[pos].idUC - 1].teorica.nAgendadas--;
         printf("\nnome: %s\n", vUCs[pos].designacao);
@@ -474,7 +496,7 @@ tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]) {
 }
 
 void AssisteAula(tipoAula vAulas[], int nAulas, char designacaoAula[], int numeroEstudante) {
-  int pos;
+  int pos, i;
 
   if (nAulas >= 0) {
     pos = ProcuraAula(vAulas, nAulas, designacaoAula);
@@ -486,14 +508,18 @@ void AssisteAula(tipoAula vAulas[], int nAulas, char designacaoAula[], int numer
         printf("Espere ate %02d-%02d-%04d as %02d:%02d\n", vAulas[pos].data.dia, vAulas[pos].data.mes, vAulas[pos].data.ano,
                vAulas[pos].inicio.horas, vAulas[pos].inicio.minutos);
       } else if (vAulas[pos].estado == 'D') {  // Acesso Online
-        vAulas[pos].estudantesOnline[vAulas[pos].nAcessos.online] = numeroEstudante;
-        printf("\ni 0: %d", vAulas[pos].estudantesOnline[0]);                                 //!
-        printf("\nEstudante %d", vAulas[pos].estudantesOnline[vAulas[pos].nAcessos.online]);  //!
+        vAulas[pos].presencas[vAulas[pos].nAcessos.online] = numeroEstudante;
+        printf("\ni 0: %d", vAulas[pos].presencas[0]);                                 //!
+        printf("\nEstudante %d", vAulas[pos].presencas[vAulas[pos].nAcessos.online]);  //!
         printf("\nSUCESSO: A assistir a aula %s", vAulas[pos].designacao);
         printf("\nindice: %d", vAulas[pos].nAcessos.online);  //!
+
         EscreveFicheiroTextoLog(vAulas[pos], "ONLINE", numeroEstudante);
         EscreveFicheiroBinLog(vAulas[pos], "ONLINE", numeroEstudante);
         vAulas[pos].nAcessos.online++;
+        for (i = 0; i < vAulas[pos].nAcessos.online; i++) {  //*
+          printf("\nEstudante-%d\n", vAulas[pos].presencas[i]);
+        }
         printf("\nacessos online: %d", vAulas[pos].nAcessos.online);  //!
       } else if (vAulas[pos].estado == 'R' && vAulas[pos].gravacao == 'N') {
         printf("\nERRO: Gravacao da aula %s nao disponivel!\n", vAulas[pos].designacao);

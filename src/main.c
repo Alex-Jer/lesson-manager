@@ -87,12 +87,8 @@ int main() {
               if (nAulas <= 0) {
                 printf("\nERRO: Nao existem aulas registadas!\n");
               } else {
-                if (nAulas <= 0) {
-                  printf("\nERRO: Nao existem aulas registadas!\n");
-                } else {
-                  LerString("\nDesignacao da aula a consultar: ", designacaoAula, MAX_STRING);
-                  ListaUmaAula(vAulas, nAulas, designacaoAula, vUCs);
-                }
+                LerString("\nDesignacao da aula a consultar: ", designacaoAula, MAX_STRING);
+                ListaUmaAula(vAulas, nAulas, designacaoAula, vUCs);
               }
               break;
             case 6:  // Alterar Estado
