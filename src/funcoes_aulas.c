@@ -422,18 +422,18 @@ void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs
 // Altera o Agendamento de uma Aula
 void EditaAgendamento(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[]) {
   tipoAula editadaAula;
-  int pos;
+  int pos, erro = 0;
 
   if (nAulas >= 0) {
     pos = ProcuraAula(vAulas, nAulas, designacaoAula);
     if (pos == -1) {
       printf("\nERRO: Aula nao encontrada!\n");
     } else {
+      editadaAula.idUC = vAulas[pos].idUC;
       editadaAula.data.dia = LerInteiro("Dia: ", MIN_DIA, MAX_DIA);
       editadaAula.data.mes = LerInteiro("Mes: ", MIN_MES, MAX_MES);
       editadaAula.data.ano = LerInteiro("Ano: ", MIN_ANO, MAX_ANO);
 
-      //! Melhorar validação das horas
       do {
         printf("\n-> Hora de Inicio <-\n");
         if (vUCs[vAulas[pos].idUC - 1].diurno == 1) {
@@ -455,10 +455,32 @@ void EditaAgendamento(tipoAula vAulas[], int nAulas, char designacaoAula[], tipo
 
         if (editadaAula.inicio.horas > editadaAula.fim.horas) {
           printf("\nERRO: Hora invalida!\n");
-        } else if (editadaAula.inicio.horas == editadaAula.fim.horas) {
+          erro = 1;
+        } else if ((editadaAula.inicio.horas == editadaAula.fim.horas) ||
+                   (editadaAula.inicio.horas < editadaAula.fim.horas &&
+                    editadaAula.inicio.minutos + editadaAula.fim.minutos < 60)) {
           printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
+          erro = 1;
+        } else {
+          erro = 0;
         }
-      } while (editadaAula.inicio.horas >= editadaAula.fim.horas);
+
+        for (int i = 0; i < nAulas; i++) {
+          if ((editadaAula.data.dia == vAulas[i].data.dia) && (editadaAula.data.mes == vAulas[i].data.mes) &&
+              (editadaAula.data.ano == vAulas[i].data.ano) && erro != 1) {
+            if (((editadaAula.inicio.horas >= vAulas[i].inicio.horas) && (editadaAula.inicio.horas <= vAulas[i].fim.horas) &&
+                 (editadaAula.idUC == vAulas[i].idUC)) ||
+                ((editadaAula.fim.horas >= vAulas[i].fim.horas) && (editadaAula.fim.horas <= vAulas[i].inicio.horas) &&
+                 (editadaAula.idUC == vAulas[i].idUC))) {
+              printf("\nERRO: Uma aula ja foi agendada para essa hora!\n");
+              erro = 1;
+              i = nAulas;
+            } else {
+              erro = 0;
+            }
+          }
+        }
+      } while (editadaAula.inicio.horas >= editadaAula.fim.horas || erro == 1);
 
       vAulas[pos].data.dia = editadaAula.data.dia;
       vAulas[pos].data.mes = editadaAula.data.mes;

@@ -14,7 +14,7 @@ UC: P1
 Tipo: T
 Docente: 10
 Data: 10-10-2020
-Hora: 10:30 - 11:30
+Hora: 12:30 - 13:30
 Gravacao: Indisponivel
 Estado: Agendada
 

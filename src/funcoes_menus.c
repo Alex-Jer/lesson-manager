@@ -40,7 +40,7 @@ int MenuPrincipal(int nUCs, tipoAula vAulas[], int nAulas) {
   printf(" 2 - Gerir Aulas\n");
   printf(" 3 - Estatistica\n");
   printf(" 4 - Guardar Alteracoes\n");
-  printf(" 5 - Ler Ficheiro\n");
+  printf(" 5 - Carregar Dados Guardados\n");
   printf(" 0 - Terminar\n");
   opcao = LerInteiro("\n Opcao--> ", 0, 5);
 
