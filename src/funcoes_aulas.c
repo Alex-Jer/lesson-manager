@@ -64,7 +64,6 @@ tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
       aula.data.mes = LerInteiro("Mes: ", MIN_MES, MAX_MES);
       aula.data.ano = LerInteiro("Ano: ", MIN_ANO, MAX_ANO);
 
-      //! Melhorar validação das horas
       do {
         printf("\n-> Hora de Inicio <-\n");
         if (vUCs[aula.idUC - 1].diurno == 1) {
@@ -86,24 +85,30 @@ tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
 
         if (aula.inicio.horas > aula.fim.horas) {
           printf("\nERRO: Hora invalida!\n");
-        } else if (aula.inicio.horas == aula.fim.horas) {
+          erro = 1;
+        } else if ((aula.inicio.horas == aula.fim.horas) ||
+                   (aula.inicio.horas < aula.fim.horas && aula.inicio.minutos + aula.fim.minutos < 60)) {
           printf("\nERRO: Aula deve ter pelo menos 1 hora!\n");
+          erro = 1;
+        } else {
+          erro = 0;
         }
 
         for (int i = 0; i < nAulas; i++) {
           if ((aula.data.dia == vAulas[i].data.dia) && (aula.data.mes == vAulas[i].data.mes) &&
-              (aula.data.ano == vAulas[i].data.ano) &&
-              ((aula.inicio.horas >= vAulas[i].inicio.horas) && (aula.inicio.horas <= vAulas[i].fim.horas)) &&
-              ((aula.fim.horas >= vAulas[i].fim.horas) && (aula.fim.horas <= vAulas[i].fim.horas)) &&
-              (aula.idUC == vAulas[i].idUC)) {
-            printf("\nERRO: Uma aula ja foi agendada para essa hora!\n");
-            erro = 1;
-            i = nAulas;
-          } else {
-            erro = 0;
+              (aula.data.ano == vAulas[i].data.ano) && erro != 1) {
+            if (((aula.inicio.horas >= vAulas[i].inicio.horas) && (aula.inicio.horas <= vAulas[i].fim.horas) &&
+                 (aula.idUC == vAulas[i].idUC)) ||
+                ((aula.fim.horas >= vAulas[i].fim.horas) && (aula.fim.horas <= vAulas[i].inicio.horas) &&
+                 (aula.idUC == vAulas[i].idUC))) {
+              printf("\nERRO: Uma aula ja foi agendada para essa hora!\n");
+              erro = 1;
+              i = nAulas;
+            } else {
+              erro = 0;
+            }
           }
         }
-
       } while (aula.inicio.horas >= aula.fim.horas || erro == 1);
     }
   } while (pos == -1);
