@@ -139,7 +139,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
     printf("Obrigatoria\t ");
     printf("Regime            ");
     printf("Semestre    ");
-    printf("T (Realizadas) TP (Realizadas) PL (Realizadas)\n");
+    printf("T              TP              PL             \n");
     for (i = 0; i < nUCs; i++) {
       printf("   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
       if (vUCs[i].obrigatoria == 1) {

@@ -170,9 +170,10 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
         printf("Estado: Agendada\n");
       } else if (vAulas[i].estado == 'D') {
         printf("Estado: A decorrer\n");
-        printf("Num alunos presentes: %d\n", vAulas[i].nAcessos.online);
+        printf("Num presencas: %d\n", vAulas[i].nAcessos.online);
       } else {
         printf("Estado: Realizada\n");
+        printf("Num alunos que participaram: %d\n", vAulas[i].nAcessos.online);
         printf("Acessos a gravacao: %d\n", vAulas[i].nAcessos.offline);
       }
     }

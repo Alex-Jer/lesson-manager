@@ -39,8 +39,10 @@ int MenuPrincipal(int nUCs, tipoAula vAulas[], int nAulas) {
   printf(" 1 - Gerir UCs\n");
   printf(" 2 - Gerir Aulas\n");
   printf(" 3 - Estatistica\n");
+  printf(" 4 - Guardar Alteracoes\n");
+  printf(" 5 - Ler Ficheiro\n");
   printf(" 0 - Terminar\n");
-  opcao = LerInteiro("\n Opcao--> ", 0, 3);
+  opcao = LerInteiro("\n Opcao--> ", 0, 5);
 
   return opcao;
 }
@@ -54,10 +56,8 @@ int MenuUCs() {
   printf(" 2 - Editar UC\n");
   printf(" 3 - Eliminar UC\n");
   printf(" 4 - Listar UCs\n");
-  printf(" 5 - Guardar Alteracoes\n");
-  printf(" 6 - Ler Ficheiro\n");
   printf(" 0 - Voltar\n");
-  opcao = LerInteiro("\n Opcao--> ", 0, 6);
+  opcao = LerInteiro("\n Opcao--> ", 0, 4);
 
   return opcao;
 }
@@ -74,10 +74,8 @@ int MenuAulas() {
   printf(" 5 - Consultar Dados Aula\n");
   printf(" 6 - Alterar Estado Aula\n");
   printf(" 7 - Assistir Aula\n");
-  printf(" 8 - Guardar Alteracoes\n");
-  printf(" 9 - Ler Ficheiro\n");
   printf(" 0 - Voltar\n");
-  opcao = LerInteiro("\n Opcao--> ", 0, 9);
+  opcao = LerInteiro("\n Opcao--> ", 0, 7);
 
   return opcao;
 }

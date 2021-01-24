@@ -99,8 +99,7 @@ void EscreveFicheiroBinLog(tipoAula aula, char tipoAcesso[], int numeroEstudante
   }
 }
 
-/*
-void EscreveFicheiroTextoAulas(tipoAula vAulas[], int nAulas) {
+void EscreveFicheiroTextoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
   int i;
   FILE *ficheiro;
 
@@ -108,29 +107,35 @@ void EscreveFicheiroTextoAulas(tipoAula vAulas[], int nAulas) {
   if (ficheiro == NULL) {
     printf("Erro ao abrir ficheiro!\n");
   } else {
-    fprintf(ficheiro, "\n   ID\t\t\t\t\t\t\t\t\t\t\t");
-    fprintf(ficheiro, "Designacao\t  ");
-    fprintf(ficheiro, "Obrigatoria\t\t");
-    fprintf(ficheiro, "Regime\t\t\t\t ");
-    fprintf(ficheiro, "Semestre\t\t");
-    fprintf(ficheiro, "T              TP             PL\n");
     for (i = 0; i < nAulas; i++) {
-      fprintf(ficheiro, "   %02d\t%30s\t  ", vAulas[i].id, vAulas[i].designacao);
-      if (vAulas[i].obrigatoria == 1) {
-        fprintf(ficheiro, "Sim\t\t\t\t\t\t");
+      fprintf(ficheiro, "Designacao: %s\n", vAulas[i].designacao);
+      fprintf(ficheiro, "UC: %s\n", vUCs[vAulas[i].idUC - 1].designacao);
+      fprintf(ficheiro, "Tipo: %s\n", vAulas[i].tipoAula);
+      fprintf(ficheiro, "Docente: %s\n", vAulas[i].docente);
+      fprintf(ficheiro, "Data: %02d-%02d-%04d\n", vAulas[i].data.dia, vAulas[i].data.mes, vAulas[i].data.ano);
+      fprintf(ficheiro, "Hora: %02d:%02d - %02d:%02d\n", vAulas[i].inicio.horas, vAulas[i].inicio.minutos, vAulas[i].fim.horas,
+              vAulas[i].fim.minutos);
+
+      if (vAulas[i].gravacao == 'G') {
+        fprintf(ficheiro, "Gravacao: Disponivel\n");
+      } else if (vAulas[i].gravacao == 'A') {
+        fprintf(ficheiro, "Gravacao: A gravar...\n");
       } else {
-        fprintf(ficheiro, "Nao\t\t\t\t\t\t");
+        fprintf(ficheiro, "Gravacao: Indisponivel\n");
       }
-      if (vAulas[i].diurno == 1) {
-        fprintf(ficheiro, "Diurno\t\t\t\t ");
+
+      if (vAulas[i].estado == 'A') {
+        fprintf(ficheiro, "Estado: Agendada\n");
+      } else if (vAulas[i].estado == 'D') {
+        fprintf(ficheiro, "Estado: A decorrer\n");
+        fprintf(ficheiro, "Num presencas: %d\n", vAulas[i].nAcessos.online);
       } else {
-        fprintf(ficheiro, "Pos-Laboral\t\t ");
+        fprintf(ficheiro, "Estado: Realizada\n");
+        fprintf(ficheiro, "Num alunos que participaram: %d\n", vAulas[i].nAcessos.online);
+        fprintf(ficheiro, "Acessos a gravacao: %d\n", vAulas[i].nAcessos.offline);
       }
-      fprintf(ficheiro, "%d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vAulas[i].semestre,
-              vAulas[i].teorica.nPrevistas, vAulas[i].teorica.duracao, vAulas[i].teoricopratica.nPrevistas,
-              vAulas[i].teoricopratica.duracao, vAulas[i].praticolab.nPrevistas, vAulas[i].praticolab.duracao);
+      fprintf(ficheiro, "\n//\n\n");
     }
     fclose(ficheiro);
   }
 }
-*/

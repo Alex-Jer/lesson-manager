@@ -1,0 +1,45 @@
+Designacao: e
+UC: teste
+Tipo: PL
+Docente: dwojia
+Data: 01-01-2020
+Hora: 08:30 - 10:30
+Gravacao: A gravar...
+Estado: A decorrer
+Num presencas: 3
+
+//
+
+Designacao: ihowra
+UC: teste
+Tipo: PL
+Docente: t
+Data: 10-10-2020
+Hora: 08:30 - 10:40
+Gravacao: Indisponivel
+Estado: Agendada
+
+//
+
+Designacao: dwajo
+UC: teste
+Tipo: PL
+Docente: ijdowa
+Data: 10-10-2020
+Hora: 10:30 - 13:40
+Gravacao: Indisponivel
+Estado: Agendada
+
+//
+
+Designacao: diwaiodaw
+UC: teste
+Tipo: PL
+Docente: iohwdoaj
+Data: 10-10-2020
+Hora: 10:30 - 14:40
+Gravacao: Indisponivel
+Estado: Agendada
+
+//
+
