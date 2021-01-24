@@ -17,7 +17,7 @@ void EscreveFicheiroBinarioUCs(tipoUC vUCs[], int nUCs) {
       if (quantEscrito != nUCs) {
         printf("\nERRO: Falha na escrita de informacao no vetor!\n");
       } else {
-        printf("\nGravado com sucesso no ficheiro binario!\n");
+        printf("\nSUCESSO: Ficheiro gravado!\n");
       }
     }
     fclose(ficheiro);
@@ -38,35 +38,10 @@ tipoUC *LeFicheiroBinarioUCs(tipoUC vUCs[], int *nUCs) {
     vUCs = realloc(vUCs, (*nUCs) * sizeof(tipoUC));
 
     if (vUCs == NULL && *nUCs != 0) {
-      printf("\nERRO: Erro ao reservar memoria.");
+      printf("\nERRO: Falha na reserva de memoria.");
       vUCs = pUCs;
     } else {
       fread(vUCs, sizeof(tipoUC), *nUCs, ficheiro);
-      printf("\nFicheiro lido com sucesso!\n");
-      //! Temporário
-      printf("\n   ID\t\t\t    ");
-      printf("Designacao\t  ");
-      printf("Obrigatoria\t ");
-      printf("Regime            ");
-      printf("Semestre    ");
-      printf("T              TP             PL\n");
-      for (int i = 0; i < *nUCs; i++) {
-        printf("   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
-        if (vUCs[i].obrigatoria == 1) {
-          printf("Sim\t\t ");
-        } else {
-          printf("Nao\t\t ");
-        }
-        if (vUCs[i].diurno == 1) {
-          printf("Diurno\t\t");
-        } else {
-          printf("Pos-Laboral\t");
-        }
-        printf("   %d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vUCs[i].semestre,
-               vUCs[i].teorica.nPrevistas, vUCs[i].teorica.duracao, vUCs[i].teoricopratica.nPrevistas,
-               vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.nPrevistas, vUCs[i].praticolab.duracao);
-      }
-      //!
     }
     fclose(ficheiro);
   }

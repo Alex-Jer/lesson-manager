@@ -17,7 +17,9 @@ void EscreveFicheiroBinarioAulas(tipoAula vAulas[], int nAulas) {
       if (quantEscrito != nAulas) {
         printf("\nERRO: Falha na escrita de informacao no vetor!\n");
       } else {
-        printf("\nGravado com sucesso no ficheiro binario!\n");
+        printf("\nSUCESSO: Ficheiro gravado!\n");
+        printf("\nPressione ENTER para continuar . . . ");
+        getchar();
       }
     }
     fclose(ficheiro);
@@ -42,7 +44,6 @@ tipoAula *LeFicheiroBinarioAulas(tipoAula vAulas[], int *nAulas) {
       vAulas = pAulas;
     } else {
       fread(vAulas, sizeof(tipoAula), *nAulas, ficheiro);
-      printf("\nFicheiro lido com sucesso!");
     }
     fclose(ficheiro);
   }

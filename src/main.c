@@ -28,17 +28,17 @@ int main() {
               break;
             case 2:  // Editar
               if (nUCs <= 0) {
-                printf("\nERRO: Nao ha UCs registadas!\n");
+                printf("\n ERRO: Nao ha UCs registadas!\n");
               } else {
-                idUC = LerInteiro("ID da UC a editar: ", MIN_UCS, MAX_UCS);
+                idUC = LerInteiro("\n ID da UC a editar: ", MIN_UCS, MAX_UCS);
                 EditaUC(vUCs, &nUCs, idUC);
               }
               break;
             case 3:  // Eliminar
               if (nUCs <= 0) {
-                printf("\nERRO: Nao ha UCs registadas!\n");
+                printf("\n ERRO: Nao ha UCs registadas!\n");
               } else {
-                idUC = LerInteiro("ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
+                idUC = LerInteiro("\n ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
                 vUCs = EliminaUC(vUCs, &nUCs, idUC);
               }
               break;
@@ -57,9 +57,9 @@ int main() {
               break;
             case 2:  // Alterar Agendamento
               if (nAulas <= 0) {
-                printf("\nERRO: Nao existem aulas registadas!\n");
+                printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
-                LerString("\nDesignacao da aula: ", designacaoAula, MAX_STRING);
+                LerString("\n Designacao da aula: ", designacaoAula, MAX_STRING);
                 EditaAgendamento(vAulas, nAulas, designacaoAula, vUCs);
                 // EditaAula(vAulas, nAulas, designacaoAula, vUCs, nUCs);
               }
@@ -67,9 +67,9 @@ int main() {
 
             case 3:  // Eliminar Aula
               if (nAulas <= 0) {
-                printf("\nERRO: Nao existem aulas registadas!\n");
+                printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
-                LerString("\nDesignacao da aula a eliminar: ", designacaoAula, MAX_STRING);
+                LerString("\n Designacao da aula a eliminar: ", designacaoAula, MAX_STRING);
                 vAulas = EliminaAula(vAulas, &nAulas, designacaoAula);
               }
               break;
@@ -78,25 +78,25 @@ int main() {
               break;
             case 5:  // Consultar uma Aula
               if (nAulas <= 0) {
-                printf("\nERRO: Nao existem aulas registadas!\n");
+                printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
-                LerString("\nDesignacao da aula a consultar: ", designacaoAula, MAX_STRING);
+                LerString("\n Designacao da aula a consultar: ", designacaoAula, MAX_STRING);
                 ListaUmaAula(vAulas, nAulas, designacaoAula, vUCs);
               }
               break;
             case 6:  // Alterar Estado das Aulas
               if (nAulas <= 0) {
-                printf("\nERRO: Nao existem aulas registadas!\n");
+                printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
                 ListaAlteraEstadoAulas(vAulas, nAulas, vUCs);
               }
               break;
             case 7:  // Assistir a uma Aula
               if (nAulas <= 0) {
-                printf("\nERRO: Nao existem aulas registadas!\n");
+                printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
-                numeroEstudante = LerInteiro("\nInsira o seu numero de estudante: ", MIN_NUM_ESTUDANTE, MAX_NUM_ESTUDANTE);
-                LerString("\nDesignacao da aula que deseja assistir: ", designacaoAula, MAX_STRING);
+                numeroEstudante = LerInteiro("\n Insira o seu numero de estudante: ", MIN_NUM_ESTUDANTE, MAX_NUM_ESTUDANTE);
+                LerString("\n Designacao da aula que deseja assistir: ", designacaoAula, MAX_STRING);
                 AssisteAula(vAulas, nAulas, designacaoAula, numeroEstudante);
               }
               break;
@@ -117,7 +117,9 @@ int main() {
       case 5:  // Ler Ficheiro
         vUCs = LeFicheiroBinarioUCs(vUCs, &nUCs);
         vAulas = LeFicheiroBinarioAulas(vAulas, &nAulas);
-        break;
+        printf("\n SUCESSO: Dados Restaurados!\n");
+        printf("\n Pressione ENTER para continuar . . . ");
+        getchar();
     }
   } while (opcao != 0);
 

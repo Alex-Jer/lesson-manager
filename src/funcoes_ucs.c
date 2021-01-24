@@ -121,6 +121,8 @@ tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
         vUCs[*nUCs] = dadosUC;
         (*nUCs)++;
         printf("\nSUCESSO: UC inserida!\n");
+        printf("\nPressione ENTER para continuar . . . ");
+        getchar();
       }
     }
   }
@@ -184,7 +186,9 @@ void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
       vUCs[pos].praticolab.duracao = editadaUC.praticolab.duracao;
       vUCs[pos].totalAulasPrevistas =
           editadaUC.teorica.nPrevistas + editadaUC.teoricopratica.nPrevistas + editadaUC.praticolab.nPrevistas;
-      printf("SUCESSO: UC modificada!\n");
+      printf("\nSUCESSO: UC modificada!\n");
+      printf("\nPressione ENTER para continuar . . . ");
+      getchar();
     }
   }
 }
@@ -210,7 +214,9 @@ tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC) {
         vUCs = pUCs;  // Restaura backup
       }
       (*nUCs)--;
-      printf("SUCESSO: UC eliminada!\n");
+      printf("\nSUCESSO: UC eliminada!\n");
+      printf("\nPressione ENTER para continuar . . . ");
+      getchar();
     }
   }
   return vUCs;

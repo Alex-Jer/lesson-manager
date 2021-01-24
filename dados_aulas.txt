@@ -3,7 +3,7 @@ UC: SC
 Tipo: TP
 Docente: wiohda
 Data: 10-10-2020
-Hora: 10:30 - 11:30
+Hora: 09:30 - 10:30
 Gravacao: Indisponivel
 Estado: Agendada
 
@@ -14,9 +14,10 @@ UC: P1
 Tipo: T
 Docente: 10
 Data: 10-10-2020
-Hora: 12:30 - 13:30
-Gravacao: Indisponivel
-Estado: Agendada
+Hora: 10:30 - 13:30
+Gravacao: A gravar...
+Estado: A decorrer
+Num presencas: 2
 
 //
 
