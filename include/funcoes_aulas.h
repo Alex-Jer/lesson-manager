@@ -18,4 +18,6 @@ void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nU
 void EditaAgendamento(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs);
 tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]);
 void AssisteAula(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs, char designacaoAula[], int numeroEstudante);
+int ComparaDataAulas(const void *v1, const void *v2);
+
 #endif /* FUNCOES_AULAS_H_INCLUDED */

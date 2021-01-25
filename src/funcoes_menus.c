@@ -83,7 +83,7 @@ int MenuAulas() {
 
 // Mostra no ecrã um conjunto de dados estatísticos
 int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
-  int opcao, i, iAulas, iUCs, soma1, soma2;
+  int opcao, i, soma1, soma2;
   int nDecorrerRealizadas = 0, nPresencas = 0, nGravadas = 0, nAcessosGravT = 0, nAcessosGravTP = 0, nAcessosGravPL = 0;
   float mediaPresencas, mediaGravadas, nGravadasPerc;
 
@@ -93,17 +93,17 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
     nAcessosGravPL += vUCs[i].praticolab.nAcessosGrav;
   }
 
-  for (iAulas = 0; iAulas < nAulas; iAulas++) {
-    if (vAulas[iAulas].estado == 'D' || vAulas[iAulas].estado == 'R') {
+  for (i = 0; i < nAulas; i++) {
+    if (vAulas[i].estado == 'D' || vAulas[i].estado == 'R') {
       nDecorrerRealizadas++;
     }
 
-    if (vAulas[iAulas].gravacao == 'G') {
+    if (vAulas[i].gravacao == 'G') {
       nGravadas++;
     }
 
-    if (vAulas[iAulas].estado == 'D' || vAulas[iAulas].estado == 'R') {
-      nPresencas += vAulas[iAulas].nAcessos.online;
+    if (vAulas[i].estado == 'D' || vAulas[i].estado == 'R') {
+      nPresencas += vAulas[i].nAcessos.online;
     }
   }
 
@@ -141,7 +141,6 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
   }
 
   printf(" Tipo(s) de aula com maior quantidade de acessos as gravacoes:\n");
-  printf(" T %d TP %d PL %d\n", nAcessosGravT, nAcessosGravTP, nAcessosGravPL);
   if (nAcessosGravT == nAcessosGravTP && nAcessosGravTP == nAcessosGravPL) {
     printf(" - Teorica\n");
     printf(" - Teoricopratica\n");
@@ -157,6 +156,12 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
   }
 
   printf(" Aula(s) online realizadas a mais tempo: **\n");
+  qsort(vAulas, nAulas, sizeof(tipoAula), ComparaDataAulas);
+  for (i = 0; i < nAulas; i++) {
+    if (vAulas[i].estado == 'R') {
+      printf(" #%d - %s", i + 1, vAulas[i].designacao);
+    }
+  }
 
   opcao = LerInteiro(" \n Insira 0 para voltar--> ", 0, 0);
 

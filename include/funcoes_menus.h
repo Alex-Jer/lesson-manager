@@ -2,6 +2,8 @@
 #define FUNCOES_MENU_H_INCLUDED
 
 #include "estruturas.h"
+#include "funcoes_aulas.h"
+#include "funcoes_ucs.h"
 
 int MenuPrincipal(int nUCs, tipoAula vAulas[], int nAulas);
 int MenuUCs();

@@ -268,9 +268,9 @@ void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC v
       }
 
       printf("\n -> Presencas: <-\n\n");
-      for (i = 0; i < vAulas[pos].nAcessos.online; i++) {  //*
+      for (i = 0; i < vAulas[pos].nAcessos.online; i++) {
         if (vAulas[pos].nAcessos.online <= 0) {
-          printf("Nenhum aluno presente!\n");
+          printf(" Nenhum aluno presente!\n");
         } else {
           printf(" Estudante %d\n", vAulas[pos].presencas[i]);
         }
@@ -629,4 +629,16 @@ void AssisteAula(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs, char de
       }
     }
   }
+}
+
+int ComparaDataAulas(const void *v1, const void *v2) {
+  tipoAula *valor1, *valor2;
+  int comp;
+
+  valor1 = (tipoAula *)v1;
+  valor2 = (tipoAula *)v2;
+
+  comp = valor1->data.ano - valor2->data.ano;
+
+  return comp;
 }

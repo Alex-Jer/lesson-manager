@@ -145,29 +145,29 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
   if (nUCs == 0) {
     printf("\n ERRO: Nao existem UCs registadas!\n");
   } else {
-    printf("\n   ID\t\t\t    ");
-    printf("Designacao\t  ");
-    printf("Obrigatoria\t ");
-    printf("Regime            ");
-    printf("Semestre    ");
-    printf("T              TP              PL            ");
-    printf("R   \n");
     for (i = 0; i < nUCs; i++) {
-      printf("   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
+      printf(" ID: %d\n", vUCs[i].id);
+      printf(" Designacao: %s\n", vUCs[i].designacao);
+
+      printf(" Obrigatoria: ");
       if (vUCs[i].obrigatoria == 1) {
-        printf("Sim\t\t ");
+        printf("Sim\n");
       } else {
-        printf("Nao\t\t ");
+        printf("Nao\n");
       }
+
+      printf(" Regime: ");
       if (vUCs[i].diurno == 1) {
-        printf("Diurno\t\t");
+        printf("Diurno\n");
       } else {
-        printf("Pos-Laboral\t");
+        printf("Pos-Laboral\n");
       }
-      printf("   #%d\t        %02d (%03dmin)    %02d (%03dmin)     %02d (%03dmin)", vUCs[i].semestre, vUCs[i].teorica.nPrevistas,
-             vUCs[i].teorica.duracao, vUCs[i].teoricopratica.nPrevistas, vUCs[i].teoricopratica.duracao,
-             vUCs[i].praticolab.nPrevistas, vUCs[i].praticolab.duracao);
-      printf("   %d\n", vUCs[i].teorica.nRealizadas + vUCs[i].teoricopratica.nRealizadas + vUCs[i].praticolab.nRealizadas);
+
+      printf(" Semestre: #%d\n", vUCs[i].semestre);
+      printf(" Teoricas: %02d (%03dmin)\n", vUCs[i].teorica.nPrevistas, vUCs[i].teorica.duracao);
+      printf(" Teoricopraticas: %02d (%03dmin)\n", vUCs[i].teoricopratica.nPrevistas, vUCs[i].teoricopratica.duracao);
+      printf(" Praticolaboratoriais %02d (%03dmin)\n", vUCs[i].praticolab.nPrevistas, vUCs[i].praticolab.duracao);
+      printf("\n ********************************\n\n");
     }
   }
   printf("\n Pressione ENTER para continuar . . . ");

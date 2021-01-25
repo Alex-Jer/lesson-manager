@@ -114,9 +114,7 @@ int main() {
         break;
       case 4:  // Gravar em ficheiro
         EscreveFicheiroBinarioUCs(vUCs, nUCs);
-        EscreveFicheiroTextoUCs(vUCs, nUCs);
         EscreveFicheiroBinarioAulas(vAulas, nAulas);
-        EscreveFicheiroTextoAulas(vAulas, nAulas, vUCs);
         break;
       case 5:  // Ler Ficheiro
         vUCs = LeFicheiroBinarioUCs(vUCs, &nUCs);
