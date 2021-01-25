@@ -54,11 +54,10 @@ int MenuUCs() {
   printf("\n\n ===== GERIR UCS =====\n\n");
   printf(" 1 - Registar UC\n");
   printf(" 2 - Editar UC\n");
-  printf(" 3 - Eliminar UC\n");
-  printf(" 4 - Listar UCs\n");
-  printf(" 5 - Ranking de UCs\n");
+  printf(" 3 - Listar UCs\n");
+  printf(" 4 - Ranking de UCs\n");
   printf(" 0 - Voltar\n");
-  opcao = LerInteiro(" \n Opcao--> ", 0, 5);
+  opcao = LerInteiro(" \n Opcao--> ", 0, 4);
 
   return opcao;
 }
@@ -111,7 +110,7 @@ void DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
   mediaGravadas = (float)nGravadas / nUCs;
   nGravadasPerc = mediaGravadas * 100;
 
-  printf("\n\n ===== DADOS ESTATISTICOS =====\n\n");
+  printf("\n\n ===================== DADOS ESTATISTICOS =====================\n\n");
   if (nPresencas > 0) {
     printf(" Media de presencas em aulas realizadas: %.2f\n", mediaPresencas);
   } else {
@@ -155,7 +154,7 @@ void DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
     printf(" Ainda nao foi visualizada nenhuma gravacao\n");
   }
 
-  printf(" Aula(s) online realizadas a mais tempo: **\n");
+  printf(" Aula(s) online realizadas a mais tempo:\n");
   qsort(vAulas, nAulas, sizeof(tipoAula), ComparaDataAulas);
   for (i = 0; i < nAulas; i++) {
     if (vAulas[i].estado == 'R') {

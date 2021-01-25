@@ -34,19 +34,11 @@ int main() {
                 EditaUC(vUCs, &nUCs, idUC);
               }
               break;
-            case 3:  // Eliminar
-              if (nUCs <= 0) {
-                printf("\n ERRO: Nao ha UCs registadas!\n");
-              } else {
-                idUC = LerInteiro(" \n ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
-                vUCs = EliminaUC(vUCs, &nUCs, idUC);
-              }
-              break;
-            case 4:  // Listar
+            case 3:  // Listar
               qsort(vUCs, nUCs, sizeof(tipoUC), ComparaIdUC);
               ListaUCs(vUCs, nUCs);
               break;
-            case 5:  // Ranking UCs por gravação
+            case 4:  // Ranking UCs por gravação
               qsort(vUCs, nUCs, sizeof(tipoUC), ComparaUCQuantAcessosGravacao);
               ListaRankGrav(vUCs, nUCs);
               break;

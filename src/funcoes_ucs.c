@@ -224,35 +224,6 @@ void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   }
 }
 
-// Elimina a UC recebida como parâmetro
-tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC) {
-  tipoUC *pUCs;
-  int i, pos;
-
-  pUCs = vUCs;  // Backup do vetor
-
-  if (*nUCs != 0) {
-    pos = ProcuraUC(vUCs, *nUCs, idUC);
-    if (pos == -1) {
-      printf("\n ERRO: UC nao encontrada!\n");
-    } else {
-      for (i = pos; i < *nUCs - 1; i++) {
-        vUCs[i] = vUCs[i + 1];
-      }
-      vUCs = realloc(vUCs, (*nUCs - 1) * sizeof(tipoUC));
-      if (vUCs == NULL && (*nUCs - 1) != 0) {
-        printf("\n ERRO: Falha na alocacao de memoria!");
-        vUCs = pUCs;  // Restaura backup
-      }
-      (*nUCs)--;
-      printf("\n SUCESSO: UC eliminada!\n");
-      printf("\n Pressione ENTER para continuar . . . ");
-      getchar();
-    }
-  }
-  return vUCs;
-}
-
 int ComparaIdUC(const void *v1, const void *v2) {
   tipoUC *valor1, *valor2;
   int comp;
