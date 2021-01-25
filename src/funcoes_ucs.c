@@ -170,7 +170,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
       printf("\n ********************************\n\n");
     }
   }
-  printf("\n Pressione ENTER para continuar . . . ");
+  printf(" Pressione ENTER para continuar . . . ");
   getchar();
 }
 

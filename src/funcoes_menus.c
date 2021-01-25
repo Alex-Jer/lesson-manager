@@ -82,8 +82,8 @@ int MenuAulas() {
 }
 
 // Mostra no ecrã um conjunto de dados estatísticos
-int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
-  int opcao, i, soma1, soma2;
+void DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
+  int i, soma1, soma2;
   int nDecorrerRealizadas = 0, nPresencas = 0, nGravadas = 0, nAcessosGravT = 0, nAcessosGravTP = 0, nAcessosGravPL = 0;
   float mediaPresencas, mediaGravadas, nGravadasPerc;
 
@@ -159,11 +159,10 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
   qsort(vAulas, nAulas, sizeof(tipoAula), ComparaDataAulas);
   for (i = 0; i < nAulas; i++) {
     if (vAulas[i].estado == 'R') {
-      printf(" #%d - %s", i + 1, vAulas[i].designacao);
+      printf(" #%d - %s\n", i + 1, vAulas[i].designacao);
     }
   }
 
-  opcao = LerInteiro(" \n Insira 0 para voltar--> ", 0, 0);
-
-  return opcao;
+  printf("\n Pressione ENTER para continuar . . . ");
+  getchar();
 }

@@ -109,7 +109,7 @@ int main() {
         break;
       case 3:  // Estatística
         do {
-          opcaoSubMenu = DadosEstatisticos(vUCs, nUCs, vAulas, nAulas);
+          DadosEstatisticos(vUCs, nUCs, vAulas, nAulas);
         } while (opcaoSubMenu != 0);
         break;
       case 4:  // Gravar em ficheiro
