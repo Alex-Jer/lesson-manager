@@ -47,45 +47,47 @@
 	"funcoes_menus.h"
 	"funcoes_ucs.h"
 
-1611152896 source:e:\apps\gestor-aulas\funcoes_auxiliares.c
+1611614095 source:e:\apps\gestor-aulas\funcoes_auxiliares.c
 	"funcoes_auxiliares.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_auxiliares.h
+1611614095 e:\apps\gestor-aulas\funcoes_auxiliares.h
 	<stdio.h>
 	<string.h>
 	"constantes.h"
-
-1611152896 e:\apps\gestor-aulas\constantes.h
-	<stdio.h>
-	<stdlib.h>
-
-1611152896 source:e:\apps\gestor-aulas\funcoes_ficheiros_uc.c
-	"funcoes_ficheiros_uc.h"
-
-1611152896 e:\apps\gestor-aulas\funcoes_ficheiros_uc.h
-	"estruturas.h"
-
-1611152896 e:\apps\gestor-aulas\estruturas.h
-	"constantes.h"
-
-1611152896 source:e:\apps\gestor-aulas\funcoes_menus.c
-	"funcoes_menus.h"
-	<stdio.h>
-	<stdlib.h>
-	"funcoes_auxiliares.h"
-
-1611152896 e:\apps\gestor-aulas\funcoes_menus.h
-
-1611152896 source:e:\apps\gestor-aulas\funcoes_ucs.c
 	"funcoes_ucs.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_ucs.h
+1611614095 e:\apps\gestor-aulas\constantes.h
+	<stdio.h>
+	<stdlib.h>
+
+1611614095 source:e:\apps\gestor-aulas\funcoes_ficheiros_uc.c
+	"funcoes_ficheiros_uc.h"
+
+1611614095 e:\apps\gestor-aulas\funcoes_ficheiros_uc.h
+	"estruturas.h"
+
+1611614095 e:\apps\gestor-aulas\estruturas.h
+	"constantes.h"
+
+1611614095 source:e:\apps\gestor-aulas\funcoes_menus.c
+	"funcoes_menus.h"
+	"funcoes_auxiliares.h"
+
+1611614095 e:\apps\gestor-aulas\funcoes_menus.h
+	"estruturas.h"
+	"funcoes_aulas.h"
+	"funcoes_ucs.h"
+
+1611614095 source:e:\apps\gestor-aulas\funcoes_ucs.c
+	"funcoes_ucs.h"
+
+1611614095 e:\apps\gestor-aulas\funcoes_ucs.h
 	<ctype.h>
 	"estruturas.h"
 	"funcoes_auxiliares.h"
 	"funcoes_ficheiros_uc.h"
 
-1611152896 source:e:\apps\gestor-aulas\main.c
+1611614095 source:e:\apps\gestor-aulas\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
@@ -97,20 +99,22 @@
 	"funcoes_menus.h"
 	"funcoes_ucs.h"
 
-1611152896 source:e:\apps\gestor-aulas\funcoes_aulas.c
+1611614095 source:e:\apps\gestor-aulas\funcoes_aulas.c
 	"funcoes_aulas.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_aulas.h
+1611614095 e:\apps\gestor-aulas\funcoes_aulas.h
 	<ctype.h>
 	<string.h>
 	"estruturas.h"
 	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_aula.h"
 	"funcoes_ucs.h"
 
-1611152896 source:e:\apps\gestor-aulas\funcoes_ficheiros_aula.c
+1611614095 source:e:\apps\gestor-aulas\funcoes_ficheiros_aula.c
 	"funcoes_ficheiros_aula.h"
 
-1611152896 e:\apps\gestor-aulas\funcoes_ficheiros_aula.h
+1611614095 e:\apps\gestor-aulas\funcoes_ficheiros_aula.h
+	<string.h>
 	"estruturas.h"
 
 1611157879 source:c:\users\utilizador\desktop\github\gestor-aulas backup\funcoes_aulas.c
