@@ -1,22 +1,9 @@
-Designacao: a4
-UC: 
-Tipo: PL
-Docente: wdioada
-Data: 10-10-2020
-Hora: 09:30 - 10:30
-Gravacao: Disponivel
-Estado: Realizada
-Num alunos que participaram: 0
-Acessos a gravacao: 1
-
-//
-
 Designacao: a10
-UC: °øa
+UC: P
 Tipo: PL
-Docente: djwaiodjiaw
-Data: 10-01-2021
-Hora: 10:10 - 11:50
+Docente: diowadja
+Data: 10-10-2020
+Hora: 10:10 - 13:30
 Gravacao: Disponivel
 Estado: Realizada
 Num alunos que participaram: 0

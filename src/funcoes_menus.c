@@ -83,8 +83,15 @@ int MenuAulas() {
 
 // Mostra no ecrã um conjunto de dados estatísticos
 int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
-  int opcao, i, iAulas, iUCs, soma1, soma2, nDecorrerRealizadas = 0, nPresencas = 0, nGravadas = 0;
+  int opcao, i, iAulas, iUCs, soma1, soma2;
+  int nDecorrerRealizadas = 0, nPresencas = 0, nGravadas = 0, nAcessosGravT = 0, nAcessosGravTP = 0, nAcessosGravPL = 0;
   float mediaPresencas, mediaGravadas, nGravadasPerc;
+
+  for (i = 0; i < nUCs; i++) {
+    nAcessosGravT += vUCs[i].teorica.nAcessosGrav;
+    nAcessosGravTP += vUCs[i].teoricopratica.nAcessosGrav;
+    nAcessosGravPL += vUCs[i].praticolab.nAcessosGrav;
+  }
 
   for (iAulas = 0; iAulas < nAulas; iAulas++) {
     if (vAulas[iAulas].estado == 'D' || vAulas[iAulas].estado == 'R') {
@@ -117,7 +124,7 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
     printf(" UCs com aulas gravadas: **%%\n");
   }
 
-  printf(" UC(s) com menor quantidade de aulas:\n");
+  printf(" UC(s) com menor quantidade de aulas realizadas:\n");
   if (nAulas > 0) {
     qsort(vUCs, nUCs, sizeof(tipoUC), ComparaQuantAulasUC);
     soma1 = vUCs[0].teorica.nRealizadas + vUCs[0].teoricopratica.nRealizadas + vUCs[0].praticolab.nRealizadas;
@@ -130,7 +137,23 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
       }
     }
   } else {
-    printf("Nao ha UCs com aulas registadas.\n");
+    printf(" Nao ha UCs com aulas registadas.\n");
+  }
+
+  printf(" Tipo(s) de aula com maior quantidade de acessos as gravacoes:\n");
+  printf(" T %d TP %d PL %d\n", nAcessosGravT, nAcessosGravTP, nAcessosGravPL);
+  if (nAcessosGravT == nAcessosGravTP && nAcessosGravTP == nAcessosGravPL) {
+    printf(" - Teorica\n");
+    printf(" - Teoricopratica\n");
+    printf(" - Praticolaboratorial\n");
+  } else if (nAcessosGravT > nAcessosGravTP && nAcessosGravT > nAcessosGravPL) {
+    printf(" - Teorica\n");
+  } else if (nAcessosGravTP > nAcessosGravT && nAcessosGravTP > nAcessosGravPL) {
+    printf(" - Teoricopratica\n");
+  } else if (nAcessosGravPL > nAcessosGravT && nAcessosGravPL > nAcessosGravTP) {
+    printf(" - Praticolaboratorial\n");
+  } else if (nAcessosGravT + nAcessosGravTP + nAcessosGravPL == 0) {
+    printf(" Ainda nao foi visualizada nenhuma gravacao\n");
   }
 
   printf(" Aula(s) online realizadas a mais tempo: **\n");

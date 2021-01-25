@@ -5,40 +5,29 @@ RegimeDiurno
 Semestre:  1
 Teoricas Previstas: 0 (0min)
 Teoricopraticas Previstas: 0 (0min)
-Praticolaboratoriais Previstas: 20 (240min)
+Praticolaboratoriais Previstas: -1414812757 (-1414812757min)
 
 ********************************
 
-ID: 3
-Designacao: u3
-Obrigatoria: Sim
-RegimeDiurno
-Semestre:  1
-Teoricas Previstas: 20 (240min)
+ID: 0
+Designacao: 
+Obrigatoria: Nao
+RegimePos-Laboral
+Semestre:  0
+Teoricas Previstas: 1 (0min)
 Teoricopraticas Previstas: 0 (0min)
 Praticolaboratoriais Previstas: 0 (0min)
 
 ********************************
 
-ID: 4
-Designacao: u4
-Obrigatoria: Sim
-RegimeDiurno
-Semestre:  1
-Teoricas Previstas: 0 (0min)
-Teoricopraticas Previstas: 0 (0min)
-Praticolaboratoriais Previstas: 20 (240min)
-
-********************************
-
-ID: 10
-Designacao: u10
-Obrigatoria: Sim
-RegimeDiurno
-Semestre:  1
-Teoricas Previstas: 0 (0min)
-Teoricopraticas Previstas: 0 (0min)
-Praticolaboratoriais Previstas: 20 (240min)
+ID: 0
+Designacao: 
+Obrigatoria: Nao
+RegimePos-Laboral
+Semestre:  0
+Teoricas Previstas: 0 (1min)
+Teoricopraticas Previstas: 1 (0min)
+Praticolaboratoriais Previstas: 0 (0min)
 
 ********************************
 

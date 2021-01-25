@@ -47,7 +47,7 @@ int main() {
               ListaUCs(vUCs, nUCs);
               break;
             case 5:  // Ranking UCs por gravação
-              qsort(vUCs, nUCs, sizeof(tipoUC), ComparaQuantAcessosGravacao);
+              qsort(vUCs, nUCs, sizeof(tipoUC), ComparaUCQuantAcessosGravacao);
               ListaRankGrav(vUCs, nUCs);
               break;
           }

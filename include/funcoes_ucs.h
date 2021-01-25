@@ -15,7 +15,7 @@ void ListaRankGrav(tipoUC vUCs[], int nUCs);
 void EditaUC(tipoUC vUCs[], int *nUCs, int idUC);
 tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC);
 int ComparaIdUC(const void *v1, const void *v2);
-int ComparaQuantAcessosGravacao(const void *v1, const void *v2);
+int ComparaUCQuantAcessosGravacao(const void *v1, const void *v2);
 int ComparaQuantAulasUC(const void *v1, const void *v2);
 
 #endif /* FUNCOES_UCS_H_INCLUDED */

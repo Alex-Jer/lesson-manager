@@ -22,10 +22,13 @@ tipoUC LeDadosUC(tipoUC vUCs[], int nUCs, int modoEdicao) {
   uc.diurno = 1;       // 0 - Não // 1 - Sim
   uc.teorica.nAgendadas = 0;
   uc.teorica.nRealizadas = 0;
+  uc.teorica.nAcessosGrav = 0;
   uc.teoricopratica.nAgendadas = 0;
   uc.teoricopratica.nRealizadas = 0;
+  uc.teoricopratica.nAcessosGrav = 0;
   uc.praticolab.nAgendadas = 0;
   uc.praticolab.nRealizadas = 0;
+  uc.praticolab.nAcessosGrav = 0;
   uc.nAcessos.online = 0;
   uc.nAcessos.offline = 0;
 
@@ -261,7 +264,7 @@ int ComparaIdUC(const void *v1, const void *v2) {
   return comp;
 }
 
-int ComparaQuantAcessosGravacao(const void *v1, const void *v2) {
+int ComparaUCQuantAcessosGravacao(const void *v1, const void *v2) {
   tipoUC *valor1, *valor2;
   int comp;
 
@@ -282,7 +285,7 @@ int ComparaQuantAulasUC(const void *v1, const void *v2) {
   soma1 = valor1->teorica.nRealizadas + valor1->teoricopratica.nRealizadas + valor1->praticolab.nRealizadas;
   soma2 = valor2->teorica.nRealizadas + valor2->teoricopratica.nRealizadas + valor2->praticolab.nRealizadas;
 
-  comp = soma2 - soma1;
+  comp = soma1 - soma2;
 
   return comp;
 }

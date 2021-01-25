@@ -617,20 +617,16 @@ void AssisteAula(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs, char de
         EscreveFicheiroBinLog(vAulas[pos], "OFFLINE", numeroEstudante);
         vAulas[pos].nAcessos.offline++;
         vUCs[posUC].nAcessos.offline++;
+        if (strcmp(vAulas[pos].tipoAula, "T") == 0) {
+          vUCs[posUC].teorica.nAcessosGrav++;
+        } else if (strcmp(vAulas[pos].tipoAula, "TP") == 0) {
+          vUCs[posUC].teoricopratica.nAcessosGrav++;
+        } else {
+          vUCs[posUC].praticolab.nAcessosGrav++;
+        }
         printf("\n Pressione ENTER para continuar . . . ");
         getchar();
       }
     }
   }
 }
-
-// int ComparaIdUC(const void *v1, const void *v2) {
-//   tipoUC *valor1, *valor2;
-//   int comp;
-
-//   valor1 = (tipoUC *)v1;
-//   valor2 = (tipoUC *)v2;
-//   comp = valor1->id - valor2->id;
-
-//   return comp;
-// }

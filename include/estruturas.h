@@ -18,6 +18,7 @@ typedef struct {
   int nPrevistas;
   int nAgendadas;
   int nRealizadas;
+  int nAcessosGrav;
   int duracao;
 } tipoTipoDeAula;  // Armazena para cada tipo de aula (T, TP, PL) o número de aulas previstas e agendadas e a respetiva duração
 
