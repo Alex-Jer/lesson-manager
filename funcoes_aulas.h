@@ -6,14 +6,18 @@
 
 #include "estruturas.h"
 #include "funcoes_auxiliares.h"
+#include "funcoes_ficheiros_aula.h"
 #include "funcoes_ucs.h"
 
 int ProcuraAula(tipoAula vAulas[], int nAulas, char procuraDesignacao[]);
-tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, int modoEdicao);
+tipoAula LeDadosAula(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas);
 tipoAula *AgendaAula(tipoAula vAulas[], int *nAulas, tipoUC vUCs[], int *nUCs);
-void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
-void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]);
-void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs);
+void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs);
+void ListaUmaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs);
+void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs);
+void EditaAgendamento(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs);
 tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]);
+void AssisteAula(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs, char designacaoAula[], int numeroEstudante);
+int ComparaDataAulas(const void *v1, const void *v2);
 
 #endif /* FUNCOES_AULAS_H_INCLUDED */

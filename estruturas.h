@@ -4,17 +4,28 @@
 #include "constantes.h"
 
 typedef struct {
-  int dia, mes, ano;
-} tipoData;
+  int dia;
+  int mes;
+  int ano;
+} tipoData;  // Armazena uma data
 
 typedef struct {
-  int horas, minutos;
-} tipoHora;
+  int horas;
+  int minutos;
+} tipoHora;  // Armazena uma hora
 
 typedef struct {
-  int quantidade;
+  int nPrevistas;
+  int nAgendadas;
+  int nRealizadas;
+  int nAcessosGrav;
   int duracao;
-} tipoTipoDeAula;  // Aulas T, TP, PL
+} tipoTipoDeAula;  // Armazena para cada tipo de aula (T, TP, PL) o número de aulas previstas e agendadas e a respetiva duração
+
+typedef struct {
+  int online;
+  int offline;
+} tipoAcesso;  // Armazena o acesso de um estudante a uma aula. Online é um acesso presencial e offline é um acesso a uma gravação
 
 typedef struct {
   int id;
@@ -26,19 +37,21 @@ typedef struct {
   tipoTipoDeAula teorica;
   tipoTipoDeAula teoricopratica;
   tipoTipoDeAula praticolab;
-} tipoUC;
+  tipoAcesso nAcessos;
+} tipoUC;  // Estrutura que armazena todos os dados de uma UC. O campo 'id' é único
 
 typedef struct {
   char designacao[MAX_STRING];
   int idUC;
   char tipoAula[MAX_TIPO_AULA];  // T, TP, PL
   char docente[MAX_STRING];
+  char estado;    // A - Agendada // D - A Decorrer // R - Realizada
+  char gravacao;  // N - Não // A - A Gravar // G - Gravada
+  int presencas[MAX_QUANT_ESTUDANTES];
   tipoData data;
   tipoHora inicio;
   tipoHora fim;
-  char estado;    // A - Agendada // D - A Decorrer // R - Realizada
-  char gravacao;  // N - Não // A - A Gravar // G - Gravada
-  //* int quantAcessos;
-} tipoAula;
+  tipoAcesso nAcessos;
+} tipoAula;  // Estrutura que armazena todos os dados de uma Aula. O campo 'designacao' é único
 
 #endif /* ESTRUTURAS_H_INCLUDED */

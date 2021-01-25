@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constantes.h"
+#include "funcoes_ucs.h"
 
 int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo);
 float LerFloat(char mensagem[MAX_STRING], float minimo, float maximo);

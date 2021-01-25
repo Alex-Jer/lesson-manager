@@ -1,5 +1,33 @@
+ID: 1
+Designacao: u1
+Obrigatoria: Sim
+RegimeDiurno
+Semestre:  1
+Teoricas Previstas: 0 (0min)
+Teoricopraticas Previstas: 0 (0min)
+Praticolaboratoriais Previstas: -1414812757 (-1414812757min)
 
-   ID											Designacao	  Obrigatoria		Regime				 Semestre		T              TP             PL
-   01	       Sistemas Computacionais	  Sim						Diurno				 1.	        10 (090min)    15 (060min)    00 (000min)
-   02	                 Programacao I	  Sim						Pos-Laboral		 1.	        00 (000min)    20 (240min)    01 (050min)
-   03	                      Ingles I	  Nao						Diurno				 2.	        10 (090min)    00 (000min)    00 (000min)
+********************************
+
+ID: 0
+Designacao: 
+Obrigatoria: Nao
+RegimePos-Laboral
+Semestre:  0
+Teoricas Previstas: 1 (0min)
+Teoricopraticas Previstas: 0 (0min)
+Praticolaboratoriais Previstas: 0 (0min)
+
+********************************
+
+ID: 0
+Designacao: 
+Obrigatoria: Nao
+RegimePos-Laboral
+Semestre:  0
+Teoricas Previstas: 0 (1min)
+Teoricopraticas Previstas: 1 (0min)
+Praticolaboratoriais Previstas: 0 (0min)
+
+********************************
+

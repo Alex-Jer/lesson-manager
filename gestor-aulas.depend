@@ -249,3 +249,73 @@
 	"funcoes_menus.h"
 	"funcoes_ucs.h"
 
+1611613579 source:e:\apps\gestor-aulas - codeblocks\funcoes_aulas.c
+	"funcoes_aulas.h"
+
+1611611183 e:\apps\gestor-aulas - codeblocks\funcoes_aulas.h
+	<ctype.h>
+	<string.h>
+	"estruturas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_aula.h"
+	"funcoes_ucs.h"
+
+1611611183 e:\apps\gestor-aulas - codeblocks\estruturas.h
+	"constantes.h"
+
+1611611183 e:\apps\gestor-aulas - codeblocks\constantes.h
+	<stdio.h>
+	<stdlib.h>
+
+1611611183 e:\apps\gestor-aulas - codeblocks\funcoes_auxiliares.h
+	<stdio.h>
+	<string.h>
+	"constantes.h"
+	"funcoes_ucs.h"
+
+1611611468 e:\apps\gestor-aulas - codeblocks\funcoes_ucs.h
+	<ctype.h>
+	"estruturas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_uc.h"
+
+1611611183 e:\apps\gestor-aulas - codeblocks\funcoes_ficheiros_uc.h
+	"estruturas.h"
+
+1611611183 e:\apps\gestor-aulas - codeblocks\funcoes_ficheiros_aula.h
+	<string.h>
+	"estruturas.h"
+
+1611611520 source:e:\apps\gestor-aulas - codeblocks\funcoes_auxiliares.c
+	"funcoes_auxiliares.h"
+
+1611611183 source:e:\apps\gestor-aulas - codeblocks\funcoes_ficheiros_aula.c
+	"funcoes_ficheiros_aula.h"
+
+1611611183 source:e:\apps\gestor-aulas - codeblocks\funcoes_ficheiros_uc.c
+	"funcoes_ficheiros_uc.h"
+
+1611612001 source:e:\apps\gestor-aulas - codeblocks\funcoes_menus.c
+	"funcoes_menus.h"
+	"funcoes_auxiliares.h"
+
+1611611183 e:\apps\gestor-aulas - codeblocks\funcoes_menus.h
+	"estruturas.h"
+	"funcoes_aulas.h"
+	"funcoes_ucs.h"
+
+1611613699 source:e:\apps\gestor-aulas - codeblocks\funcoes_ucs.c
+	"funcoes_ucs.h"
+
+1611611429 source:e:\apps\gestor-aulas - codeblocks\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"estruturas.h"
+	"funcoes_aulas.h"
+	"funcoes_auxiliares.h"
+	"funcoes_ficheiros_aula.h"
+	"funcoes_ficheiros_uc.h"
+	"funcoes_menus.h"
+	"funcoes_ucs.h"
+

@@ -1,0 +1,13 @@
+Designacao: a10
+UC: P
+Tipo: PL
+Docente: diowadja
+Data: 10-10-2020
+Hora: 10:10 - 13:30
+Gravacao: Disponivel
+Estado: Realizada
+Num alunos que participaram: 0
+Acessos a gravacao: 0
+
+//
+
