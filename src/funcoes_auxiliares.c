@@ -9,10 +9,10 @@ int LerInteiro(char mensagem[MAX_STRING], int minimo, int maximo) {
     LimpaBufferStdin();               // limpa todos os caracteres do buffer stdin
                                       // (nomeadamente o \n)
     if (controlo == 0) {
-      printf("ERRO: Insira um numero inteiro!\n");
+      printf(" ERRO: Insira um numero inteiro!\n");
     } else {
       if (numero < minimo || numero > maximo) {
-        printf("ERRO: Numero invalido!\n");
+        printf(" ERRO: Numero invalido!\n");
       }
     }
   } while (numero < minimo || numero > maximo || controlo == 0);
@@ -52,10 +52,10 @@ void LerString(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int 
     tamanhoString = strlen(vetorCaracteres);
 
     if (tamanhoString == 1) {
-      printf("\nNao foram introduzidos caracteres!!! Apenas carregou no ENTER\n\n");
+      printf("\n Nao foram introduzidos caracteres!!! Apenas carregou no ENTER\n\n");
       // apenas faz sentido limpar buffer se a ficarem caracteres
     } else if (tamanhoString > maximoCaracteres) {
-      printf("\nERRO: Dados invalidos!");
+      printf("\n ERRO: Dados invalidos!");
     }
   } while (tamanhoString == 1 || tamanhoString > maximoCaracteres);
 
@@ -78,9 +78,9 @@ void LerChar(char mensagem[MAX_STRING], char vetorCaracteres[MAX_STRING], int ma
     tamanhoString = strlen(vetorCaracteres);
 
     if (tamanhoString == 1) {
-      printf("\nERRO: Nao introduziu nenhum caracter! Apenas carregou no ENTER\n\n");
+      printf("\n ERRO: Nao introduziu nenhum caracter! Apenas carregou no ENTER\n\n");
     } else if (tamanhoString > 2) {
-      printf("\nERRO: Introduziu mais do que um caracter!\n\n");
+      printf("\n ERRO: Introduziu mais do que um caracter!\n\n");
     }
   } while (tamanhoString == 1 || tamanhoString > 2);
 

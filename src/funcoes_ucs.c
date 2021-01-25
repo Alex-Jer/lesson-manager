@@ -23,58 +23,60 @@ tipoUC LeDadosUC(tipoUC vUCs[], int nUCs, int modoEdicao) {
   uc.teorica.nAgendadas = 0;
   uc.teoricopratica.nAgendadas = 0;
   uc.praticolab.nAgendadas = 0;
+  uc.nAcessos.online = 0;
+  uc.nAcessos.offline = 0;
 
   if (modoEdicao == 0) {
     do {
-      uc.id = LerInteiro("Codigo: ", MIN_UCS, MAX_UCS);
+      uc.id = LerInteiro(" Codigo: ", MIN_UCS, MAX_UCS);
       if (ProcuraUC(vUCs, nUCs, uc.id) != -1) {
-        printf("\nERRO: Ja existe uma UC com esse ID!\n\n");
+        printf("\n ERRO: Ja existe uma UC com esse ID!\n\n");
       }
     } while (ProcuraUC(vUCs, nUCs, uc.id) != -1);
   }
 
-  LerString("Nome: ", uc.designacao, MAX_STRING);
+  LerString(" Nome: ", uc.designacao, MAX_STRING);
 
   do {
-    LerChar("Obrigatoria? (S/N): ", obrigatoria, MAX_STRING);
+    LerChar(" Obrigatoria? (S/N): ", obrigatoria, MAX_STRING);
     obrigatoria[0] = toupper(obrigatoria[0]);
 
     if (obrigatoria[0] != 'S' && obrigatoria[0] != 'N') {
-      printf("ERRO: Opcao invalida!\n");
+      printf(" ERRO: Opcao invalida!\n");
     }
   } while (obrigatoria[0] != 'S' && obrigatoria[0] != 'N');
 
-  uc.semestre = LerInteiro("Semestre (1 a 6): ", MIN_SEMESTRE, MAX_SEMESTRE);
+  uc.semestre = LerInteiro(" Semestre (1 a 6): ", MIN_SEMESTRE, MAX_SEMESTRE);
   do {
-    LerChar("Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
+    LerChar(" Diurno ou Pos-Laboral? (D/P): ", diurno, MAX_STRING);
     diurno[0] = toupper(diurno[0]);
 
     if (diurno[0] != 'D' && diurno[0] != 'P') {
-      printf("ERRO: Opcao invalida!\n");
+      printf(" ERRO: Opcao invalida!\n");
     }
   } while (diurno[0] != 'D' && diurno[0] != 'P');
 
   do {
-    printf("\n-> Aulas Teoricas <-\n");
-    uc.teorica.nPrevistas = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    printf("\n -> Aulas Teoricas <-\n");
+    uc.teorica.nPrevistas = LerInteiro(" Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
     if (uc.teorica.nPrevistas != 0) {
-      uc.teorica.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+      uc.teorica.duracao = LerInteiro(" Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
     } else {
       uc.teorica.duracao = 0;
     }
 
-    printf("\n-> Aulas Teoricopraticas <-\n");
-    uc.teoricopratica.nPrevistas = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    printf("\n -> Aulas Teoricopraticas <-\n");
+    uc.teoricopratica.nPrevistas = LerInteiro(" Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
     if (uc.teoricopratica.nPrevistas != 0) {
-      uc.teoricopratica.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+      uc.teoricopratica.duracao = LerInteiro(" Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
     } else {
       uc.teoricopratica.duracao = 0;
     }
 
-    printf("\n-> Aulas Praticolaboratoriais <-\n");
-    uc.praticolab.nPrevistas = LerInteiro("Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
+    printf("\n -> Aulas Praticolaboratoriais <-\n");
+    uc.praticolab.nPrevistas = LerInteiro(" Numero de aulas previstas (0 a 20): ", MIN_AULAS_PREVISTAS, MAX_AULAS_PREVISTAS);
     if (uc.praticolab.nPrevistas != 0) {
-      uc.praticolab.duracao = LerInteiro("Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
+      uc.praticolab.duracao = LerInteiro(" Duracao de cada aula (60 a 240min): ", MIN_DURACAO_AULA, MAX_DURACAO_AULA);
     } else {
       uc.praticolab.duracao = 0;
     }
@@ -82,7 +84,7 @@ tipoUC LeDadosUC(tipoUC vUCs[], int nUCs, int modoEdicao) {
     uc.totalAulasPrevistas = uc.teorica.nPrevistas + uc.teoricopratica.nPrevistas + uc.praticolab.nPrevistas;
 
     if (uc.totalAulasPrevistas <= 0) {
-      printf("\nERRO: Tem de inserir pelo menos 1 aula!\n");
+      printf("\n ERRO: Tem de inserir pelo menos 1 aula!\n");
     }
 
   } while (uc.totalAulasPrevistas <= 0);
@@ -104,24 +106,25 @@ tipoUC *AcrescentaUC(tipoUC vUCs[], int *nUCs) {
   int pos;
 
   if (*nUCs >= 40) {
-    printf("\nERRO: Numero maximo de UCs atingido!\n");
+    printf("\n ERRO: Numero maximo de UCs atingido!\n");
   } else {
     pUCs = vUCs;
     dadosUC = LeDadosUC(vUCs, *nUCs, 0);
     pos = ProcuraUC(vUCs, *nUCs, dadosUC.id);
 
     if (pos != -1) {
-      printf("\nERRO: UC com o mesmo ID ja existe!\n");
+      printf("\n ERRO: UC com o mesmo ID ja existe!\n");
     } else {
       vUCs = realloc(vUCs, (*nUCs + 1) * sizeof(tipoUC));
       if (vUCs == NULL) {
-        printf("\nERRO: Impossível inserir UC!\n");
+        printf("\n ERRO: Impossível inserir UC!\n");
         vUCs = pUCs;
       } else {
         vUCs[*nUCs] = dadosUC;
         (*nUCs)++;
-        printf("\nSUCESSO: UC inserida!\n");
-        printf("\nPressione ENTER para continuar . . . ");
+        qsort(vUCs, *nUCs, sizeof(tipoUC), ComparaIdUC);
+        printf("\n SUCESSO: UC inserida!\n");
+        printf("\n Pressione ENTER para continuar . . . ");
         getchar();
       }
     }
@@ -134,7 +137,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
   int i;
 
   if (nUCs == 0) {
-    printf("\nERRO: Nao existem UCs registadas!\n");
+    printf("\n ERRO: Nao existem UCs registadas!\n");
   } else {
     printf("\n   ID\t\t\t    ");
     printf("Designacao\t  ");
@@ -159,7 +162,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
              vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.nPrevistas, vUCs[i].praticolab.duracao);
     }
   }
-  printf("\nPressione ENTER para continuar . . . ");
+  printf("\n Pressione ENTER para continuar . . . ");
   getchar();
 }
 
@@ -171,7 +174,7 @@ void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   if (*nUCs != 0) {
     pos = ProcuraUC(vUCs, *nUCs, idUC);
     if (pos == -1) {
-      printf("\nERRO: UC nao encontrada!\n");
+      printf("\n ERRO: UC nao encontrada!\n");
     } else {
       editadaUC = LeDadosUC(vUCs, *nUCs, 1);
       strcpy(vUCs[pos].designacao, editadaUC.designacao);
@@ -186,8 +189,8 @@ void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
       vUCs[pos].praticolab.duracao = editadaUC.praticolab.duracao;
       vUCs[pos].totalAulasPrevistas =
           editadaUC.teorica.nPrevistas + editadaUC.teoricopratica.nPrevistas + editadaUC.praticolab.nPrevistas;
-      printf("\nSUCESSO: UC modificada!\n");
-      printf("\nPressione ENTER para continuar . . . ");
+      printf("\n SUCESSO: UC modificada!\n");
+      printf("\n Pressione ENTER para continuar . . . ");
       getchar();
     }
   }
@@ -203,21 +206,43 @@ tipoUC *EliminaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   if (*nUCs != 0) {
     pos = ProcuraUC(vUCs, *nUCs, idUC);
     if (pos == -1) {
-      printf("\nERRO: UC nao encontrada!\n");
+      printf("\n ERRO: UC nao encontrada!\n");
     } else {
       for (i = pos; i < *nUCs - 1; i++) {
         vUCs[i] = vUCs[i + 1];
       }
       vUCs = realloc(vUCs, (*nUCs - 1) * sizeof(tipoUC));
       if (vUCs == NULL && (*nUCs - 1) != 0) {
-        printf("\nERRO: Falha na alocacao de memoria!");
+        printf("\n ERRO: Falha na alocacao de memoria!");
         vUCs = pUCs;  // Restaura backup
       }
       (*nUCs)--;
-      printf("\nSUCESSO: UC eliminada!\n");
-      printf("\nPressione ENTER para continuar . . . ");
+      printf("\n SUCESSO: UC eliminada!\n");
+      printf("\n Pressione ENTER para continuar . . . ");
       getchar();
     }
   }
   return vUCs;
+}
+
+int ComparaIdUC(const void *v1, const void *v2) {
+  tipoUC *valor1, *valor2;
+  int comp;
+
+  valor1 = (tipoUC *)v1;
+  valor2 = (tipoUC *)v2;
+  comp = valor1->id - valor2->id;
+
+  return comp;
+}
+
+int ComparaQuantAcessosGravacao(const void *v1, const void *v2) {
+  tipoUC *valor1, *valor2;
+  int comp;
+
+  valor1 = (tipoUC *)v1;
+  valor2 = (tipoUC *)v2;
+  comp = valor1->nAcessos.offline - valor2->nAcessos.offline;
+
+  return comp;
 }

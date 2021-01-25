@@ -63,3 +63,5 @@ ACESSO ONLINE - Aula: diwoa Num. Estudante: 999
 ACESSO ONLINE - Aula: diwoa Num. Estudante: 867
 ACESSO ONLINE - Aula: diwoa Num. Estudante: 52
 ACESSO ONLINE - Aula: diwoa Num. Estudante: 3213
+ACESSO ONLINE - Aula: a1 Num. Estudante: 423423
+ACESSO OFFLINE - Aula: a1 Num. Estudante: 243423

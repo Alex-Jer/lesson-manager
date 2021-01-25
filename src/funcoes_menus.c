@@ -42,7 +42,7 @@ int MenuPrincipal(int nUCs, tipoAula vAulas[], int nAulas) {
   printf(" 4 - Guardar Alteracoes\n");
   printf(" 5 - Carregar Dados Guardados\n");
   printf(" 0 - Terminar\n");
-  opcao = LerInteiro("\n Opcao--> ", 0, 5);
+  opcao = LerInteiro(" \n Opcao--> ", 0, 5);
 
   return opcao;
 }
@@ -56,8 +56,9 @@ int MenuUCs() {
   printf(" 2 - Editar UC\n");
   printf(" 3 - Eliminar UC\n");
   printf(" 4 - Listar UCs\n");
+  printf(" 5 - Ranking de UCs\n");
   printf(" 0 - Voltar\n");
-  opcao = LerInteiro("\n Opcao--> ", 0, 4);
+  opcao = LerInteiro(" \n Opcao--> ", 0, 5);
 
   return opcao;
 }
@@ -71,11 +72,11 @@ int MenuAulas() {
   printf(" 2 - Alterar Agendamento\n");
   printf(" 3 - Eliminar Aula\n");
   printf(" 4 - Listar Todas as Aulas\n");
-  printf(" 5 - Consultar Dados Aula\n");
+  printf(" 5 - Consultar Info e Presencas Aula\n");
   printf(" 6 - Alterar Estado Aula\n");
   printf(" 7 - Assistir Aula\n");
   printf(" 0 - Voltar\n");
-  opcao = LerInteiro("\n Opcao--> ", 0, 7);
+  opcao = LerInteiro(" \n Opcao--> ", 0, 7);
 
   return opcao;
 }
@@ -87,10 +88,10 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
 
   for (iUCs = 0; iUCs < nUCs; iUCs++) {
     for (iAulas = 0; iAulas < nAulas; iAulas++) {
-      // printf("\n%d", iAulas);
-      // printf("\n%d - %s\n", vAulas[iAulas].idUC, vUCs[vAulas[iAulas].idUC - 1].designacao);
+      // printf("\n %d", iAulas);
+      // printf("\n %d - %s\n", vAulas[iAulas].idUC, vUCs[vAulas[iAulas].idUC - 1].designacao);
       if (vAulas[iAulas].idUC == iUCs + 1) {
-        printf("\n%d - %s\n", vAulas[iAulas].idUC, vUCs[vAulas[iAulas].idUC - 1].designacao);
+        printf("\n %d - %s\n", vAulas[iAulas].idUC, vUCs[vAulas[iAulas].idUC - 1].designacao);
       }
     }
   }
@@ -120,7 +121,7 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
     nGravadas++;
   }
 
-  printf("\n%d\n", nGravadas);
+  printf("\n %d\n", nGravadas);
 
   mediaPresencas = (float)nPresencas / nRealizadas;
   mediaGravadas = (float)nGravadas / nAulas;
@@ -142,7 +143,7 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
   printf(" UC(s) com menor quantidade de acessos a gravacoes: **\n");
   printf(" Aula(s) online realizadas a mais tempo: **\n");
 
-  opcao = LerInteiro("\n Insira 0 para voltar--> ", 0, 0);
+  opcao = LerInteiro(" \n Insira 0 para voltar--> ", 0, 0);
 
   return opcao;
 }

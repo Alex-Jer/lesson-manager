@@ -7,17 +7,17 @@ void EscreveFicheiroBinarioUCs(tipoUC vUCs[], int nUCs) {
 
   ficheiro = fopen("dados_ucs.dat", "wb");
   if (ficheiro == NULL) {
-    printf("\nERRO: Falha na abertura do ficheiro!\n");
+    printf("\n ERRO: Falha na abertura do ficheiro!\n");
   } else {
     quantEscrito = fwrite(&nUCs, sizeof(int), 1, ficheiro);
     if (quantEscrito != 1) {
-      printf("\nERRO: Falha na escrita da quantidade de UCs no ficheiro.\n");
+      printf("\n ERRO: Falha na escrita da quantidade de UCs no ficheiro.\n");
     } else {
       quantEscrito = fwrite(vUCs, sizeof(tipoUC), nUCs, ficheiro);
       if (quantEscrito != nUCs) {
-        printf("\nERRO: Falha na escrita de informacao no vetor!\n");
+        printf("\n ERRO: Falha na escrita de informacao no vetor!\n");
       } else {
-        printf("\nSUCESSO: Ficheiro gravado!\n");
+        printf("\n SUCESSO: Ficheiro gravado!\n");
       }
     }
     fclose(ficheiro);
@@ -31,14 +31,15 @@ tipoUC *LeFicheiroBinarioUCs(tipoUC vUCs[], int *nUCs) {
 
   ficheiro = fopen("dados_ucs.dat", "rb");
   if (ficheiro == NULL) {
-    printf("\nERRO: Falha na abertura do ficheiro!\n");
+    printf("\n ERRO: Falha na abertura do ficheiro!\n");
   } else {
     fread(&(*nUCs), sizeof(int), 1, ficheiro);
     pUCs = vUCs;
+    vUCs = NULL;
     vUCs = realloc(vUCs, (*nUCs) * sizeof(tipoUC));
 
     if (vUCs == NULL && *nUCs != 0) {
-      printf("\nERRO: Falha na reserva de memoria.");
+      printf("\n ERRO: Falha na reserva de memoria.");
       vUCs = pUCs;
     } else {
       fread(vUCs, sizeof(tipoUC), *nUCs, ficheiro);
@@ -54,7 +55,7 @@ void EscreveFicheiroTextoUCs(tipoUC vUCs[], int nUCs) {
 
   ficheiro = fopen("dados_ucs.txt", "w");
   if (ficheiro == NULL) {
-    printf("Erro ao abrir ficheiro!\n");
+    printf(" Erro ao abrir ficheiro!\n");
   } else {
     fprintf(ficheiro, "\n   ID\t\t\t\t\t\t\t\t\t\t\t");
     fprintf(ficheiro, "Designacao\t  ");
@@ -88,7 +89,7 @@ void EscreveFicheiroTextoUCs(tipoUC vUCs[], int nUCs) {
 
 //   ficheiro = fopen("dados_ucs.txt", "r");
 //   if (ficheiro == NULL) {
-//     printf("\nERRO: Falha na abertura do ficheiro!");
+//     printf("\n ERRO: Falha na abertura do ficheiro!");
 //   } else {
 //     fscanf(ficheiro, "%d", &nUCs);
 //     for (i = 0; i < *nUCs; i++) {

@@ -30,7 +30,7 @@ int main() {
               if (nUCs <= 0) {
                 printf("\n ERRO: Nao ha UCs registadas!\n");
               } else {
-                idUC = LerInteiro("\n ID da UC a editar: ", MIN_UCS, MAX_UCS);
+                idUC = LerInteiro(" \n ID da UC a editar: ", MIN_UCS, MAX_UCS);
                 EditaUC(vUCs, &nUCs, idUC);
               }
               break;
@@ -38,11 +38,16 @@ int main() {
               if (nUCs <= 0) {
                 printf("\n ERRO: Nao ha UCs registadas!\n");
               } else {
-                idUC = LerInteiro("\n ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
+                idUC = LerInteiro(" \n ID da UC a eliminar: ", MIN_UCS, MAX_UCS);
                 vUCs = EliminaUC(vUCs, &nUCs, idUC);
               }
               break;
             case 4:  // Listar
+              qsort(vUCs, nUCs, sizeof(tipoUC), ComparaIdUC);
+              ListaUCs(vUCs, nUCs);
+              break;
+            case 5:  // Ranking UCs por gravação
+              qsort(vUCs, nUCs, sizeof(tipoUC), ComparaQuantAcessosGravacao);
               ListaUCs(vUCs, nUCs);
               break;
           }
@@ -61,7 +66,6 @@ int main() {
               } else {
                 LerString("\n Designacao da aula: ", designacaoAula, MAX_STRING);
                 EditaAgendamento(vAulas, nAulas, designacaoAula, vUCs);
-                // EditaAula(vAulas, nAulas, designacaoAula, vUCs, nUCs);
               }
               break;
 
@@ -74,14 +78,14 @@ int main() {
               }
               break;
             case 4:  // Listar Todas as Aulas
-              ListaTodasAulas(vAulas, nAulas, vUCs);
+              ListaTodasAulas(vAulas, nAulas, vUCs, nUCs);
               break;
             case 5:  // Consultar uma Aula
               if (nAulas <= 0) {
                 printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
                 LerString("\n Designacao da aula a consultar: ", designacaoAula, MAX_STRING);
-                ListaUmaAula(vAulas, nAulas, designacaoAula, vUCs);
+                ListaUmaAula(vAulas, nAulas, designacaoAula, vUCs, nUCs);
               }
               break;
             case 6:  // Alterar Estado das Aulas
@@ -95,9 +99,9 @@ int main() {
               if (nAulas <= 0) {
                 printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
-                numeroEstudante = LerInteiro("\n Insira o seu numero de estudante: ", MIN_NUM_ESTUDANTE, MAX_NUM_ESTUDANTE);
+                numeroEstudante = LerInteiro(" \n Insira o seu numero de estudante: ", MIN_NUM_ESTUDANTE, MAX_NUM_ESTUDANTE);
                 LerString("\n Designacao da aula que deseja assistir: ", designacaoAula, MAX_STRING);
-                AssisteAula(vAulas, nAulas, designacaoAula, numeroEstudante);
+                AssisteAula(vAulas, nAulas, vUCs, designacaoAula, numeroEstudante);
               }
               break;
           }

@@ -7,18 +7,18 @@ void EscreveFicheiroBinarioAulas(tipoAula vAulas[], int nAulas) {
 
   ficheiro = fopen("dados_aulas.dat", "wb");
   if (ficheiro == NULL) {
-    printf("\nERRO: Falha na abertura do ficheiro!\n");
+    printf("\n ERRO: Falha na abertura do ficheiro!\n");
   } else {
     quantEscrito = fwrite(&nAulas, sizeof(int), 1, ficheiro);
     if (quantEscrito != 1) {
-      printf("\nERRO: Falha na escrita da quantidade de Aulas no ficheiro.\n");
+      printf("\n ERRO: Falha na escrita da quantidade de Aulas no ficheiro.\n");
     } else {
       quantEscrito = fwrite(vAulas, sizeof(tipoAula), nAulas, ficheiro);
       if (quantEscrito != nAulas) {
-        printf("\nERRO: Falha na escrita de informacao no vetor!\n");
+        printf("\n ERRO: Falha na escrita de informacao no vetor!\n");
       } else {
-        printf("\nSUCESSO: Ficheiro gravado!\n");
-        printf("\nPressione ENTER para continuar . . . ");
+        printf("\n SUCESSO: Ficheiro gravado!\n");
+        printf("\n Pressione ENTER para continuar . . . ");
         getchar();
       }
     }
@@ -33,14 +33,14 @@ tipoAula *LeFicheiroBinarioAulas(tipoAula vAulas[], int *nAulas) {
 
   ficheiro = fopen("dados_aulas.dat", "rb");
   if (ficheiro == NULL) {
-    printf("\nERRO: Falha na abertura do ficheiro!\n");
+    printf("\n ERRO: Falha na abertura do ficheiro!\n");
   } else {
     fread(&(*nAulas), sizeof(int), 1, ficheiro);
     pAulas = vAulas;
     vAulas = realloc(vAulas, (*nAulas) * sizeof(tipoAula));
 
     if (vAulas == NULL && *nAulas != 0) {
-      printf("\nERRO: Erro ao reservar memoria.");
+      printf("\n ERRO: Erro ao reservar memoria.");
       vAulas = pAulas;
     } else {
       fread(vAulas, sizeof(tipoAula), *nAulas, ficheiro);
@@ -56,7 +56,7 @@ void EscreveFicheiroTextoLog(tipoAula aula, char tipoAcesso[], int numeroEstudan
   ficheiro = fopen("log.txt", "a");
 
   if (ficheiro == NULL) {
-    printf("Erro ao abrir o ficheiro!\n");
+    printf(" Erro ao abrir o ficheiro!\n");
   } else {
     fprintf(ficheiro, "ACESSO %s - Aula: %s Num. Estudante: %d\n", tipoAcesso, aula.designacao, numeroEstudante);
     fclose(ficheiro);
@@ -71,30 +71,30 @@ void EscreveFicheiroBinLog(tipoAula aula, char tipoAcesso[], int numeroEstudante
   ficheiro = fopen("log.dat", "ab");
 
   if (ficheiro == NULL) {
-    printf("Erro ao abrir o ficheiro!\n");
+    printf(" Erro ao abrir o ficheiro!\n");
   } else {
     compTipoAcesso = strlen(tipoAcesso);
     compDesignacao = strlen(aula.designacao);
     quantEscrito = fwrite(tipoAcesso, sizeof(char), compTipoAcesso, ficheiro);
     // TODO:
     // if (quantEscrito != compTipoAcesso) {
-    //   printf("\nErro ao escrever o tipo de acesso\n");
+    //   printf("\n Erro ao escrever o tipo de acesso\n");
     // } else {
-    //   printf("\nGravado com sucesso no ficheiro binario\n");
+    //   printf("\n Gravado com sucesso no ficheiro binario\n");
     // }
 
     quantEscrito = fwrite(aula.designacao, sizeof(char), compDesignacao, ficheiro);
     // if (quantEscrito != compDesignacao) {
-    //   printf("\nErro ao escrever a designacao da aula\n");
+    //   printf("\n Erro ao escrever a designacao da aula\n");
     // } else {
-    //   printf("\nGravado com sucesso no ficheiro binario\n");
+    //   printf("\n Gravado com sucesso no ficheiro binario\n");
     // }
 
     quantEscrito = fwrite(&numeroEstudante, sizeof(int), 1, ficheiro);
     // if (quantEscrito != 1) {
-    //   printf("\nErro ao escrever o numero de estudante\n");
+    //   printf("\n Erro ao escrever o numero de estudante\n");
     // } else {
-    //   printf("\nGravado com sucesso no ficheiro binario\n");
+    //   printf("\n Gravado com sucesso no ficheiro binario\n");
     // }
     fclose(ficheiro);
   }
@@ -106,7 +106,7 @@ void EscreveFicheiroTextoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[]) {
 
   ficheiro = fopen("dados_aulas.txt", "w");
   if (ficheiro == NULL) {
-    printf("Erro ao abrir ficheiro!\n");
+    printf(" Erro ao abrir ficheiro!\n");
   } else {
     for (i = 0; i < nAulas; i++) {
       fprintf(ficheiro, "Designacao: %s\n", vAulas[i].designacao);
