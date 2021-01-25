@@ -65,3 +65,15 @@ ACESSO ONLINE - Aula: diwoa Num. Estudante: 52
 ACESSO ONLINE - Aula: diwoa Num. Estudante: 3213
 ACESSO ONLINE - Aula: a1 Num. Estudante: 423423
 ACESSO OFFLINE - Aula: a1 Num. Estudante: 243423
+ACESSO ONLINE - Aula: a1 Num. Estudante: 432
+ACESSO ONLINE - Aula: a1 Num. Estudante: 453
+ACESSO OFFLINE - Aula: a1 Num. Estudante: 4325623
+ACESSO OFFLINE - Aula: maisgrav Num. Estudante: 52352
+ACESSO OFFLINE - Aula: maisgrav Num. Estudante: 42332
+ACESSO ONLINE - Aula: menosgrav Num. Estudante: 49032
+ACESSO ONLINE - Aula: menosgrav Num. Estudante: 232
+ACESSO ONLINE - Aula: menosgrav Num. Estudante: 532
+ACESSO OFFLINE - Aula: maisgrav Num. Estudante: 4234
+ACESSO OFFLINE - Aula: maisgrav Num. Estudante: 324
+ACESSO ONLINE - Aula: menosgrav Num. Estudante: 4523
+ACESSO OFFLINE - Aula: maisgrav Num. Estudante: 543

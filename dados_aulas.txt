@@ -1,0 +1,36 @@
+Designacao: menosgrav
+UC: u1
+Tipo: PL
+Docente: ijdwoa
+Data: 10-10-2020
+Hora: 09:30 - 10:30
+Gravacao: Indisponivel
+Estado: Agendada
+
+//
+
+Designacao: maisgrav
+UC: 
+Tipo: PL
+Docente: iowja
+Data: 10-11-2020
+Hora: 19:30 - 20:30
+Gravacao: Disponivel
+Estado: Realizada
+Num alunos que participaram: 0
+Acessos a gravacao: 0
+
+//
+
+Designacao: agravar
+UC: 
+Tipo: PL
+Docente: djiwoaa
+Data: 08-02-2023
+Hora: 18:30 - 16:40
+Gravacao: A gravar...
+Estado: A decorrer
+Num presencas: 0
+
+//
+

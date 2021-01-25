@@ -83,48 +83,25 @@ int MenuAulas() {
 
 // Mostra no ecrã um conjunto de dados estatísticos
 int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
-  int opcao, iAulas, iUCs, nRealizadas = 0, nPresencas = 0, nGravadas = 0;
+  int opcao, iAulas, iUCs, nDecorrerRealizadas = 0, nPresencas = 0, nGravadas = 0;
   float mediaPresencas, mediaGravadas, nGravadasPerc;
 
-  for (iUCs = 0; iUCs < nUCs; iUCs++) {
-    for (iAulas = 0; iAulas < nAulas; iAulas++) {
-      // printf("\n %d", iAulas);
-      // printf("\n %d - %s\n", vAulas[iAulas].idUC, vUCs[vAulas[iAulas].idUC - 1].designacao);
-      if (vAulas[iAulas].idUC == iUCs + 1) {
-        printf("\n %d - %s\n", vAulas[iAulas].idUC, vUCs[vAulas[iAulas].idUC - 1].designacao);
-      }
-    }
-  }
-
-  /*
-    if (vAulas[]) {
-      //
-    }
-  }
-
   for (iAulas = 0; iAulas < nAulas; iAulas++) {
-    if (vAulas[iAulas].estado == 'R') {
-      //
+    if (vAulas[iAulas].estado == 'D' || vAulas[iAulas].estado == 'R') {
+      nDecorrerRealizadas++;
     }
 
-    for (iUCs = vAulas[iAulas].idUC - 1; iUCs < nUCs; iUCs++) {
-      // vUCs[i].
+    if (vAulas[iAulas].gravacao == 'G') {
+      nGravadas++;
     }
-  */
 
-  if (vAulas[iAulas].estado == 'D') {
-    nPresencas += vAulas[iAulas].nAcessos.online;
-    nRealizadas++;
+    if (vAulas[iAulas].estado == 'D' || vAulas[iAulas].estado == 'R') {
+      nPresencas += vAulas[iAulas].nAcessos.online;
+    }
   }
 
-  if (vAulas[iAulas].gravacao == 'G') {
-    nGravadas++;
-  }
-
-  printf("\n %d\n", nGravadas);
-
-  mediaPresencas = (float)nPresencas / nRealizadas;
-  mediaGravadas = (float)nGravadas / nAulas;
+  mediaPresencas = (float)nPresencas / nDecorrerRealizadas;
+  mediaGravadas = (float)nGravadas / nUCs;
   nGravadasPerc = mediaGravadas * 100;
 
   printf("\n\n ===== DADOS ESTATISTICOS =====\n\n");

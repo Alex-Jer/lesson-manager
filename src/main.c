@@ -65,7 +65,7 @@ int main() {
                 printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
                 LerString("\n Designacao da aula: ", designacaoAula, MAX_STRING);
-                EditaAgendamento(vAulas, nAulas, designacaoAula, vUCs);
+                EditaAgendamento(vAulas, nAulas, designacaoAula, vUCs, nUCs);
               }
               break;
 
@@ -92,7 +92,7 @@ int main() {
               if (nAulas <= 0) {
                 printf("\n ERRO: Nao existem aulas registadas!\n");
               } else {
-                ListaAlteraEstadoAulas(vAulas, nAulas, vUCs);
+                ListaAlteraEstadoAulas(vAulas, nAulas, vUCs, nUCs);
               }
               break;
             case 7:  // Assistir a uma Aula
@@ -101,7 +101,7 @@ int main() {
               } else {
                 numeroEstudante = LerInteiro(" \n Insira o seu numero de estudante: ", MIN_NUM_ESTUDANTE, MAX_NUM_ESTUDANTE);
                 LerString("\n Designacao da aula que deseja assistir: ", designacaoAula, MAX_STRING);
-                AssisteAula(vAulas, nAulas, vUCs, designacaoAula, numeroEstudante);
+                AssisteAula(vAulas, nAulas, vUCs, nUCs, designacaoAula, numeroEstudante);
               }
               break;
           }
