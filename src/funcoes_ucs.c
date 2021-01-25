@@ -224,6 +224,7 @@ void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   }
 }
 
+// Ordena vetor por ID
 int ComparaIdUC(const void *v1, const void *v2) {
   tipoUC *valor1, *valor2;
   int comp;
@@ -235,6 +236,7 @@ int ComparaIdUC(const void *v1, const void *v2) {
   return comp;
 }
 
+// Ordena vetor por quantidade de acessos a gravações
 int ComparaUCQuantAcessosGravacao(const void *v1, const void *v2) {
   tipoUC *valor1, *valor2;
   int comp;
@@ -246,6 +248,7 @@ int ComparaUCQuantAcessosGravacao(const void *v1, const void *v2) {
   return comp;
 }
 
+// Ordena vetor por quantidade de aulas
 int ComparaQuantAulasUC(const void *v1, const void *v2) {
   tipoUC *valor1, *valor2;
   int comp, soma1, soma2;

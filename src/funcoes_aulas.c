@@ -584,6 +584,7 @@ tipoAula *EliminaAula(tipoAula vAulas[], int *nAulas, char designacaoAula[]) {
   return vAulas;
 }
 
+// Regista no log o número do estudante e o tipo de acesso e incrementa contadores
 void AssisteAula(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs, char designacaoAula[], int numeroEstudante) {
   int pos, posUC;
 
@@ -631,6 +632,7 @@ void AssisteAula(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs, char de
   }
 }
 
+// Ordena vetor por data
 int ComparaDataAulas(const void *v1, const void *v2) {
   tipoAula *valor1, *valor2;
   int comp;

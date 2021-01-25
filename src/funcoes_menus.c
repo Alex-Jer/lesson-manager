@@ -154,7 +154,7 @@ void DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
     printf(" Ainda nao foi visualizada nenhuma gravacao\n");
   }
 
-  printf(" Aula(s) online realizadas a mais tempo:\n");
+  printf(" Aula(s) online realizadas ha mais tempo:\n");
   qsort(vAulas, nAulas, sizeof(tipoAula), ComparaDataAulas);
   for (i = 0; i < nAulas; i++) {
     if (vAulas[i].estado == 'R') {
