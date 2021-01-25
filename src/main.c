@@ -48,7 +48,7 @@ int main() {
               break;
             case 5:  // Ranking UCs por gravação
               qsort(vUCs, nUCs, sizeof(tipoUC), ComparaQuantAcessosGravacao);
-              ListaUCs(vUCs, nUCs);
+              ListaRankGrav(vUCs, nUCs);
               break;
           }
         } while (opcaoSubMenu != 0);

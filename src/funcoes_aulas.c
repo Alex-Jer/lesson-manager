@@ -653,3 +653,14 @@ void AssisteAula(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs, char de
     }
   }
 }
+
+// int ComparaIdUC(const void *v1, const void *v2) {
+//   tipoUC *valor1, *valor2;
+//   int comp;
+
+//   valor1 = (tipoUC *)v1;
+//   valor2 = (tipoUC *)v2;
+//   comp = valor1->id - valor2->id;
+
+//   return comp;
+// }

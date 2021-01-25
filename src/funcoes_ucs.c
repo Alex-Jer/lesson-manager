@@ -168,6 +168,25 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
   getchar();
 }
 
+// Mostra no ecrã uma tabela de todas as UCs no vetor
+void ListaRankGrav(tipoUC vUCs[], int nUCs) {
+  int i;
+
+  if (nUCs == 0) {
+    printf("\n ERRO: Nao existem UCs registadas!\n");
+  } else {
+    printf("\n   ID\t\t\t    ");
+    printf("Designacao\t     ");
+    printf("Acessos a Grav.   \n");
+    for (i = 0; i < nUCs; i++) {
+      printf("   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
+      printf("   %d\n", vUCs[i].nAcessos.offline);
+    }
+  }
+  printf("\n Pressione ENTER para continuar . . . ");
+  getchar();
+}
+
 // Pede dados ao utilizador através da função LeDadosUC e altera a UC recebida como parâmetro
 void EditaUC(tipoUC vUCs[], int *nUCs, int idUC) {
   tipoUC editadaUC;
@@ -248,3 +267,14 @@ int ComparaQuantAcessosGravacao(const void *v1, const void *v2) {
 
   return comp;
 }
+
+// int ComparaIdUC(const void *v1, const void *v2) {
+//   tipoUC *valor1, *valor2;
+//   int comp;
+
+//   valor1 = (tipoUC *)v1;
+//   valor2 = (tipoUC *)v2;
+//   comp = valor1->id - valor2->id;
+
+//   return comp;
+// }
