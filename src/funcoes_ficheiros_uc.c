@@ -57,27 +57,31 @@ void EscreveFicheiroTextoUCs(tipoUC vUCs[], int nUCs) {
   if (ficheiro == NULL) {
     printf(" Erro ao abrir ficheiro!\n");
   } else {
-    fprintf(ficheiro, "\n   ID\t\t\t\t\t\t\t\t\t\t\t");
-    fprintf(ficheiro, "Designacao\t  ");
-    fprintf(ficheiro, "Obrigatoria\t\t");
-    fprintf(ficheiro, "Regime\t\t\t\t ");
-    fprintf(ficheiro, "Semestre\t\t");
-    fprintf(ficheiro, "T              TP             PL\n");
     for (i = 0; i < nUCs; i++) {
-      fprintf(ficheiro, "   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
+      fprintf(ficheiro, "ID: %d\n", vUCs[i].id);
+      fprintf(ficheiro, "Designacao: %s\n", vUCs[i].designacao);
+
+      fprintf(ficheiro, "Obrigatoria: ");
       if (vUCs[i].obrigatoria == 1) {
-        fprintf(ficheiro, "Sim\t\t\t\t\t\t");
+        fprintf(ficheiro, "Sim\n");
       } else {
-        fprintf(ficheiro, "Nao\t\t\t\t\t\t");
+        fprintf(ficheiro, "Nao\n");
       }
+
+      fprintf(ficheiro, "Regime");
       if (vUCs[i].diurno == 1) {
-        fprintf(ficheiro, "Diurno\t\t\t\t ");
+        fprintf(ficheiro, "Diurno\n");
       } else {
-        fprintf(ficheiro, "Pos-Laboral\t\t ");
+        fprintf(ficheiro, "Pos-Laboral\n");
       }
-      fprintf(ficheiro, "%d.\t        %02d (%03dmin)    %02d (%03dmin)    %02d (%03dmin)\n", vUCs[i].semestre,
-              vUCs[i].teorica.nPrevistas, vUCs[i].teorica.duracao, vUCs[i].teoricopratica.nPrevistas,
-              vUCs[i].teoricopratica.duracao, vUCs[i].praticolab.nPrevistas, vUCs[i].praticolab.duracao);
+
+      fprintf(ficheiro, "Semestre: %2d\n", vUCs[i].semestre);
+      fprintf(ficheiro, "Teoricas Previstas: %d (%dmin)\n", vUCs[i].teorica.nPrevistas, vUCs[i].teorica.duracao);
+      fprintf(ficheiro, "Teoricopraticas Previstas: %d (%dmin)\n", vUCs[i].teoricopratica.nPrevistas,
+              vUCs[i].teoricopratica.duracao);
+      fprintf(ficheiro, "Praticolaboratoriais Previstas: %d (%dmin)\n", vUCs[i].praticolab.nPrevistas,
+              vUCs[i].praticolab.duracao);
+      fprintf(ficheiro, "\n********************************\n\n");
     }
     fclose(ficheiro);
   }

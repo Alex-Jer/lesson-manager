@@ -200,9 +200,10 @@ void ListaTodasAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nUCs) {
         printf(" Acessos a gravacao: %d\n", vAulas[i].nAcessos.offline);
       }
 
-      porAgendarT = vUCs[pos].teorica.nPrevistas - vUCs[pos].teorica.nAgendadas;
-      porAgendarTP = vUCs[pos].teoricopratica.nPrevistas - vUCs[pos].teoricopratica.nAgendadas;
-      porAgendarPL = vUCs[pos].praticolab.nPrevistas - vUCs[pos].praticolab.nAgendadas;
+      porAgendarT = vUCs[pos].teorica.nPrevistas - (vUCs[pos].teorica.nAgendadas + vUCs[pos].teorica.nRealizadas);
+      porAgendarTP =
+          vUCs[pos].teoricopratica.nPrevistas - (vUCs[pos].teoricopratica.nAgendadas + vUCs[pos].teoricopratica.nRealizadas);
+      porAgendarPL = vUCs[pos].praticolab.nPrevistas - (vUCs[pos].praticolab.nAgendadas + vUCs[pos].praticolab.nRealizadas);
 
       if (strcmp(vAulas[i].tipoAula, "T") == 0) {
         printf(" Aulas por agendar: %d\n", porAgendarT);
@@ -339,7 +340,7 @@ void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nU
       if (vAulas[pos].estado == 'A') {  // Altera estado de Agendada para A Decorrer
         do {
           printf("\n Deseja alterar o estado da aula %s de \"Agendada\" para \"A Decorrer\"? ", designacaoAula);
-          LerChar(" (S/N): ", confirmacao, MAX_CHAR);
+          LerChar("(S/N): ", confirmacao, MAX_CHAR);
 
           confirmacao[0] = toupper(confirmacao[0]);
           if (confirmacao[0] != 'S' && confirmacao[0] != 'N') {
@@ -430,56 +431,25 @@ void ListaAlteraEstadoAulas(tipoAula vAulas[], int nAulas, tipoUC vUCs[], int nU
           printf("\n INFO: Gravacao disponibilizada.\n");
         }
 
+        if (vAulas[pos].estado == 'R') {
+          if (strcmp(vAulas[pos].tipoAula, "T") == 0) {
+            vUCs[posUC].teorica.nAgendadas--;
+            vUCs[posUC].teorica.nRealizadas++;
+          } else if (strcmp(vAulas[posUC].tipoAula, "TP") == 0) {
+            vUCs[posUC].teoricopratica.nAgendadas--;
+            vUCs[posUC].teoricopratica.nRealizadas++;
+          } else {
+            vUCs[posUC].praticolab.nAgendadas--;
+            vUCs[posUC].praticolab.nRealizadas++;
+          }
+        }
+
         printf("\n SUCESSO: Estado da Aula \"%s\" Alterado!\n", designacaoAula);
         printf("\n Pressione ENTER para continuar . . . ");
         getchar();
       } else if (vAulas[pos].estado == 'R') {
         printf("\n ERRO: A aula %s ja terminou!", designacaoAula);
       }
-    }
-  }
-}
-
-// Pede dados ao utilizador através da função LeDadosAula e altera a Aula recebida como parâmetro
-void EditaAula(tipoAula vAulas[], int nAulas, char designacaoAula[], tipoUC vUCs[], int nUCs) {
-  tipoAula editadaAula;
-  int pos, posUC;
-
-  if (nAulas >= 0) {
-    pos = ProcuraAula(vAulas, nAulas, designacaoAula);
-    if (pos == -1) {
-      printf("\n ERRO: Aula nao encontrada!\n");
-    } else {
-      posUC = ProcuraUC(vUCs, nUCs, vAulas[pos].idUC);
-      editadaAula = LeDadosAula(vUCs, nUCs, vAulas, nAulas);
-
-      if (strcmp(vAulas[pos].tipoAula, "T") == 0) {
-        vUCs[posUC].teorica.nAgendadas--;
-        printf("\n nome: %s\n", vUCs[pos].designacao);
-        printf("\n agendadasT: %d\n", vUCs[pos].teorica.nAgendadas);
-      } else if ((strcmp(vAulas[pos].tipoAula, "TP") == 0)) {
-        vUCs[posUC].teoricopratica.nAgendadas--;
-        printf("\n nome: %s\n", vUCs[pos].designacao);
-        printf("\n agendadasTP: %d\n", vUCs[pos].teoricopratica.nAgendadas);
-      } else {
-        vUCs[posUC].teorica.nAgendadas--;
-        printf("\n nome: %s\n", vUCs[pos].designacao);
-        printf("\n agendadasPL: %d\n\n", vUCs[pos].praticolab.nAgendadas);
-      }
-
-      vAulas[pos].idUC = editadaAula.idUC;
-      strcpy(vAulas[pos].tipoAula, editadaAula.tipoAula);
-      strcpy(vAulas[pos].docente, editadaAula.docente);
-      vAulas[pos].data.dia = editadaAula.data.dia;
-      vAulas[pos].data.mes = editadaAula.data.mes;
-      vAulas[pos].data.ano = editadaAula.data.ano;
-      vAulas[pos].inicio.horas = editadaAula.inicio.horas;
-      vAulas[pos].inicio.minutos = editadaAula.inicio.minutos;
-      vAulas[pos].fim.horas = editadaAula.fim.horas;
-      vAulas[pos].fim.minutos = editadaAula.fim.minutos;
-      printf(" SUCESSO: Aula modificada!\n");
-      printf("\n Pressione ENTER para continuar . . . ");
-      getchar();
     }
   }
 }

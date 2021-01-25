@@ -1,5 +1,44 @@
+ID: 1
+Designacao: u1
+Obrigatoria: Sim
+RegimeDiurno
+Semestre:  1
+Teoricas Previstas: 0 (0min)
+Teoricopraticas Previstas: 0 (0min)
+Praticolaboratoriais Previstas: 20 (240min)
 
-   ID											Designacao	  Obrigatoria		Regime				 Semestre		T              TP             PL
-   01	                            u1	  Sim						Diurno				 1.	        00 (000min)    00 (000min)    20 (240min)
-   10	                           u10	  Sim						Diurno				 1.	        00 (000min)    00 (000min)    20 (240min)
-   30	                           u30	  Nao						Pos-Laboral		 3.	        20 (060min)    00 (000min)    00 (000min)
+********************************
+
+ID: 3
+Designacao: u3
+Obrigatoria: Sim
+RegimeDiurno
+Semestre:  1
+Teoricas Previstas: 20 (240min)
+Teoricopraticas Previstas: 0 (0min)
+Praticolaboratoriais Previstas: 0 (0min)
+
+********************************
+
+ID: 4
+Designacao: u4
+Obrigatoria: Sim
+RegimeDiurno
+Semestre:  1
+Teoricas Previstas: 0 (0min)
+Teoricopraticas Previstas: 0 (0min)
+Praticolaboratoriais Previstas: 20 (240min)
+
+********************************
+
+ID: 10
+Designacao: u10
+Obrigatoria: Sim
+RegimeDiurno
+Semestre:  1
+Teoricas Previstas: 0 (0min)
+Teoricopraticas Previstas: 0 (0min)
+Praticolaboratoriais Previstas: 20 (240min)
+
+********************************
+

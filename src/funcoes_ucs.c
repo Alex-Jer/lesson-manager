@@ -21,8 +21,11 @@ tipoUC LeDadosUC(tipoUC vUCs[], int nUCs, int modoEdicao) {
   uc.obrigatoria = 1;  // 0 - Não // 1 - Sim
   uc.diurno = 1;       // 0 - Não // 1 - Sim
   uc.teorica.nAgendadas = 0;
+  uc.teorica.nRealizadas = 0;
   uc.teoricopratica.nAgendadas = 0;
+  uc.teoricopratica.nRealizadas = 0;
   uc.praticolab.nAgendadas = 0;
+  uc.praticolab.nRealizadas = 0;
   uc.nAcessos.online = 0;
   uc.nAcessos.offline = 0;
 
@@ -145,7 +148,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
     printf("Regime            ");
     printf("Semestre    ");
     printf("T              TP              PL            ");
-    printf("G   \n");
+    printf("R   \n");
     for (i = 0; i < nUCs; i++) {
       printf("   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
       if (vUCs[i].obrigatoria == 1) {
@@ -161,7 +164,7 @@ void ListaUCs(tipoUC vUCs[], int nUCs) {
       printf("   #%d\t        %02d (%03dmin)    %02d (%03dmin)     %02d (%03dmin)", vUCs[i].semestre, vUCs[i].teorica.nPrevistas,
              vUCs[i].teorica.duracao, vUCs[i].teoricopratica.nPrevistas, vUCs[i].teoricopratica.duracao,
              vUCs[i].praticolab.nPrevistas, vUCs[i].praticolab.duracao);
-      printf("   %d\n", vUCs[i].nAcessos.offline);
+      printf("   %d\n", vUCs[i].teorica.nRealizadas + vUCs[i].teoricopratica.nRealizadas + vUCs[i].praticolab.nRealizadas);
     }
   }
   printf("\n Pressione ENTER para continuar . . . ");
@@ -175,11 +178,12 @@ void ListaRankGrav(tipoUC vUCs[], int nUCs) {
   if (nUCs == 0) {
     printf("\n ERRO: Nao existem UCs registadas!\n");
   } else {
-    printf("\n   ID\t\t\t    ");
+    printf("\n #   ");
+    printf("ID\t\t\t    ");
     printf("Designacao\t     ");
     printf("Acessos a Grav.   \n");
     for (i = 0; i < nUCs; i++) {
-      printf("   %02d\t%30s\t  ", vUCs[i].id, vUCs[i].designacao);
+      printf(" %d   %02d\t%30s\t  ", i + 1, vUCs[i].id, vUCs[i].designacao);
       printf("   %d\n", vUCs[i].nAcessos.offline);
     }
   }
@@ -268,13 +272,17 @@ int ComparaQuantAcessosGravacao(const void *v1, const void *v2) {
   return comp;
 }
 
-// int ComparaIdUC(const void *v1, const void *v2) {
-//   tipoUC *valor1, *valor2;
-//   int comp;
+int ComparaQuantAulasUC(const void *v1, const void *v2) {
+  tipoUC *valor1, *valor2;
+  int comp, soma1, soma2;
 
-//   valor1 = (tipoUC *)v1;
-//   valor2 = (tipoUC *)v2;
-//   comp = valor1->id - valor2->id;
+  valor1 = (tipoUC *)v1;
+  valor2 = (tipoUC *)v2;
 
-//   return comp;
-// }
+  soma1 = valor1->teorica.nRealizadas + valor1->teoricopratica.nRealizadas + valor1->praticolab.nRealizadas;
+  soma2 = valor2->teorica.nRealizadas + valor2->teoricopratica.nRealizadas + valor2->praticolab.nRealizadas;
+
+  comp = soma2 - soma1;
+
+  return comp;
+}

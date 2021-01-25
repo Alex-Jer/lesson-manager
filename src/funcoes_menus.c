@@ -83,7 +83,7 @@ int MenuAulas() {
 
 // Mostra no ecrã um conjunto de dados estatísticos
 int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
-  int opcao, iAulas, iUCs, nDecorrerRealizadas = 0, nPresencas = 0, nGravadas = 0;
+  int opcao, i, iAulas, iUCs, soma1, soma2, nDecorrerRealizadas = 0, nPresencas = 0, nGravadas = 0;
   float mediaPresencas, mediaGravadas, nGravadasPerc;
 
   for (iAulas = 0; iAulas < nAulas; iAulas++) {
@@ -111,13 +111,28 @@ int DadosEstatisticos(tipoUC vUCs[], int nUCs, tipoAula vAulas[], int nAulas) {
     printf(" Media de presencas em aulas realizadas: **\n");
   }
 
-  if (nAulas > 0) {
+  if (nAulas > 0 && nGravadas > 0) {
     printf(" UCs com aulas gravadas: %.2f%%\n", nGravadasPerc);
   } else {
     printf(" UCs com aulas gravadas: **%%\n");
   }
 
-  printf(" UC(s) com menor quantidade de acessos a gravacoes: **\n");
+  printf(" UC(s) com menor quantidade de aulas:\n");
+  if (nAulas > 0) {
+    qsort(vUCs, nUCs, sizeof(tipoUC), ComparaQuantAulasUC);
+    soma1 = vUCs[0].teorica.nRealizadas + vUCs[0].teoricopratica.nRealizadas + vUCs[0].praticolab.nRealizadas;
+    printf(" - %s\n", vUCs[0].designacao);
+
+    for (i = 1; i < nUCs; i++) {
+      soma2 = vUCs[i].teorica.nRealizadas + vUCs[i].teoricopratica.nRealizadas + vUCs[i].praticolab.nRealizadas;
+      if (soma2 == soma1) {
+        printf(" - %s\n", vUCs[i].designacao);
+      }
+    }
+  } else {
+    printf("Nao ha UCs com aulas registadas.\n");
+  }
+
   printf(" Aula(s) online realizadas a mais tempo: **\n");
 
   opcao = LerInteiro(" \n Insira 0 para voltar--> ", 0, 0);
