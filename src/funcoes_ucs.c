@@ -244,7 +244,7 @@ int ComparaQuantAcessosGravacao(const void *v1, const void *v2) {
 
   valor1 = (tipoUC *)v1;
   valor2 = (tipoUC *)v2;
-  comp = valor1->nAcessos.offline - valor2->nAcessos.offline;
+  comp = valor2->nAcessos.offline - valor1->nAcessos.offline;
 
   return comp;
 }
